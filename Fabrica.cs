@@ -1,0 +1,5 @@
+using espacioPersonajes;
+namespace espacioFabrica
+{
+     
+}
