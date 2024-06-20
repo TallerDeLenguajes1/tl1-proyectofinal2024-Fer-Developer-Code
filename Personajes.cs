@@ -10,12 +10,18 @@ namespace espacioPersonajes
     }
     public class Datos
     {
-        string? tipo, nombre, apodo;
+        RazaPersonaje raza;
+        string? nombre, apodo;
         DateTime fechaNac;
         int edad;//Max 300
     }
     public class Caracteristicas
     {
         int velocidad, destreza, fuerza, nivel, armadura, salud; // 1-10, 1-5, 1-10,1-10, 1-10, 100 respectivamente
+    }
+
+    public enum RazaPersonaje
+    {
+        Sanguinario, Humano, Necrofago, Legionario, Supermutante
     }
 }
