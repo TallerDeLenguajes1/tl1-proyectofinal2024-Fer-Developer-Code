@@ -18,6 +18,7 @@ namespace espacioFabricaPersonajes
                 case RazasPersonaje.Humano:
                     DateTime fecha = DateTime.Now;
                     var DatosHumano = new Datos(RazasPersonaje.Humano, NombrePj.name, NombrePj.maiden_name, fecha, 15);
+                    
                     break;
                 case RazasPersonaje.Elfo:
 

@@ -5,17 +5,19 @@ namespace EspacioPersonajes
         private Datos datosPersonaje;
         private Caracteristicas caracteristicasPersonaje;
 
-        public Personaje(RazasPersonaje raza, string nombre, string apodo, DateTime fechaNac,
-                        int edad, int velocidad, int destreza, int fuerza, int nivel, int armadura, int salud)
+        public Personaje(Datos datosPersonaje, Caracteristicas caracteristicasPersonaje)
         {
-            datosPersonaje = new Datos(raza, nombre, apodo, fechaNac, edad);
-            caracteristicasPersonaje = new Caracteristicas(velocidad, destreza, fuerza, nivel, armadura, salud);
+            this.datosPersonaje = datosPersonaje;
+            this.caracteristicasPersonaje = caracteristicasPersonaje;
         }
+
+        public Datos DatosPersonaje { get => datosPersonaje; }
+        public Caracteristicas CaracteristicasPersonaje { get => caracteristicasPersonaje; }
 
         public void Atacar()
         {
             Random random = new Random();
-            int ataque = caracteristicasPersonaje.Destreza * caracteristicasPersonaje.Fuerza * caracteristicasPersonaje.Nivel;
+            int ataque = CaracteristicasPersonaje.Destreza * CaracteristicasPersonaje.Fuerza * CaracteristicasPersonaje.Nivel;
             int efectividad = random.Next(1, 101);
 
         }
