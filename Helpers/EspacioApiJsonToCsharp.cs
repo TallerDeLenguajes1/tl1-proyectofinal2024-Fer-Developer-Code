@@ -1,6 +1,6 @@
-namespace EspacioApiNombres
+namespace EspacioApiJsonToCsharp
 {
-    public class NombrePersonaje
+    public class NombrePersonajeJson
     {
         public string name { get; set; }
         public string address { get; set; }
