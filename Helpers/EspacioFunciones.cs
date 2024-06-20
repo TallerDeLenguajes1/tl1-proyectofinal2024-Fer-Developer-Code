@@ -1,5 +1,5 @@
 using System.Text.Json;
-using EspacioApiJsonToCsharp;
+using EspacioApiJsonToCsharp.Helpers;
 namespace EspacioFunciones.Helpers
 {
     public class FuncionesAsync

@@ -7,7 +7,7 @@ namespace espacioFabricaPersonajes
     {
         private List<Personaje> ListaPersonajes = new List<Personaje>();
         private Random random = new Random();
-
+    
         public FabricaDePersonajes()
         {
             var funcionesAsync = new FuncionesAsync();
@@ -17,8 +17,11 @@ namespace espacioFabricaPersonajes
             {
                 case RazasPersonaje.Humano:
                     DateTime fecha = DateTime.Now;
-                    var DatosHumano = new Datos(RazasPersonaje.Humano, NombrePj.name, NombrePj.maiden_name, fecha, 15);
-                    
+                    int edad = DateTime.Now - fecha.Year;
+                    var DatosHumano = new Datos(RazasPersonaje.Humano, NombrePj.name, NombrePj.maiden_name, fecha, edad);
+                    var caracteristicasPersonaje = new Caracteristicas(1, 1, 1, 1, 1, 100);
+                    var PersonajeHumano = new Personaje(DatosHumano, caracteristicasPersonaje);
+                    ListaPersonajes.Add(PersonajeHumano);
                     break;
                 case RazasPersonaje.Elfo:
 
