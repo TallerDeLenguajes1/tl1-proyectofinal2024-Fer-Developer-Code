@@ -23,11 +23,22 @@ namespace espacioFabricaPersonajes
                 case RazasPersonaje.Orco:
 
                     break;
-                case RazasPersonaje.Troll:
-
-                    break;
                 case RazasPersonaje.Goblin:
-                break;
+                    break;
+                case RazasPersonaje.Centauro:
+                    break;
+                case RazasPersonaje.Minotauro:
+                    break;
+                case RazasPersonaje.Vampiro:
+                    break;
+                case RazasPersonaje.Licántropo:
+                    break;
+                case RazasPersonaje.Troll:
+                    break;
+                case RazasPersonaje.Gólem:
+                    break;
+                case RazasPersonaje.Harpía:
+                    break;
             }
         }
     }
