@@ -1,4 +1,4 @@
-namespace EspacioApiJsonToCsharp
+namespace EspacioApiJsonToCsharp.Helpers
 {
     public class NombrePersonajeJson
     {
