@@ -1,3 +1,2 @@
-﻿using EspacioArteAscii;
-ArteAscii ImgJuego = new ArteAscii();
-ImgJuego.MostrarLogo();
+﻿// See https://aka.ms/new-console-template for more information
+Console.WriteLine("Hello, World!");
