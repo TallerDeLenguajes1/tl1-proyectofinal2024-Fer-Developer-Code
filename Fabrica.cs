@@ -1,10 +1,8 @@
 using espacioPersonajes;
+
 namespace espacioFabrica
 {
-    public class FabricaDePersonajes
-    {
-        private Personajes personaje = new Personajes();
+    public class FabricaDePersonajes(){
 
-        public Personajes Personaje { get => personaje; set => personaje = value; }
     }
 }

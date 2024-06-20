@@ -1,2 +1,3 @@
-﻿using espacioPersonajes;
-using espacioFabrica;
+﻿using EspacioArteAscii;
+ArteAscii ImgJuego = new ArteAscii();
+ImgJuego.MostrarLogo();
