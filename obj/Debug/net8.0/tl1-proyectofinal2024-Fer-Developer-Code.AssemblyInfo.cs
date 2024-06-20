@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("tl1-proyectofinal2024-Fer-Developer-Code")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19e693f97d3c9bc8e3202b80fe8fa6c1bf5f4062")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0449b9477f1f3a8ec79df29cbb9aaa849e14437")]
 [assembly: System.Reflection.AssemblyProductAttribute("tl1-proyectofinal2024-Fer-Developer-Code")]
 [assembly: System.Reflection.AssemblyTitleAttribute("tl1-proyectofinal2024-Fer-Developer-Code")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
