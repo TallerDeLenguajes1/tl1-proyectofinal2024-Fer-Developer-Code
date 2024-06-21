@@ -1,8 +1,18 @@
 ﻿using EspacioArteAscii;
 using espacioFabricaPersonajes;
-ArteAscii ImgJuego = new ArteAscii();
+using EspacioApiJsonToCsharp.Helpers;
+using System.Text.Json;
+using EspacioFunciones.Helpers;
+/*ArteAscii ImgJuego = new ArteAscii();
 ImgJuego.MostrarLogo();
-for (int i = 0; i <= 9; i++)
+FabricaDePersonajes crearPersonajes = new FabricaDePersonajes();
+/*foreach (var item in crearPersonajes.ListaPersonajes)
 {
-    FabricaDePersonajes fabricaDePersonajes = new FabricaDePersonajes();
+    Console.WriteLine(item.DatosPersonaje.Nombre);
+}*/
+await probando();
+static async Task probando()
+{
+    FuncionesAsync funcionesAsync = new FuncionesAsync();
+    await funcionesAsync.Prueba();
 }

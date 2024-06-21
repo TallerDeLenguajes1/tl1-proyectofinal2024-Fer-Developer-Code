@@ -2,14 +2,16 @@ using EspacioPersonajes;
 using DatosYCaracteristicas;
 using EspacioApiJsonToCsharp.Helpers;
 using EspConstantes;
+using EspacioFunciones.Helpers;
 
 namespace espacioFabricaPersonajes
 {
     public class FabricaDePersonajes
     {
-        private List<Personaje> ListaPersonajes = new List<Personaje>();
+        private List<Personaje> listaPersonajes = new List<Personaje>();
         private Random random = new Random();
-        public List<Personaje> ListaPersonajes1 { get => ListaPersonajes; }
+        private FuncionesAsync funcionesAsync = new FuncionesAsync();
+        public List<Personaje> ListaPersonajes { get => listaPersonajes; }
 
         public FabricaDePersonajes()
         {
@@ -26,37 +28,52 @@ namespace espacioFabricaPersonajes
         private void CrearPersonajeUsuario()
         {
             Console.WriteLine("Crea tu personaje:");
-            Console.Write("Nombre: ");
-            string nombre = Console.ReadLine();
-            Console.Write("Apodo: ");
-            string apodo = Console.ReadLine();
-            Console.Write("Raza (Humano, Elfo, Enano, Orco): ");
+            Console.Write("Elije tu raza\n");
+            int i = 1;
+            foreach (var raza in Enum.GetValues(typeof(RazasPersonaje)))
+            {
+                Console.WriteLine("\t" + i + "." + raza);
+                i++;
+            }
             RazasPersonaje razaUsuario;
             while (!Enum.TryParse(Console.ReadLine(), out razaUsuario))
             {
                 Console.Write("Raza no válida. Por favor, elige una raza válida: ");
             }
-            Console.Write("Edad: ");
-            int edad = int.Parse(Console.ReadLine());
+            string linea, apodo, nombre;
+            int edad;
+            do
+            {
+                Console.Write("Nombre: ");
+                nombre = Console.ReadLine();
+                Console.Write("Apodo: ");
+                apodo = Console.ReadLine();
+                Console.Write("Edad: ");
+                linea = Console.ReadLine();
+                if (!int.TryParse(linea, out edad))
+                {
+                    Console.Write("Edad no válida. Por favor, introduce una edad válida: ");
+                }
+            } while (edad <= 18 && edad > Constantes.MaxEdad && !int.TryParse(linea, out edad));
 
             DateTime fechaNac = DateTime.Today.AddYears(-edad);
             var datosUsuario = new Datos(razaUsuario, nombre, apodo, fechaNac, edad);
 
             var caracteristicasUsuario = AsignarCaracteristicas(razaUsuario);
             var personajeUsuario = new Personaje(datosUsuario, caracteristicasUsuario);
-            ListaPersonajes.Add(personajeUsuario);
+            listaPersonajes.Add(personajeUsuario);
         }
 
-        private void CrearPersonajeAleatorio()
+        private async void CrearPersonajeAleatorio()
         {
-            NombrePersonajeJson nombrePj = new NombrePersonajeJson();
+            NombrePersonajeJson nombrePj = await funcionesAsync.GetNombreAsync();
             RazasPersonaje razaAleatoria = (RazasPersonaje)random.Next(Enum.GetNames(typeof(RazasPersonaje)).Length);
             DateTime fechaNac = CrearFechaNac(razaAleatoria, out int edad);
-            var datosAleatorios = new Datos(razaAleatoria, "Nombre", "Apodo", fechaNac, edad);
+            var datosAleatorios = new Datos(razaAleatoria, nombrePj.name, nombrePj.username, fechaNac, edad);
 
             var caracteristicasAleatorias = AsignarCaracteristicas(razaAleatoria);
             var personajeAleatorio = new Personaje(datosAleatorios, caracteristicasAleatorias);
-            ListaPersonajes.Add(personajeAleatorio);
+            listaPersonajes.Add(personajeAleatorio);
         }
 
         private Caracteristicas AsignarCaracteristicas(RazasPersonaje raza)
@@ -84,7 +101,6 @@ namespace espacioFabricaPersonajes
                     fuerza = random.Next(7, 11); // Ejemplo: Fuerza de un orco es de 7 a 10
                     velocidad = random.Next(1, 6); // Ejemplo: Velocidad de un orco es de 1 a 5
                     break;
-                    // Agrega más casos según la raza si es necesario
             }
 
             return new Caracteristicas(velocidad, destreza, fuerza, nivel, armadura, salud);

@@ -26,5 +26,11 @@ namespace EspacioFunciones.Helpers
                 return null;
             }
         }
+        public async Task Prueba()
+        {
+            var funcion = new FuncionesAsync();
+            var nombre = await funcion.GetNombreAsync();
+            Console.WriteLine(nombre.name);
+        }
     }
 }
