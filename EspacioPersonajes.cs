@@ -27,12 +27,6 @@ namespace EspacioPersonajes
             Defensor.CaracteristicasPersonaje.Salud = Defensor.CaracteristicasPersonaje.Salud - danioProvocado;
         }
     }
-
-    public class PersonajesJson
-    {
-
-    }
-
     public enum RazasPersonaje
     {
         Humano, Elfo, Enano, Orco, Goblin, Centauro, Minotauro, Vampiro, Licántropo, Troll, Gólem, Harpía
