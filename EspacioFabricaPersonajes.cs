@@ -35,14 +35,31 @@ namespace espacioFabricaPersonajes
             int i = 1;
             foreach (var raza in Enum.GetValues(typeof(RazasPersonaje)))
             {
-                Console.WriteLine("\t" + i + "." + raza);
+                Console.WriteLine($"\t{i}. {raza}");
                 i++;
             }
             RazasPersonaje razaUsuario;
-            while (!Enum.TryParse(Console.ReadLine(), out razaUsuario))
+            while (true)
             {
-                Console.Write("Raza no válida. Por favor, elige una raza válida: ");
+                Console.Write("Elige la posición o el nombre de la raza: ");
+                string input = Console.ReadLine();
+
+                // Intentar parsear como nombre del enum primero
+                if (Enum.TryParse<RazasPersonaje>(input, true, out razaUsuario))
+                {
+                    break; // Salir del bucle si el parseo fue exitoso
+                }
+
+                // Intentar parsear como número de opción
+                if (int.TryParse(input, out int opcion) && Enum.IsDefined(typeof(RazasPersonaje), opcion - 1))
+                {
+                    razaUsuario = (RazasPersonaje)(opcion - 1);
+                    break; // Salir del bucle si el parseo fue exitoso
+                }
+
+                Console.WriteLine("Raza no válida. Por favor, elige una raza válida.");
             }
+            Console.WriteLine($"Raza seleccionada: {razaUsuario}");
             string linea, apodo, nombre;
             int edad;
             do
@@ -53,11 +70,24 @@ namespace espacioFabricaPersonajes
                 apodo = Console.ReadLine();
                 Console.Write("Edad: ");
                 linea = Console.ReadLine();
+
+                // Intenta convertir la entrada en un número entero
                 if (!int.TryParse(linea, out edad))
                 {
-                    Console.Write("Edad no válida. Por favor, introduce una edad válida: ");
+                    Console.WriteLine("Edad no válida. Por favor, introduce una edad válida.");
+                    continue; // Vuelve al inicio del bucle
                 }
-            } while (edad <= 18 && edad > Constantes.MaxEdad && !int.TryParse(linea, out edad));
+
+                // Verifica si la edad está dentro del rango permitido
+                if (edad <= 18 || edad > Constantes.MaxEdad)
+                {
+                    Console.WriteLine("Edad fuera de rango. Por favor, introduce una edad válida.");
+                    continue; // Vuelve al inicio del bucle
+                }
+                break;
+
+            } while (true); // Bucle infinito, se sale con "break"
+
 
             DateTime fechaNac = DateTime.Today.AddYears(-edad);
             var datosUsuario = new Datos(razaUsuario, nombre, apodo, fechaNac, edad);
