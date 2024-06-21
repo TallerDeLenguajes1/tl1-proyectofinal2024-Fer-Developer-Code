@@ -1,5 +1,6 @@
 using System.Text.Json;
-namespace EspacioPersonajes
+using EspacioPersonajes;
+namespace EspacioJsonCreacion
 {
     public class PersonajesJson
     {
@@ -24,6 +25,14 @@ namespace EspacioPersonajes
         public static bool Existe(string nombreArchivo)
         {
             return File.Exists(nombreArchivo) && new FileInfo(nombreArchivo).Length > 0;
+        }
+    }
+    public class HistorialJson{
+        public void GuardarGanador(){
+
+        }
+        public List<Personaje> HistorialGanadores(){
+            return new List<Personaje>();
         }
     }
 }
