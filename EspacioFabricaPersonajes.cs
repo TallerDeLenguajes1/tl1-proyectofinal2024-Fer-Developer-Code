@@ -1,5 +1,6 @@
 using EspacioPersonajes;
 using EspacioApiJsonToCsharp.Helpers;
+using DatosYCaracteristicas;
 using EspacioFunciones.Helpers;
 namespace espacioFabricaPersonajes
 {
@@ -11,17 +12,17 @@ namespace espacioFabricaPersonajes
         public FabricaDePersonajes()
         {
             var funcionesAsync = new FuncionesAsync();
-            var NombrePj = await funcionesAsync.GetNombreAsync();
+            //var NombrePj = await funcionesAsync.GetNombreAsync();
             RazasPersonaje razaAleatoria = (RazasPersonaje)random.Next(Enum.GetNames(typeof(RazasPersonaje)).Length);
             switch (razaAleatoria)//El switch y otras estructuras solo funcionan una vez dentro del constructor o cualquier estructura que no sea una clase
             {
                 case RazasPersonaje.Humano:
                     DateTime fecha = DateTime.Now;
-                    int edad = DateTime.Now - fecha.Year;
-                    var DatosHumano = new Datos(RazasPersonaje.Humano, NombrePj.name, NombrePj.maiden_name, fecha, edad);
+                    //int edad = DateTime.Now - fecha.Year;
+                    //var DatosHumano = new Datos(RazasPersonaje.Humano, NombrePj.name, NombrePj.maiden_name, fecha, edad);
                     var caracteristicasPersonaje = new Caracteristicas(1, 1, 1, 1, 1, 100);
-                    var PersonajeHumano = new Personaje(DatosHumano, caracteristicasPersonaje);
-                    ListaPersonajes.Add(PersonajeHumano);
+                    //var PersonajeHumano = new Personaje(DatosHumano, caracteristicasPersonaje);
+                    //ListaPersonajes.Add(PersonajeHumano);
                     break;
                 case RazasPersonaje.Elfo:
 

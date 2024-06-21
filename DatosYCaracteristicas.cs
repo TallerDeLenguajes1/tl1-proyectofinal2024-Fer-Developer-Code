@@ -47,6 +47,6 @@ namespace DatosYCaracteristicas
         public int Fuerza { get => fuerza; }
         public int Nivel { get => nivel; }
         public int Armadura { get => armadura; }
-        public int Salud { get => salud; }
+        public int Salud { get => salud; set => salud = value;}
     }
 }
