@@ -27,12 +27,19 @@ namespace EspacioJsonCreacion
             return File.Exists(nombreArchivo) && new FileInfo(nombreArchivo).Length > 0;
         }
     }
-    public class HistorialJson{
-        public void GuardarGanador(){
+    public class HistorialJson
+    {
+        public void GuardarGanador()
+        {
 
         }
-        public List<Personaje> HistorialGanadores(){
+        public List<Personaje> LeerGanadores()
+        {
             return new List<Personaje>();
+        }
+        public static bool Existe(string nombreArchivo)
+        {
+            return File.Exists(nombreArchivo) && new FileInfo(nombreArchivo).Length > 0;
         }
     }
 }
