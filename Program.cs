@@ -2,4 +2,7 @@
 using espacioFabricaPersonajes;
 ArteAscii ImgJuego = new ArteAscii();
 ImgJuego.MostrarLogo();
-FabricaDePersonajes personaje = new FabricaDePersonajes();
+for (int i = 0; i <= 9; i++)
+{
+    FabricaDePersonajes fabricaDePersonajes = new FabricaDePersonajes();
+}

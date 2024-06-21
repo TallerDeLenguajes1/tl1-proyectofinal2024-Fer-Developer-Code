@@ -124,8 +124,6 @@ namespace espacioFabricaPersonajes
                     break;
             }
 
-
-
             DateTime crearFechaNac(int anioMin, int AnioMax)
             {
                 DateTime minDate = new DateTime(anioMin, 1, 1);
@@ -133,6 +131,7 @@ namespace espacioFabricaPersonajes
                 DateTime fechaNac = new DateTime(random.Next(minDate.Year, maxDate.Year), random.Next(1, 13), random.Next(1, 29 + 1));
                 return fechaNac;
             }
+            
         }
         public List<Personaje> ListaPersonajes1 { get => ListaPersonajes; }
     }
