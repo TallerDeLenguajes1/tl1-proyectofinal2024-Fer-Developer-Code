@@ -1,6 +1,7 @@
 using EspacioPersonajes;
 using DatosYCaracteristicas;
-
+using EspacioApiJsonToCsharp.Helpers;
+using EspacioFunciones;
 namespace espacioFabricaPersonajes
 {
     public class FabricaDePersonajes
@@ -10,6 +11,7 @@ namespace espacioFabricaPersonajes
 
         public FabricaDePersonajes()
         {
+            NombrePersonajeJson nombrePj = new NombrePersonajeJson();
             RazasPersonaje razaAleatoria = (RazasPersonaje)random.Next(Enum.GetNames(typeof(RazasPersonaje)).Length);
             switch (razaAleatoria)//El switch y otras estructuras solo funcionan una vez dentro del constructor o cualquier estructura que no sea una clase
             {
