@@ -1,138 +1,126 @@
 using EspacioPersonajes;
 using DatosYCaracteristicas;
 using EspacioApiJsonToCsharp.Helpers;
-using EspacioFunciones;
+using EspConstantes;
+
 namespace espacioFabricaPersonajes
 {
     public class FabricaDePersonajes
     {
         private List<Personaje> ListaPersonajes = new List<Personaje>();
         private Random random = new Random();
+        public List<Personaje> ListaPersonajes1 { get => ListaPersonajes; }
 
         public FabricaDePersonajes()
         {
+            // Creación del personaje del usuario
+            CrearPersonajeUsuario();
+            int maxEnemigos = Constantes.MaxEnemigos;
+            // Creación de personajes aleatorios
+            for (int i = 0; i < maxEnemigos; i++)
+            {
+                CrearPersonajeAleatorio();
+            }
+        }
+
+        private void CrearPersonajeUsuario()
+        {
+            Console.WriteLine("Crea tu personaje:");
+            Console.Write("Nombre: ");
+            string nombre = Console.ReadLine();
+            Console.Write("Apodo: ");
+            string apodo = Console.ReadLine();
+            Console.Write("Raza (Humano, Elfo, Enano, Orco): ");
+            RazasPersonaje razaUsuario;
+            while (!Enum.TryParse(Console.ReadLine(), out razaUsuario))
+            {
+                Console.Write("Raza no válida. Por favor, elige una raza válida: ");
+            }
+            Console.Write("Edad: ");
+            int edad = int.Parse(Console.ReadLine());
+
+            DateTime fechaNac = DateTime.Today.AddYears(-edad);
+            var datosUsuario = new Datos(razaUsuario, nombre, apodo, fechaNac, edad);
+
+            var caracteristicasUsuario = AsignarCaracteristicas(razaUsuario);
+            var personajeUsuario = new Personaje(datosUsuario, caracteristicasUsuario);
+            ListaPersonajes.Add(personajeUsuario);
+        }
+
+        private void CrearPersonajeAleatorio()
+        {
             NombrePersonajeJson nombrePj = new NombrePersonajeJson();
             RazasPersonaje razaAleatoria = (RazasPersonaje)random.Next(Enum.GetNames(typeof(RazasPersonaje)).Length);
-            switch (razaAleatoria)//El switch y otras estructuras solo funcionan una vez dentro del constructor o cualquier estructura que no sea una clase
+            DateTime fechaNac = CrearFechaNac(razaAleatoria, out int edad);
+            var datosAleatorios = new Datos(razaAleatoria, "Nombre", "Apodo", fechaNac, edad);
+
+            var caracteristicasAleatorias = AsignarCaracteristicas(razaAleatoria);
+            var personajeAleatorio = new Personaje(datosAleatorios, caracteristicasAleatorias);
+            ListaPersonajes.Add(personajeAleatorio);
+        }
+
+        private Caracteristicas AsignarCaracteristicas(RazasPersonaje raza)
+        {
+            int velocidad = random.Next(1, 11);
+            int destreza = random.Next(1, 6);
+            int fuerza = random.Next(1, 11);
+            int nivel = random.Next(1, 11);
+            int armadura = random.Next(1, 11);
+            int salud = Constantes.MaxSalud;
+
+            switch (raza)
             {
                 case RazasPersonaje.Humano:
-                    DateTime fechaNacHumano = crearFechaNac(1961, 2001);
-                    int edadHumano = DateTime.Today.Year - fechaNacHumano.Year;
-                    var datosHumano = new Datos(RazasPersonaje.Humano, "Jorge", "Perro", fechaNacHumano, edadHumano);
-                    var caracteristicasHumano = new Caracteristicas(1, 1, 1, 1, 1, 100);
-                    var personajeHumano = new Personaje(datosHumano, caracteristicasHumano);
-                    ListaPersonajes1.Add(personajeHumano);
+                    fuerza = random.Next(1, 8); // Ejemplo: Fuerza de un humano es de 1 a 7
                     break;
-
                 case RazasPersonaje.Elfo:
-                    DateTime fechaNacElf = crearFechaNac(1961, 2001);
-                    int edadElf = DateTime.Today.Year - fechaNacElf.Year;
-                    var datosElf = new Datos(RazasPersonaje.Elfo, "Nombre Elf", "Apellido Elf", fechaNacElf, edadElf);
-                    var caracteristicasElf = new Caracteristicas(1, 1, 1, 1, 1, 100);
-                    var personajeElf = new Personaje(datosElf, caracteristicasElf);
-                    ListaPersonajes1.Add(personajeElf);
+                    fuerza = random.Next(1, 6); // Ejemplo: Fuerza de un elfo es de 1 a 5
                     break;
-
                 case RazasPersonaje.Enano:
-                    DateTime fechaNacEnano = crearFechaNac(1961, 2001);
-                    int edadEnano = DateTime.Today.Year - fechaNacEnano.Year;
-                    var datosEnano = new Datos(RazasPersonaje.Enano, "Nombre Enano", "Apellido Enano", fechaNacEnano, edadEnano);
-                    var caracteristicasEnano = new Caracteristicas(1, 1, 1, 1, 1, 100);
-                    var personajeEnano = new Personaje(datosEnano, caracteristicasEnano);
-                    ListaPersonajes1.Add(personajeEnano);
+                    fuerza = random.Next(4, 10); // Ejemplo: Fuerza de un enano es de 4 a 9
+                    armadura = random.Next(5, 11); // Ejemplo: Armadura de un enano es de 5 a 10
                     break;
-
                 case RazasPersonaje.Orco:
-                    DateTime fechaNacOrco = crearFechaNac(1961, 2001);
-                    int edadOrco = DateTime.Today.Year - fechaNacOrco.Year;
-                    var datosOrco = new Datos(RazasPersonaje.Orco, "Nombre Orco", "Apellido Orco", fechaNacOrco, edadOrco);
-                    var caracteristicasOrco = new Caracteristicas(1, 1, 1, 1, 1, 100);
-                    var personajeOrco = new Personaje(datosOrco, caracteristicasOrco);
-                    ListaPersonajes1.Add(personajeOrco);
+                    fuerza = random.Next(7, 11); // Ejemplo: Fuerza de un orco es de 7 a 10
+                    velocidad = random.Next(1, 6); // Ejemplo: Velocidad de un orco es de 1 a 5
                     break;
-
-                case RazasPersonaje.Goblin:
-                    DateTime fechaNacGoblin = crearFechaNac(1961, 2001);
-                    int edadGoblin = DateTime.Today.Year - fechaNacGoblin.Year;
-                    var datosGoblin = new Datos(RazasPersonaje.Goblin, "Nombre Goblin", "Apellido Goblin", fechaNacGoblin, edadGoblin);
-                    var caracteristicasGoblin = new Caracteristicas(1, 1, 1, 1, 1, 100);
-                    var personajeGoblin = new Personaje(datosGoblin, caracteristicasGoblin);
-                    ListaPersonajes1.Add(personajeGoblin);
-                    break;
-
-                case RazasPersonaje.Centauro:
-                    DateTime fechaNacCentauro = crearFechaNac(1961, 2001);
-                    int edadCentauro = DateTime.Today.Year - fechaNacCentauro.Year;
-                    var datosCentauro = new Datos(RazasPersonaje.Centauro, "Nombre Centauro", "Apellido Centauro", fechaNacCentauro, edadCentauro);
-                    var caracteristicasCentauro = new Caracteristicas(1, 1, 1, 1, 1, 100);
-                    var personajeCentauro = new Personaje(datosCentauro, caracteristicasCentauro);
-                    ListaPersonajes1.Add(personajeCentauro);
-                    break;
-
-                case RazasPersonaje.Minotauro:
-                    DateTime fechaNacMinotauro = crearFechaNac(1961, 2001);
-                    int edadMinotauro = DateTime.Today.Year - fechaNacMinotauro.Year;
-                    var datosMinotauro = new Datos(RazasPersonaje.Minotauro, "Nombre Minotauro", "Apellido Minotauro", fechaNacMinotauro, edadMinotauro);
-                    var caracteristicasMinotauro = new Caracteristicas(1, 1, 1, 1, 1, 100);
-                    var personajeMinotauro = new Personaje(datosMinotauro, caracteristicasMinotauro);
-                    ListaPersonajes1.Add(personajeMinotauro);
-                    break;
-
-                case RazasPersonaje.Vampiro:
-                    DateTime fechaNacVampiro = crearFechaNac(1961, 2001);
-                    int edadVampiro = DateTime.Today.Year - fechaNacVampiro.Year;
-                    var datosVampiro = new Datos(RazasPersonaje.Vampiro, "Nombre Vampiro", "Apellido Vampiro", fechaNacVampiro, edadVampiro);
-                    var caracteristicasVampiro = new Caracteristicas(1, 1, 1, 1, 1, 100);
-                    var personajeVampiro = new Personaje(datosVampiro, caracteristicasVampiro);
-                    ListaPersonajes1.Add(personajeVampiro);
-                    break;
-
-                case RazasPersonaje.Licántropo:
-                    DateTime fechaNacLicantropo = crearFechaNac(1961, 2001);
-                    int edadLicantropo = DateTime.Today.Year - fechaNacLicantropo.Year;
-                    var datosLicantropo = new Datos(RazasPersonaje.Licántropo, "Nombre Licántropo", "Apellido Licántropo", fechaNacLicantropo, edadLicantropo);
-                    var caracteristicasLicantropo = new Caracteristicas(1, 1, 1, 1, 1, 100);
-                    var personajeLicantropo = new Personaje(datosLicantropo, caracteristicasLicantropo);
-                    ListaPersonajes1.Add(personajeLicantropo);
-                    break;
-
-                case RazasPersonaje.Troll:
-                    DateTime fechaNacTroll = crearFechaNac(1961, 2001);
-                    int edadTroll = DateTime.Today.Year - fechaNacTroll.Year;
-                    var datosTroll = new Datos(RazasPersonaje.Troll, "Nombre Troll", "Apellido Troll", fechaNacTroll, edadTroll);
-                    var caracteristicasTroll = new Caracteristicas(1, 1, 1, 1, 1, 100);
-                    var personajeTroll = new Personaje(datosTroll, caracteristicasTroll);
-                    ListaPersonajes1.Add(personajeTroll);
-                    break;
-
-                case RazasPersonaje.Gólem:
-                    DateTime fechaNacGolem = crearFechaNac(1961, 2001);
-                    int edadGolem = DateTime.Today.Year - fechaNacGolem.Year;
-                    var datosGolem = new Datos(RazasPersonaje.Gólem, "Nombre Gólem", "Apellido Gólem", fechaNacGolem, edadGolem);
-                    var caracteristicasGolem = new Caracteristicas(1, 1, 1, 1, 1, 100);
-                    var personajeGolem = new Personaje(datosGolem, caracteristicasGolem);
-                    ListaPersonajes1.Add(personajeGolem);
-                    break;
-
-                case RazasPersonaje.Harpía:
-                    DateTime fechaNacHarpia = crearFechaNac(1961, 2001);
-                    int edadHarpia = DateTime.Today.Year - fechaNacHarpia.Year;
-                    var datosHarpia = new Datos(RazasPersonaje.Harpía, "Nombre Harpía", "Apellido Harpía", fechaNacHarpia, edadHarpia);
-                    var caracteristicasHarpia = new Caracteristicas(1, 1, 1, 1, 1, 100);
-                    var personajeHarpia = new Personaje(datosHarpia, caracteristicasHarpia);
-                    ListaPersonajes1.Add(personajeHarpia);
-                    break;
+                    // Agrega más casos según la raza si es necesario
             }
 
-            DateTime crearFechaNac(int anioMin, int AnioMax)
-            {
-                DateTime minDate = new DateTime(anioMin, 1, 1);
-                DateTime maxDate = new DateTime(AnioMax, 12, 31);
-                DateTime fechaNac = new DateTime(random.Next(minDate.Year, maxDate.Year), random.Next(1, 13), random.Next(1, 29 + 1));
-                return fechaNac;
-            }
-            
+            return new Caracteristicas(velocidad, destreza, fuerza, nivel, armadura, salud);
         }
-        public List<Personaje> ListaPersonajes1 { get => ListaPersonajes; }
+
+        private DateTime CrearFechaNac(RazasPersonaje raza, out int edad)
+        {
+            int anioMin, anioMax;
+            switch (raza)
+            {
+                case RazasPersonaje.Humano:
+                    anioMin = DateTime.Today.Year - 65; // Maxima edad 65
+                    anioMax = DateTime.Today.Year - 18; // Minima edad 18
+                    break;
+                case RazasPersonaje.Elfo:
+                    anioMin = DateTime.Today.Year - Constantes.MaxEdad; // Maxima edad 300
+                    anioMax = DateTime.Today.Year - 100; // Minima edad 100
+                    break;
+                case RazasPersonaje.Enano:
+                    anioMin = DateTime.Today.Year - 150; // Maxima edad 150
+                    anioMax = DateTime.Today.Year - 50; // Minima edad 50
+                    break;
+                case RazasPersonaje.Orco:
+                    anioMin = DateTime.Today.Year - 50; // Maxima edad 50
+                    anioMax = DateTime.Today.Year - 10; // Minima edad 10
+                    break;
+                // Agrega más rangos de edad según la raza
+                default:
+                    anioMin = DateTime.Today.Year - 100;
+                    anioMax = DateTime.Today.Year - 1;
+                    break;
+            }
+
+            DateTime fechaNac = new DateTime(random.Next(anioMin, anioMax + 1), random.Next(1, 13), random.Next(1, 29));
+            edad = DateTime.Today.Year - fechaNac.Year;
+            return fechaNac;
+        }
     }
 }
