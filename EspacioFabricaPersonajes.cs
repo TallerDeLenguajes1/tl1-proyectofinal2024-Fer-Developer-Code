@@ -39,6 +39,7 @@ namespace espacioFabricaPersonajes
                 i++;
             }
             RazasPersonaje razaUsuario;
+            int opcion;
             while (true)
             {
                 Console.Write("Elige la posición o el nombre de la raza: ");
@@ -51,7 +52,7 @@ namespace espacioFabricaPersonajes
                 }
 
                 // Intentar parsear como número de opción
-                if (int.TryParse(input, out int opcion) && Enum.IsDefined(typeof(RazasPersonaje), opcion - 1))
+                if (int.TryParse(input, out opcion) && Enum.IsDefined(typeof(RazasPersonaje), opcion - 1))
                 {
                     razaUsuario = (RazasPersonaje)(opcion - 1);
                     break; // Salir del bucle si el parseo fue exitoso
