@@ -4,7 +4,7 @@ namespace EspacioFunciones.Helpers
 {
     public class FuncionesAsync
     {
-        public async Task<NombrePersonajeJson> GetNombreAsync()//La funcion no trabajaba por que no debia ser estatica ademas debia estar dentro de una cloase
+        public async Task<infoPj> GetNombreAsync()//La funcion no trabajaba por que no debia ser estatica ademas debia estar dentro de una cloase
         {
             string url = "https://api.namefake.com/";
             try
@@ -16,7 +16,7 @@ namespace EspacioFunciones.Helpers
 
                 string responseBody = await response.Content.ReadAsStringAsync();
 
-                NombrePersonajeJson nombrePj = JsonSerializer.Deserialize<NombrePersonajeJson>(responseBody);
+                infoPj nombrePj = JsonSerializer.Deserialize<infoPj>(responseBody);
                 return nombrePj;
             }
             catch (HttpRequestException e)

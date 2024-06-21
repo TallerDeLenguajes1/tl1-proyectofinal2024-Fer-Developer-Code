@@ -1,6 +1,6 @@
 namespace EspacioApiJsonToCsharp.Helpers
 {
-    public class NombrePersonajeJson
+    public class infoPj
     {
         public string name { get; set; }
         public string address { get; set; }

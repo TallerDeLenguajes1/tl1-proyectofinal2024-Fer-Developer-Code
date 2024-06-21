@@ -1,18 +1,8 @@
-﻿using EspacioArteAscii;
-using espacioFabricaPersonajes;
-using EspacioApiJsonToCsharp.Helpers;
-using System.Text.Json;
-using EspacioFunciones.Helpers;
-/*ArteAscii ImgJuego = new ArteAscii();
-ImgJuego.MostrarLogo();
-FabricaDePersonajes crearPersonajes = new FabricaDePersonajes();
-/*foreach (var item in crearPersonajes.ListaPersonajes)
+﻿using espacioFabricaPersonajes;
+
+FabricaDePersonajes personajes = new FabricaDePersonajes();
+await personajes.CrearPersonajes();//Logro funcionar, supongo que es porque despues de todo este tiempo habia que tener cuidado con el await
+foreach (var item in personajes.ListaPersonajes)
 {
     Console.WriteLine(item.DatosPersonaje.Nombre);
-}*/
-await probando();
-static async Task probando()
-{
-    FuncionesAsync funcionesAsync = new FuncionesAsync();
-    await funcionesAsync.Prueba();
 }

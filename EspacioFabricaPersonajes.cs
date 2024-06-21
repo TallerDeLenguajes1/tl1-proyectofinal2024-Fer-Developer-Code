@@ -13,7 +13,7 @@ namespace espacioFabricaPersonajes
         private FuncionesAsync funcionesAsync = new FuncionesAsync();
         public List<Personaje> ListaPersonajes { get => listaPersonajes; }
 
-        public FabricaDePersonajes()
+        public async Task CrearPersonajes()
         {
             // Creación del personaje del usuario
             CrearPersonajeUsuario();
@@ -21,7 +21,10 @@ namespace espacioFabricaPersonajes
             // Creación de personajes aleatorios
             for (int i = 0; i < maxEnemigos; i++)
             {
-                CrearPersonajeAleatorio();
+                var informacionPj = await funcionesAsync.GetNombreAsync();
+                string nombrePj = informacionPj.name;
+                string apodoPj = informacionPj.username;
+                CrearPersonajeAleatorio(nombrePj, apodoPj);
             }
         }
 
@@ -64,12 +67,11 @@ namespace espacioFabricaPersonajes
             listaPersonajes.Add(personajeUsuario);
         }
 
-        private async void CrearPersonajeAleatorio()
+        private void CrearPersonajeAleatorio(string nombrePj, string apodoPj)
         {
-            NombrePersonajeJson nombrePj = await funcionesAsync.GetNombreAsync();
             RazasPersonaje razaAleatoria = (RazasPersonaje)random.Next(Enum.GetNames(typeof(RazasPersonaje)).Length);
             DateTime fechaNac = CrearFechaNac(razaAleatoria, out int edad);
-            var datosAleatorios = new Datos(razaAleatoria, nombrePj.name, nombrePj.username, fechaNac, edad);
+            var datosAleatorios = new Datos(razaAleatoria, nombrePj, apodoPj, fechaNac, edad);
 
             var caracteristicasAleatorias = AsignarCaracteristicas(razaAleatoria);
             var personajeAleatorio = new Personaje(datosAleatorios, caracteristicasAleatorias);
