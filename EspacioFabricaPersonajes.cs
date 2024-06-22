@@ -14,10 +14,8 @@ namespace espacioFabricaPersonajes
         public List<Personaje> ListaPersonajes { get => listaPersonajes; }
         public Personaje Pj { get => pj; }//Atributo publico
 
-        public async Task CrearPersonajes()
+        public async Task CrearPersonajes()//Crea personajes al azar
         {
-            // Creación del personaje del usuario
-            CrearPersonajeUsuario();
             int maxEnemigos = Constantes.MaxEnemigos;
             // Creación de personajes aleatorios
             for (int i = 0; i < maxEnemigos; i++)
@@ -28,8 +26,7 @@ namespace espacioFabricaPersonajes
                 CrearPersonajeAleatorio(nombrePj, apodoPj);
             }
         }
-
-        private void CrearPersonajeUsuario()
+        public void CrearPersonajeUsuario()
         {
             Console.WriteLine("Crea tu personaje:");
             Console.Write("Elige tu raza:\n");

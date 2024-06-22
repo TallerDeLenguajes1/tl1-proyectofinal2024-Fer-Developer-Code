@@ -1,0 +1,172 @@
+[
+  {
+    "DatosPersonaje": {
+      "Raza": 5,
+      "Nombre": "Merl Gleichner",
+      "Apodo": "leopold93",
+      "FechaNac": "1940-09-23T00:00:00",
+      "Edad": 84
+    },
+    "CaracteristicasPersonaje": {
+      "Velocidad": 10,
+      "Destreza": 5,
+      "Fuerza": 4,
+      "Nivel": 2,
+      "Armadura": 6,
+      "Salud": 100
+    }
+  },
+  {
+    "DatosPersonaje": {
+      "Raza": 8,
+      "Nombre": "Amparo Heller",
+      "Apodo": "kasandrabreiten",
+      "FechaNac": "1983-06-06T00:00:00",
+      "Edad": 41
+    },
+    "CaracteristicasPersonaje": {
+      "Velocidad": 4,
+      "Destreza": 3,
+      "Fuerza": 8,
+      "Nivel": 9,
+      "Armadura": 1,
+      "Salud": 100
+    }
+  },
+  {
+    "DatosPersonaje": {
+      "Raza": 6,
+      "Nombre": "Prof. Krystina Graham",
+      "Apodo": "amymarquardt",
+      "FechaNac": "1965-07-15T00:00:00",
+      "Edad": 59
+    },
+    "CaracteristicasPersonaje": {
+      "Velocidad": 10,
+      "Destreza": 4,
+      "Fuerza": 1,
+      "Nivel": 6,
+      "Armadura": 9,
+      "Salud": 100
+    }
+  },
+  {
+    "DatosPersonaje": {
+      "Raza": 6,
+      "Nombre": "Afton Schuppe",
+      "Apodo": "mckaylastokes",
+      "FechaNac": "1971-04-21T00:00:00",
+      "Edad": 53
+    },
+    "CaracteristicasPersonaje": {
+      "Velocidad": 5,
+      "Destreza": 1,
+      "Fuerza": 7,
+      "Nivel": 6,
+      "Armadura": 4,
+      "Salud": 100
+    }
+  },
+  {
+    "DatosPersonaje": {
+      "Raza": 3,
+      "Nombre": "Yasmeen Reinger",
+      "Apodo": "jan05",
+      "FechaNac": "1997-12-07T00:00:00",
+      "Edad": 27
+    },
+    "CaracteristicasPersonaje": {
+      "Velocidad": 1,
+      "Destreza": 2,
+      "Fuerza": 7,
+      "Nivel": 2,
+      "Armadura": 1,
+      "Salud": 100
+    }
+  },
+  {
+    "DatosPersonaje": {
+      "Raza": 6,
+      "Nombre": "Dr. Sydni Olson DDS",
+      "Apodo": "gdaugherty",
+      "FechaNac": "2023-06-14T00:00:00",
+      "Edad": 1
+    },
+    "CaracteristicasPersonaje": {
+      "Velocidad": 5,
+      "Destreza": 2,
+      "Fuerza": 8,
+      "Nivel": 3,
+      "Armadura": 4,
+      "Salud": 100
+    }
+  },
+  {
+    "DatosPersonaje": {
+      "Raza": 6,
+      "Nombre": "Mr. Kellen Lakin",
+      "Apodo": "jlarkin",
+      "FechaNac": "1924-06-05T00:00:00",
+      "Edad": 100
+    },
+    "CaracteristicasPersonaje": {
+      "Velocidad": 5,
+      "Destreza": 3,
+      "Fuerza": 3,
+      "Nivel": 10,
+      "Armadura": 7,
+      "Salud": 100
+    }
+  },
+  {
+    "DatosPersonaje": {
+      "Raza": 10,
+      "Nombre": "Prof. Fermin Hyatt II",
+      "Apodo": "borerelizabeth",
+      "FechaNac": "1977-04-05T00:00:00",
+      "Edad": 47
+    },
+    "CaracteristicasPersonaje": {
+      "Velocidad": 3,
+      "Destreza": 5,
+      "Fuerza": 6,
+      "Nivel": 10,
+      "Armadura": 5,
+      "Salud": 100
+    }
+  },
+  {
+    "DatosPersonaje": {
+      "Raza": 6,
+      "Nombre": "Bradford Pagac",
+      "Apodo": "wilsoncrona",
+      "FechaNac": "1996-04-09T00:00:00",
+      "Edad": 28
+    },
+    "CaracteristicasPersonaje": {
+      "Velocidad": 3,
+      "Destreza": 5,
+      "Fuerza": 3,
+      "Nivel": 4,
+      "Armadura": 2,
+      "Salud": 100
+    }
+  },
+  {
+    "DatosPersonaje": {
+      "Raza": 6,
+      "Nombre": "Dashawn Koss II",
+      "Apodo": "alysacassin",
+      "FechaNac": "1959-08-16T00:00:00",
+      "Edad": 65
+    },
+    "CaracteristicasPersonaje": {
+      "Velocidad": 1,
+      "Destreza": 2,
+      "Fuerza": 7,
+      "Nivel": 8,
+      "Armadura": 9,
+      "Salud": 100
+    }
+  }
+]
