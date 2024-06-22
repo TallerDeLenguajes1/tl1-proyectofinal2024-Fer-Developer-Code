@@ -16,6 +16,35 @@ if (archivos.Existe(rutaListaPjs) && archivos.Existe(rutaJugador))
         MostrarPersonaje(listaPersonajesGuardados[i]);
     }
     MostrarPersonaje(jugador);
+    int respuesta;
+    do
+    {
+        Console.Write("¿Deseas seguir con tu personaje actual o crear uno nuevo? (1: Sí, 2: No): ");
+    } while (!int.TryParse(Console.ReadLine(), out respuesta) || (respuesta != 1 && respuesta != 2));
+
+    if (respuesta == 1)
+    {
+        // El jugador desea seguir con su personaje actual
+        Console.WriteLine("¡Excelente! Continuemos con tu personaje actual.");
+    }
+    else
+    {
+        Console.WriteLine("¡Entendido! Vamos a crear un nuevo personaje.");
+        try
+        {
+            File.Delete(rutaJugador);
+            Console.WriteLine($"El archivo {rutaJugador} ha sido borrado correctamente.");
+            FabricaDePersonajes personajes = new FabricaDePersonajes();
+            var fabrica = new FabricaDePersonajes();
+            fabrica.CrearPersonajeUsuario();
+            archivos.GuardarPersonajeJugador(fabrica.Pj, rutaJugador);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al borrar el archivo: {ex.Message}");
+        }
+
+    }
 }
 else
 {
@@ -25,6 +54,12 @@ else
     await personajes.CrearPersonajes();//Logro funcionar, supongo que es porque despues de todo este tiempo habia que tener cuidado con el await
     archivos.GuardarPersonajes(personajes.ListaPersonajes, rutaListaPjs);
     archivos.GuardarPersonajeJugador(fabrica.Pj, rutaJugador);
+    //Comienza el torneo
+    Random RandomGenerator = new Random();
+    var indiceEnemigo = RandomGenerator.Next(fabrica.ListaPersonajes.Count);
+    Personaje enemigo = fabrica.ListaPersonajes[indiceEnemigo];
+    //Comienza la opcion de ataque
+    
 }
 
 void MostrarPersonaje(Personaje personaje)
