@@ -31,35 +31,36 @@ namespace espacioFabricaPersonajes
         private void CrearPersonajeUsuario()
         {
             Console.WriteLine("Crea tu personaje:");
-            Console.Write("Elije tu raza\n");
+            Console.Write("Elige tu raza:\n");
             int i = 1;
             foreach (var raza in Enum.GetValues(typeof(RazasPersonaje)))
             {
                 Console.WriteLine($"\t{i}. {raza}");
                 i++;
             }
+
             RazasPersonaje razaUsuario;
-            int opcion;
             while (true)
             {
                 Console.Write("Elige la posición o el nombre de la raza: ");
                 string input = Console.ReadLine();
 
-                // Intentar parsear como nombre del enum primero
-                if (Enum.TryParse<RazasPersonaje>(input, true, out razaUsuario))
-                {
-                    break; // Salir del bucle si el parseo fue exitoso
-                }
 
                 // Intentar parsear como número de opción
-                if (int.TryParse(input, out opcion) && Enum.IsDefined(typeof(RazasPersonaje), opcion - 1))
+                if (int.TryParse(input, out int opcion) && opcion >= 1 && opcion <= Enum.GetValues(typeof(RazasPersonaje)).Length)
                 {
                     razaUsuario = (RazasPersonaje)(opcion - 1);
                     break; // Salir del bucle si el parseo fue exitoso
                 }
 
+                // Intentar parsear como nombre del enum 
+                else if (Enum.TryParse<RazasPersonaje>(input, true, out razaUsuario))
+                {
+                    break; // Salir del bucle si el parseo fue exitoso
+                }
                 Console.WriteLine("Raza no válida. Por favor, elige una raza válida.");
             }
+
             Console.WriteLine($"Raza seleccionada: {razaUsuario}");
             string linea, apodo, nombre;
             int edad;

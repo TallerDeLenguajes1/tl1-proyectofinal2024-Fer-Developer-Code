@@ -28,7 +28,5 @@ namespace EspacioPersonajes
         }
     }
     public enum RazasPersonaje
-    {
-        Humano, Elfo, Enano, Orco, Goblin, Centauro, Minotauro, Vampiro, Licántropo, Troll, Gólem, Harpía
-    }
+    { Humano, Elfo, Enano, Orco, Goblin, Centauro, Minotauro, Vampiro, Licántropo, Troll, Gólem, Harpía }
 }
