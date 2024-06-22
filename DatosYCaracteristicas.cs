@@ -41,12 +41,20 @@ namespace DatosYCaracteristicas
             this.armadura = armadura;
             this.salud = salud;
         }
-
         public int Velocidad { get => velocidad; }
         public int Destreza { get => destreza; }
         public int Fuerza { get => fuerza; }
         public int Nivel { get => nivel; }
         public int Armadura { get => armadura; }
-        public int Salud { get => salud; set => salud = value;}
+        public int Salud { get => salud; set => salud = value; }
+        public void ReducirSalud(int danio)
+        {
+            Salud -= danio;
+            if (Salud < 0)
+            {
+                Salud = 0;
+            }
+        }
+
     }
 }

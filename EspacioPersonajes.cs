@@ -24,7 +24,7 @@ namespace EspacioPersonajes
             int defensa = Defensor.CaracteristicasPersonaje.Armadura * Defensor.CaracteristicasPersonaje.Velocidad;
             int constAjuste = Constantes.ajuste;
             int danioProvocado = ((ataque * efectividad) - defensa) / constAjuste;
-            Defensor.CaracteristicasPersonaje.Salud = Defensor.CaracteristicasPersonaje.Salud - danioProvocado;
+            Defensor.CaracteristicasPersonaje.ReducirSalud(danioProvocado);
         }
     }
     public enum RazasPersonaje

@@ -1,9 +1,10 @@
 ﻿using espacioFabricaPersonajes;
 using EspacioJsonCreacion;
 using EspacioPersonajes;
+using EspConstantes;
 
 var archivos = new PersonajesJson();
-string nombreArchivo = "Personajes.json";
+string nombreArchivo = "Json/Personajes.json";
 
 await verificarArchivos(archivos, nombreArchivo);
 
@@ -25,6 +26,13 @@ async Task verificarArchivos(PersonajesJson archivos, string nombreArchivo)
     if (archivos.Existe(nombreArchivo))
     {
         List<Personaje> listaPersonajesGuardados = archivos.LeerPersonajes(nombreArchivo);
+        for (int i = 0; i < Constantes.MaxEnemigos; i++)
+        {
+            Console.WriteLine($"Tu oponente es {listaPersonajesGuardados[i].DatosPersonaje.Nombre}");
+            Console.WriteLine($"Raza: {listaPersonajesGuardados[i].DatosPersonaje.Raza}, Edad: {listaPersonajesGuardados[i].DatosPersonaje.Edad}");
+            Console.WriteLine($"Velocidad: {listaPersonajesGuardados[i].CaracteristicasPersonaje.Velocidad}, Destreza: {listaPersonajesGuardados[i].CaracteristicasPersonaje.Destreza}");
+            Console.WriteLine($"HP: {listaPersonajesGuardados[i].CaracteristicasPersonaje.Salud}");
+        }
     }
     else
     {

@@ -1,6 +1,5 @@
 using EspacioPersonajes;
 using DatosYCaracteristicas;
-using EspacioApiJsonToCsharp.Helpers;
 using EspConstantes;
 using EspacioFunciones.Helpers;
 
@@ -9,9 +8,11 @@ namespace espacioFabricaPersonajes
     public class FabricaDePersonajes
     {
         private List<Personaje> listaPersonajes = new List<Personaje>();
+        private Personaje pj;//Personaje propio del jugador
         private Random random = new Random();
         private FuncionesAsync funcionesAsync = new FuncionesAsync();
         public List<Personaje> ListaPersonajes { get => listaPersonajes; }
+        public Personaje Pj { get => pj; }//Atributo publico
 
         public async Task CrearPersonajes()
         {
@@ -96,7 +97,7 @@ namespace espacioFabricaPersonajes
 
             var caracteristicasUsuario = AsignarCaracteristicas(razaUsuario);
             var personajeUsuario = new Personaje(datosUsuario, caracteristicasUsuario);
-            listaPersonajes.Add(personajeUsuario);
+            pj = personajeUsuario;
         }
 
         private void CrearPersonajeAleatorio(string nombrePj, string apodoPj)
