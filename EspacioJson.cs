@@ -9,6 +9,11 @@ namespace EspacioJsonCreacion
             string jsonListaPersonajes = JsonSerializer.Serialize(listaPersonajes);
             File.WriteAllText(nombreArchivo, jsonListaPersonajes);
         }
+        public void GuardarPersonajeJugador(Personaje jugador, string nombreArchivo)
+        {
+            string jsonPersonajeJugador = JsonSerializer.Serialize(jugador);
+            File.WriteAllText(nombreArchivo, jsonPersonajeJugador);
+        }
         // Método para leer una lista de personajes desde un archivo JSON
         public List<Personaje> LeerPersonajes(string nombreArchivo)
         {
@@ -19,6 +24,15 @@ namespace EspacioJsonCreacion
 
             string jsonString = File.ReadAllText(nombreArchivo);
             return JsonSerializer.Deserialize<List<Personaje>>(jsonString);
+        }
+        public Personaje LeerJugador(string nombreArchivo)
+        {
+            if (!Existe(nombreArchivo))
+            {
+                throw new FileNotFoundException($"El archivo {nombreArchivo} no existe o está vacío.");
+            }
+            string jsonString = File.ReadAllText(nombreArchivo);
+            return JsonSerializer.Deserialize<Personaje>(jsonString);
         }
 
         // Método para verificar si un archivo existe y tiene datos
