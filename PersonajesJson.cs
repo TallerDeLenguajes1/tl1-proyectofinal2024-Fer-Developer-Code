@@ -10,7 +10,7 @@ namespace EspacioJsonCreacion
             File.WriteAllText(nombreArchivo, jsonListaPersonajes);
         }
         // Método para leer una lista de personajes desde un archivo JSON
-        public static List<Personaje> LeerPersonajes(string nombreArchivo)
+        public List<Personaje> LeerPersonajes(string nombreArchivo)
         {
             if (!Existe(nombreArchivo))
             {
@@ -22,7 +22,7 @@ namespace EspacioJsonCreacion
         }
 
         // Método para verificar si un archivo existe y tiene datos
-        public static bool Existe(string nombreArchivo)
+        public bool Existe(string nombreArchivo)
         {
             return File.Exists(nombreArchivo) && new FileInfo(nombreArchivo).Length > 0;
         }
