@@ -11,11 +11,6 @@ if (archivos.Existe(rutaListaPjs) && archivos.Existe(rutaJugador))
 {
     List<Personaje> listaPersonajesGuardados = archivos.LeerPersonajes(rutaListaPjs);
     Personaje jugador = archivos.LeerJugador(rutaJugador);
-    for (int i = 0; i < Constantes.MaxEnemigos; i++)
-    {
-        MostrarPersonaje(listaPersonajesGuardados[i]);
-    }
-    MostrarPersonaje(jugador);
     int respuesta;
     do
     {
@@ -54,14 +49,9 @@ else
     await personajes.CrearPersonajes();//Logro funcionar, supongo que es porque despues de todo este tiempo habia que tener cuidado con el await
     archivos.GuardarPersonajes(personajes.ListaPersonajes, rutaListaPjs);
     archivos.GuardarPersonajeJugador(fabrica.Pj, rutaJugador);
-    //Comienza el torneo
-    Random RandomGenerator = new Random();
-    var indiceEnemigo = RandomGenerator.Next(fabrica.ListaPersonajes.Count);
-    Personaje enemigo = fabrica.ListaPersonajes[indiceEnemigo];
-    //Comienza la opcion de ataque
-    
-}
 
+}
+/* Prueba para checar que cargue los datos de la API y de los personajes
 void MostrarPersonaje(Personaje personaje)
 {
     Console.WriteLine($"Nombre: {personaje.DatosPersonaje.Nombre}, Apodo: {personaje.DatosPersonaje.Apodo}");
@@ -70,4 +60,38 @@ void MostrarPersonaje(Personaje personaje)
     Console.WriteLine($"Fuerza: {personaje.CaracteristicasPersonaje.Fuerza}, Nivel: {personaje.CaracteristicasPersonaje.Nivel}");
     Console.WriteLine($"Armadura: {personaje.CaracteristicasPersonaje.Armadura}, Salud: {personaje.CaracteristicasPersonaje.Salud}");
     Console.WriteLine();
+}*/
+void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
+{
+    Random RandomGenerator = new Random();
+    while (personajes.Count > 1)
+    {
+        var luchador1 = jugador;
+        var indiceEnemigo = RandomGenerator.Next(personajes.Count);
+        var luchador2 = personajes[indiceEnemigo];
+
+        Console.WriteLine($"Combate entre {luchador1.DatosPersonaje.Nombre} y {luchador2.DatosPersonaje.Nombre}");
+
+        while (luchador1.CaracteristicasPersonaje.Salud > 0 && luchador2.CaracteristicasPersonaje.Salud > 0)
+        {
+            luchador1.Atacar(luchador2);
+            if (luchador2.CaracteristicasPersonaje.Salud <= 0)
+            {
+                Console.WriteLine($"{luchador1.DatosPersonaje.Nombre} ha ganado el combate.");
+                personajes.Remove(luchador2);
+                break;
+            }
+
+            luchador2.Atacar(luchador1);
+            if (luchador1.CaracteristicasPersonaje.Salud <= 0)
+            {
+                Console.WriteLine($"{luchador2.DatosPersonaje.Nombre} ha ganado el combate.");
+                personajes.Remove(luchador1);
+                break;
+            }
+        }
+    }
+
+    var ganador = jugador;
+    Console.WriteLine($"{ganador.DatosPersonaje.Nombre} es el campeón del torneo.");
 }
