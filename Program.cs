@@ -67,8 +67,8 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
     while (personajes.Count > 1)
     {
         var luchador1 = jugador;
-        var indiceEnemigo = RandomGenerator.Next(personajes.Count);
-        var luchador2 = personajes[indiceEnemigo];
+        var posicionEnemigo = RandomGenerator.Next(personajes.Count);
+        var luchador2 = personajes[posicionEnemigo];
 
         Console.WriteLine($"Combate entre {luchador1.DatosPersonaje.Nombre} y {luchador2.DatosPersonaje.Nombre}");
 
