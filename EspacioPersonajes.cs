@@ -6,6 +6,7 @@ namespace EspacioPersonajes
     {
         private Datos datos;
         private Caracteristicas caracteristicas;
+        private int pociones = 3;
 
         public Personaje(Datos datosPersonaje, Caracteristicas caracteristicasPersonaje)
         {
@@ -15,6 +16,7 @@ namespace EspacioPersonajes
 
         public Datos DatosPersonaje { get => datos; }
         public Caracteristicas CaracteristicasPersonaje { get => caracteristicas; }
+        public int Pociones { get => pociones; set => pociones = value; }
 
         public void Atacar(Personaje Defensor)
         {
@@ -25,6 +27,19 @@ namespace EspacioPersonajes
             int constAjuste = Constantes.ajuste;
             int danioProvocado = ((ataque * efectividad) - defensa) / constAjuste;
             Defensor.CaracteristicasPersonaje.ReducirSalud(danioProvocado);
+        }
+        public void TomarPocion()
+        {
+            if (Pociones > 0)
+            {
+                CaracteristicasPersonaje.Salud += 20; // Recuperar 20 puntos de salud (puedes ajustar este valor)
+                Pociones--;
+                Console.WriteLine($"{DatosPersonaje.Nombre} ha tomado una poción de vida. Salud: {CaracteristicasPersonaje.Salud}, Pociones restantes: {Pociones}");
+            }
+            else
+            {
+                Console.WriteLine($"{DatosPersonaje.Nombre} no tiene más pociones.");
+            }
         }
     }
     public enum RazasPersonaje

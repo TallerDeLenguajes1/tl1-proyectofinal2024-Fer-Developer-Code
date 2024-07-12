@@ -55,6 +55,5 @@ namespace DatosYCaracteristicas
                 Salud = 0;
             }
         }
-
     }
 }

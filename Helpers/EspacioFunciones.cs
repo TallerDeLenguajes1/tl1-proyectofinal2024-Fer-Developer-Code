@@ -26,11 +26,11 @@ namespace EspacioFunciones.Helpers
                 return null;
             }
         }
-        public async Task Prueba()
+        /*public async Task Prueba()
         {
             var funcion = new FuncionesAsync();
             var nombre = await funcion.GetNombreAsync();
             Console.WriteLine(nombre.name);
-        }
+        }Pequeña prueba para checar que la API funcione*/
     }
 }
