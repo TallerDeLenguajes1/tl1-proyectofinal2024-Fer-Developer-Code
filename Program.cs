@@ -81,7 +81,6 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
                 personajes.Remove(luchador2);
                 break;
             }
-
             luchador2.Atacar(luchador1);
             if (luchador1.CaracteristicasPersonaje.Salud <= 0)
             {
@@ -91,7 +90,6 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
             }
         }
     }
-
     var ganador = jugador;
     Console.WriteLine($"{ganador.DatosPersonaje.Nombre} es el campeón del torneo.");
 }
