@@ -1,6 +1,6 @@
 using System.Text.Json;
 using EspacioPersonajes;
-namespace EspacioJsonCreacion
+namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta json
 {
     public class PersonajesJson
     {
