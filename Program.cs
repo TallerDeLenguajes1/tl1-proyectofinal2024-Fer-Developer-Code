@@ -3,13 +3,17 @@ using EspacioJsonCreacion;
 using EspacioPersonajes;
 using EspacioArteAscii;
 using System.Diagnostics;
+
 var ascii = new ArteAscii();
 var archivos = new PersonajesJson();
 var archivosPjsGanadores = new HistorialJson();
+
+// Rutas de los archivos JSON
 string rutaListaPjs = "JsonFolder/Personajes.json";
 string rutaJugador = "JsonFolder/rutaJugador.json";
 string rutaGanadores = "JsonFolder/rutaGanadores.json";
 
+// Comprobamos si los archivos existen y leemos los datos
 if (archivos.Existe(rutaListaPjs) && archivos.Existe(rutaJugador))
 {
     List<Personaje> listaPersonajesGuardados = archivos.LeerPersonajes(rutaListaPjs);
@@ -126,9 +130,10 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
     {
         stopwatch.Stop();
         int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
+        var detallesPartida = new DetallesPartida(jugador.ContadorAtaques, duracion);
         if (!archivos.Existe(rutaGanadores))
         {
-            archivosPjsGanadores.GuardarGanador(jugador, , rutaGanadores);
+            archivosPjsGanadores.GuardarGanador(jugador, detallesPartida, rutaGanadores);
         }
     }
     else if (jugadorDerrotado)
