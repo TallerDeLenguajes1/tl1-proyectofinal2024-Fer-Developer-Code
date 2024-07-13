@@ -10,7 +10,7 @@ namespace espacioFabricaPersonajes
         private List<Personaje> listaPersonajes = new List<Personaje>();
         private Personaje pj;//Personaje propio del jugador
         private Random random = new Random();
-        private FuncionesAsync funcionesAsync = new FuncionesAsync();
+        private FuncionesAsync funcionesAsync = new FuncionesAsync();//LLama a la API de nombres
         public List<Personaje> ListaPersonajes { get => listaPersonajes; }
         public Personaje Pj { get => pj; }//Atributo publico
 
@@ -20,13 +20,13 @@ namespace espacioFabricaPersonajes
             // Creación de personajes aleatorios
             for (int i = 0; i < maxEnemigos; i++)
             {
-                var informacionPj = await funcionesAsync.GetNombreAsync();
-                string nombrePj = informacionPj.name;
-                string apodoPj = informacionPj.username;
-                CrearPersonajeAleatorio(nombrePj, apodoPj);
+                var informacionEnemigo = await funcionesAsync.GetNombreAsync();//informacion sobre nombre y apodo para el enemigo creado al azar
+                string nombreEnemigo = informacionEnemigo.name;
+                string apodoEnemigo = informacionEnemigo.username;
+                CrearPersonajeAleatorio(nombreEnemigo, apodoEnemigo);//LLama a la funcuon que crea un personaje al azar y le asigna el nombre y apodos generados en informacion enemigo
             }
         }
-        public void CrearPersonajeUsuario()
+        public void CrearPersonajeUsuario()//Genera un personaje propio para le usuario
         {
             Console.WriteLine("Crea tu personaje:");
             Console.Write("Elige tu raza:\n");
@@ -37,12 +37,11 @@ namespace espacioFabricaPersonajes
                 i++;
             }
 
-            RazasPersonaje razaUsuario;
+            RazasPersonaje razaUsuario;//Invoco al enum con las razas de los personajes
             while (true)
             {
                 Console.Write("Elige la posición o el nombre de la raza: ");
                 string input = Console.ReadLine();
-
 
                 // Intentar parsear como número de opción
                 if (int.TryParse(input, out int opcion) && opcion >= 1 && opcion <= Enum.GetValues(typeof(RazasPersonaje)).Length)
@@ -91,7 +90,6 @@ namespace espacioFabricaPersonajes
 
             DateTime fechaNac = DateTime.Today.AddYears(-edad);
             var datosUsuario = new Datos(razaUsuario, nombre, apodo, fechaNac, edad);
-
             var caracteristicasUsuario = AsignarCaracteristicas(razaUsuario);
             var personajeUsuario = new Personaje(datosUsuario, caracteristicasUsuario);
             pj = personajeUsuario;

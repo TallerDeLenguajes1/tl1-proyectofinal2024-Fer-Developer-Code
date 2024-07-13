@@ -7,6 +7,7 @@ namespace EspacioPersonajes
         private Datos datos;
         private Caracteristicas caracteristicas;
         private int pociones = 3;
+        private int contadorAtaques = 0;
 
         public Personaje(Datos datosPersonaje, Caracteristicas caracteristicasPersonaje)
         {
@@ -17,6 +18,7 @@ namespace EspacioPersonajes
         public Datos DatosPersonaje { get => datos; }
         public Caracteristicas CaracteristicasPersonaje { get => caracteristicas; }
         public int Pociones { get => pociones; set => pociones = value; }
+        public int ContadorAtaques { get => contadorAtaques; }
 
         public void Atacar(Personaje Defensor)
         {
@@ -27,6 +29,7 @@ namespace EspacioPersonajes
             int constAjuste = Constantes.ajuste;
             int danioProvocado = ((ataque * efectividad) - defensa) / constAjuste;
             Defensor.CaracteristicasPersonaje.ReducirSalud(danioProvocado);
+            contadorAtaques++;
         }
         public void TomarPocion()
         {

@@ -93,4 +93,18 @@ namespace EspacioJsonCreacion
         public string InformacionPartida { get => informacionPartida; }
         public DateTime Fecha { get => fecha; }
     }
+    public class DetallesPartida
+    {
+        public List<Personaje> Participantes { get; set; }
+        public Personaje Ganador { get; set; }
+        public DateTime Fecha { get; set; }
+
+        // Constructor
+        public DetallesPartida(List<Personaje> participantes, Personaje ganador, DateTime fecha)
+        {
+            Participantes = participantes;
+            Ganador = ganador;
+            Fecha = fecha;
+        }
+    }
 }

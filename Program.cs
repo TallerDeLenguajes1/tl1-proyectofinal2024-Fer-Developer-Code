@@ -2,8 +2,10 @@
 using EspacioJsonCreacion;
 using EspacioPersonajes;
 using EspacioArteAscii;
+using System.Diagnostics;
 var ascii = new ArteAscii();
 var archivos = new PersonajesJson();
+var archivosPjsGanadores = new HistorialJson();
 string rutaListaPjs = "Json/Personajes.json";
 string rutaJugador = "Json/rutaJugador.json";
 string rutaGanadores = "Json/rutaGanadores.json";
@@ -56,6 +58,7 @@ else
 //Metodos para el torneo
 void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
 {
+    Stopwatch stopwatch = new Stopwatch();//Iniciar contador de tiempo
     Random RandomGenerator = new Random();
     bool jugadorDerrotado = false;
 
@@ -64,7 +67,7 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
         var luchador1 = jugador;
         var posicionEnemigo = RandomGenerator.Next(personajes.Count);
         var luchador2 = personajes[posicionEnemigo];
-
+        stopwatch.Start();
         Console.Clear(); // Limpiar la consola
         Console.WriteLine($"¡Combate entre {luchador1.DatosPersonaje.Nombre} y {luchador2.DatosPersonaje.Nombre}!");
 
@@ -121,7 +124,12 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
     }
     if (personajes.Count == 0 && !jugadorDerrotado)
     {
-
+        stopwatch.Stop();
+        int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
+        if (!archivos.Existe(rutaGanadores))
+        {
+            archivosPjsGanadores.GuardarGanador(jugador, , rutaGanadores);
+        }
     }
     else if (jugadorDerrotado)
     {
@@ -143,3 +151,54 @@ void MostrarCaracteristicas(Personaje personaje)
     Console.WriteLine($"Armadura: {personaje.CaracteristicasPersonaje.Armadura}, Salud: {personaje.CaracteristicasPersonaje.Salud}");
     Console.WriteLine();
 }/* Prueba para checar que cargue los datos de la API y de los personajes}*/
+///En caso de que el jugador sea derrotado simula un torneo entre los personajes restantes
+void SimularTorneo(List<Personaje> personajes)
+{
+    Random RandomGenerator = new Random();
+
+    while (personajes.Count > 1)
+    {
+        var posicion1 = RandomGenerator.Next(personajes.Count);
+        var luchador1 = personajes[posicion1];
+        personajes.RemoveAt(posicion1);
+
+        var posicion2 = RandomGenerator.Next(personajes.Count);
+        var luchador2 = personajes[posicion2];
+        personajes.RemoveAt(posicion2);
+
+        Console.Clear();
+        Console.WriteLine($"Combate entre {luchador1.DatosPersonaje.Nombre} y {luchador2.DatosPersonaje.Nombre}");
+        MostrarCaracteristicas(luchador1);
+        MostrarCaracteristicas(luchador2);
+
+        while (luchador1.CaracteristicasPersonaje.Salud > 0 && luchador2.CaracteristicasPersonaje.Salud > 0)
+        {
+            luchador1.Atacar(luchador2);
+            Console.WriteLine($"Vida de {luchador2.DatosPersonaje.Nombre}: {luchador2.CaracteristicasPersonaje.Salud}");
+
+            Thread.Sleep(2000); // Pausa de 2 segundos
+
+            if (luchador2.CaracteristicasPersonaje.Salud <= 0)
+            {
+                Console.WriteLine($"{luchador1.DatosPersonaje.Nombre} ha ganado el combate.");
+                personajes.Add(luchador1);
+                break;
+            }
+
+            luchador2.Atacar(luchador1);
+            Console.WriteLine($"Vida de {luchador1.DatosPersonaje.Nombre}: {luchador1.CaracteristicasPersonaje.Salud}");
+
+            Thread.Sleep(2000); // Pausa de 2 segundos
+
+            if (luchador1.CaracteristicasPersonaje.Salud <= 0)
+            {
+                Console.WriteLine($"{luchador2.DatosPersonaje.Nombre} ha ganado el combate.");
+                personajes.Add(luchador2);
+                break;
+            }
+        }
+    }
+
+    var ganador = personajes.FirstOrDefault();
+    Console.WriteLine($"{ganador?.DatosPersonaje.Nombre} es el campeón del torneo.");
+}
