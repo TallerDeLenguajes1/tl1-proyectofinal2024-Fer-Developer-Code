@@ -43,7 +43,7 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
     }
     public class HistorialJson
     {
-        public void GuardarGanador(Personaje ganador, string informacionPartida, string nombreArchivo)
+        public void GuardarGanador(Personaje ganador, DetallesPartida informacionPartida, string nombreArchivo)
         {
             List<HistorialPartida> historial = new List<HistorialPartida>();
 
@@ -79,32 +79,35 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
     public class HistorialPartida
     {
         private Personaje ganador;
-        private string informacionPartida;
+        private DetallesPartida informacionPartida;
         private DateTime fecha;
 
-        public HistorialPartida(Personaje ganador, string informacionPartida, DateTime fecha)
+        public HistorialPartida(Personaje ganador, DetallesPartida detalles, DateTime fecha)
         {
             this.ganador = ganador;
-            this.informacionPartida = informacionPartida;
+            this.informacionPartida = detalles;
             this.fecha = fecha;
         }
 
         public Personaje Ganador { get => ganador; }
-        public string InformacionPartida { get => informacionPartida; }
+        public DetallesPartida InformacionPartida { get => informacionPartida; }
         public DateTime Fecha { get => fecha; }
     }
     public class DetallesPartida
     {
-        public List<Personaje> Participantes { get; set; }
-        public Personaje Ganador { get; set; }
-        public DateTime Fecha { get; set; }
+        private int totalAtaques; 
+        private int duracion;
+        private DateTime hora;
 
-        // Constructor
-        public DetallesPartida(List<Personaje> participantes, Personaje ganador, DateTime fecha)
+        public DetallesPartida(int totalAtaques, int duracion)
         {
-            Participantes = participantes;
-            Ganador = ganador;
-            Fecha = fecha;
+            this.totalAtaques = totalAtaques;
+            this.duracion = duracion;
+            this.hora = DateTime.Now;
         }
+
+        public int TotalAtaques => totalAtaques;
+        public int Duracion => duracion;
+        public DateTime Hora => hora;
     }
 }

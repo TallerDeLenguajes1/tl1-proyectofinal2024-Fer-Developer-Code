@@ -6,9 +6,9 @@ using System.Diagnostics;
 var ascii = new ArteAscii();
 var archivos = new PersonajesJson();
 var archivosPjsGanadores = new HistorialJson();
-string rutaListaPjs = "Json/Personajes.json";
-string rutaJugador = "Json/rutaJugador.json";
-string rutaGanadores = "Json/rutaGanadores.json";
+string rutaListaPjs = "JsonFolder/Personajes.json";
+string rutaJugador = "JsonFolder/rutaJugador.json";
+string rutaGanadores = "JsonFolder/rutaGanadores.json";
 
 if (archivos.Existe(rutaListaPjs) && archivos.Existe(rutaJugador))
 {
