@@ -43,9 +43,9 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
     }
     public class HistorialJson
     {
+        List<HistorialPartida> historial = new List<HistorialPartida>();
         public void GuardarGanador(Personaje ganador, DetallesPartida informacionPartida, string nombreArchivo)
         {
-            List<HistorialPartida> historial = new List<HistorialPartida>();
 
             if (Existe(nombreArchivo))
             {
@@ -71,7 +71,7 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
             string jsonString = File.ReadAllText(nombreArchivo);
             return JsonSerializer.Deserialize<List<HistorialPartida>>(jsonString);
         }
-        public static bool Existe(string nombreArchivo)
+        public bool Existe(string nombreArchivo)
         {
             return File.Exists(nombreArchivo) && new FileInfo(nombreArchivo).Length > 0;
         }
@@ -95,7 +95,7 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
     }
     public class DetallesPartida
     {
-        private int totalAtaques; 
+        private int totalAtaques;
         private int duracion;
         private DateTime hora;
 

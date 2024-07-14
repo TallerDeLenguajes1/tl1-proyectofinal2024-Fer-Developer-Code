@@ -132,7 +132,14 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
         // El jugador es el último en pie, por lo tanto, gana el torneo.
         int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
         var detallesPartida = new DetallesPartida(jugador.ContadorAtaques, duracion);
-        archivosPjsGanadores.GuardarGanador(jugador, detallesPartida, rutaGanadores);
+        if (archivosPjsGanadores.Existe(rutaGanadores))
+        {
+            archivosPjsGanadores.GuardarGanador(jugador, detallesPartida, rutaGanadores);
+        }
+        else{
+            
+            archivosPjsGanadores.GuardarGanador(jugador, detallesPartida, rutaGanadores);
+        }
     }
     else if (jugadorDerrotado)
     {

@@ -1,4 +1,4 @@
-using EspacioPersonajes;
+/*using EspacioPersonajes;
 using System.Text.Json;
 
 namespace EspacioJsonCreacion
@@ -224,3 +224,4 @@ void SimularTorneo(List<Personaje> personajes, string rutaGanadores, Stopwatch s
         archivosPjsGanadores.GuardarGanador(ganador, duracion, rutaGanadores);
     }
 }
+*/
