@@ -1,77 +1,98 @@
-﻿using espacioFabricaPersonajes;
-using EspacioJsonCreacion;
 using EspacioPersonajes;
-using EspacioArteAscii;
-using System.Diagnostics;
+using System.Text.Json;
 
-var ascii = new ArteAscii();
-var archivos = new PersonajesJson();
-var archivosPjsGanadores = new HistorialJson();
-
-// Rutas de los archivos JSON
-string rutaListaPjs = "JsonFolder/Personajes.json";
-string rutaJugador = "JsonFolder/rutaJugador.json";
-string rutaGanadores = "JsonFolder/rutaGanadores.json";
-
-// Comprobamos si los archivos existen y leemos los datos
-if (archivos.Existe(rutaListaPjs) && archivos.Existe(rutaJugador))
+namespace EspacioJsonCreacion
 {
-    List<Personaje> listaPersonajesGuardados = archivos.LeerPersonajes(rutaListaPjs);
-    Personaje jugador = archivos.LeerJugador(rutaJugador);
-    int respuesta;
-    do
+    public class PersonajesJson
     {
-        Console.Write("¿Deseas seguir con tu personaje actual o crear uno nuevo? (1: Sí, 2: No): ");
-    } while (!int.TryParse(Console.ReadLine(), out respuesta) || (respuesta != 1 && respuesta != 2));
-
-    if (respuesta == 1)
-    {
-        // El jugador desea seguir con su personaje actual
-        Console.WriteLine("¡Excelente! Continuemos con tu personaje actual.");
-    }
-    else
-    {
-        Console.WriteLine("¡Entendido! Vamos a crear un nuevo personaje.");
-        try
+        public void GuardarPersonajes(List<Personaje> personajes, string ruta)
         {
-            File.Delete(rutaJugador);
-            Console.WriteLine($"El archivo {rutaJugador} ha sido borrado correctamente.");
-            FabricaDePersonajes personajes = new FabricaDePersonajes();
-            var fabrica = new FabricaDePersonajes();
-            fabrica.CrearPersonajeUsuario();
-            archivos.GuardarPersonajeJugador(fabrica.Pj, rutaJugador);
+            var opciones = new JsonSerializerOptions { WriteIndented = true };
+            var personajesJson = JsonSerializer.Serialize(personajes, opciones);
+            File.WriteAllText(ruta, personajesJson);
         }
-        catch (Exception ex)
+
+        public List<Personaje> LeerPersonajes(string ruta)
         {
-            Console.WriteLine($"Error al borrar el archivo: {ex.Message}");
+            var personajesJson = File.ReadAllText(ruta);
+            return JsonSerializer.Deserialize<List<Personaje>>(personajesJson);
+        }
+
+        public void GuardarPersonajeJugador(Personaje personaje, string ruta)
+        {
+            var opciones = new JsonSerializerOptions { WriteIndented = true };
+            var personajeJson = JsonSerializer.Serialize(personaje, opciones);
+            File.WriteAllText(ruta, personajeJson);
+        }
+
+        public Personaje LeerJugador(string ruta)
+        {
+            var personajeJson = File.ReadAllText(ruta);
+            return JsonSerializer.Deserialize<Personaje>(personajeJson);
+        }
+
+        public bool Existe(string ruta)
+        {
+            return File.Exists(ruta) && new FileInfo(ruta).Length > 0;
         }
     }
-    ComenzarTorneo(archivos.LeerPersonajes(rutaListaPjs), archivos.LeerJugador(rutaJugador));
-}
-else
-{
-    FabricaDePersonajes personajes = new FabricaDePersonajes();
-    var fabrica = new FabricaDePersonajes();
-    fabrica.CrearPersonajeUsuario();
-    await personajes.CrearPersonajes(); //Logro funcionar, supongo que es porque despues de todo este tiempo habia que tener cuidado con el await
-    archivos.GuardarPersonajes(personajes.ListaPersonajes, rutaListaPjs);
-    archivos.GuardarPersonajeJugador(fabrica.Pj, rutaJugador);
-    ComenzarTorneo(personajes.ListaPersonajes, fabrica.Pj);
-}
 
-// Metodos para el torneo
+    public class HistorialJson
+    {
+        public void GuardarGanador(Personaje ganador, DetallesPartida detalles, string ruta)
+        {
+            List<HistorialPartida> ganadoresExistentes = Existe(ruta) ? LeerGanadores(ruta) : new List<HistorialPartida>();
+            ganadoresExistentes.Add(new HistorialPartida { Ganador = ganador, Detalles = detalles });
+            var opciones = new JsonSerializerOptions { WriteIndented = true };
+            var ganadoresJson = JsonSerializer.Serialize(ganadoresExistentes, opciones);
+            File.WriteAllText(ruta, ganadoresJson);
+        }
+
+        public List<HistorialPartida> LeerGanadores(string ruta)
+        {
+            var ganadoresJson = File.ReadAllText(ruta);
+            return JsonSerializer.Deserialize<List<HistorialPartida>>(ganadoresJson);
+        }
+
+        public bool Existe(string ruta)
+        {
+            return File.Exists(ruta) && new FileInfo(ruta).Length > 0;
+        }
+    }
+
+    public class DetallesPartida
+    {
+        public int ContadorAtaques { get; set; }
+        public int Duracion { get; set; }
+
+        public DetallesPartida(int contadorAtaques, int duracion)
+        {
+            ContadorAtaques = contadorAtaques;
+            Duracion = duracion;
+        }
+    }
+
+    public class HistorialPartida
+    {
+        public Personaje Ganador { get; set; }
+        public DetallesPartida Detalles { get; set; }
+    }
+}
 void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
 {
-    Stopwatch stopwatch = new Stopwatch(); // Iniciar contador de tiempo
+    Stopwatch stopwatch = new Stopwatch(); // Iniciar contador de tiempo global del torneo
     Random RandomGenerator = new Random();
     bool jugadorDerrotado = false;
+    long tiempoInicialJugador = 0; // Para registrar el tiempo inicial del jugador
 
     while (personajes.Count > 1 && !jugadorDerrotado)
     {
         var luchador1 = jugador;
         var posicionEnemigo = RandomGenerator.Next(personajes.Count);
         var luchador2 = personajes[posicionEnemigo];
-        stopwatch.Start();
+        stopwatch.Start(); // Iniciar el stopwatch al comienzo del combate
+        tiempoInicialJugador = stopwatch.ElapsedMilliseconds; // Registrar el tiempo inicial del jugador
+
         Console.Clear(); // Limpiar la consola
         Console.WriteLine($"¡Combate entre {luchador1.DatosPersonaje.Nombre} y {luchador2.DatosPersonaje.Nombre}!");
 
@@ -111,26 +132,24 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
 
             luchador2.Atacar(luchador1);
             Console.WriteLine($"Vida de {luchador1.DatosPersonaje.Nombre}: {luchador1.CaracteristicasPersonaje.Salud}");
+
             if (luchador1.CaracteristicasPersonaje.Salud <= 0)
             {
                 Console.WriteLine($"{luchador2.DatosPersonaje.Nombre} ha ganado el combate.");
-                if (luchador1 == jugador)
-                {
-                    jugadorDerrotado = true;
-                }
+                jugadorDerrotado = true;
                 personajes.Remove(luchador1);
                 break;
             }
         }
-        Console.Clear();
-        Console.WriteLine("Presiona cualquier tecla para continuar...");
-        Console.ReadKey(); // Esperar a que el usuario presione una tecla antes de continuar
+
+        // Detener el stopwatch al final del combate
+        stopwatch.Stop();
     }
-    stopwatch.Stop();
+
     if (personajes.Count == 0 && !jugadorDerrotado)
     {
         // El jugador es el último en pie, por lo tanto, gana el torneo.
-        int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
+        int duracion = (int)(stopwatch.ElapsedMilliseconds - tiempoInicialJugador) / 1000; // Duración en segundos sumando el tiempo del jugador 1
         var detallesPartida = new DetallesPartida(jugador.ContadorAtaques, duracion);
         archivosPjsGanadores.GuardarGanador(jugador, detallesPartida, rutaGanadores);
     }
@@ -142,8 +161,6 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
     }
 }
 
-
-// En caso de que el jugador sea derrotado simula un torneo entre los personajes restantes
 void SimularTorneo(List<Personaje> personajes, string rutaGanadores, Stopwatch stopwatch)
 {
     // Continuar el stopwatch si no se había detenido en ComenzarTorneo
@@ -151,6 +168,7 @@ void SimularTorneo(List<Personaje> personajes, string rutaGanadores, Stopwatch s
     {
         stopwatch.Start();
     }
+
     Random RandomGenerator = new Random();
     while (personajes.Count > 1)
     {
@@ -194,23 +212,15 @@ void SimularTorneo(List<Personaje> personajes, string rutaGanadores, Stopwatch s
             }
         }
     }
+
     // Detener el stopwatch al finalizar SimularTorneo
     stopwatch.Stop();
+
     var ganador = personajes.FirstOrDefault();
     if (ganador != null)
     {
         Console.WriteLine($"{ganador.DatosPersonaje.Nombre} es el campeón del torneo.");
-        int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
-        var detallesPartida = new DetallesPartida(ganador.ContadorAtaques, duracion);
-        archivosPjsGanadores.GuardarGanador(ganador, detallesPartida, rutaGanadores);
+        int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración total del torneo
+        archivosPjsGanadores.GuardarGanador(ganador, duracion, rutaGanadores);
     }
-}
-void MostrarCaracteristicas(Personaje personaje)
-{
-    Console.WriteLine($"Nombre: {personaje.DatosPersonaje.Nombre}, Apodo: {personaje.DatosPersonaje.Apodo}");
-    Console.WriteLine($"Raza: {personaje.DatosPersonaje.Raza}, Edad: {personaje.DatosPersonaje.Edad}");
-    Console.WriteLine($"Velocidad: {personaje.CaracteristicasPersonaje.Velocidad}, Destreza: {personaje.CaracteristicasPersonaje.Destreza}");
-    Console.WriteLine($"Fuerza: {personaje.CaracteristicasPersonaje.Fuerza}, Nivel: {personaje.CaracteristicasPersonaje.Nivel}");
-    Console.WriteLine($"Armadura: {personaje.CaracteristicasPersonaje.Armadura}, Salud: {personaje.CaracteristicasPersonaje.Salud}");
-    Console.WriteLine();
 }
