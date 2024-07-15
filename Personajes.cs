@@ -9,10 +9,10 @@ namespace EspacioPersonajes
         private int pociones = 3;
         private int contadorAtaques = 0;
 
-        public Personaje(Datos datosPersonaje, Caracteristicas caracteristicasPersonaje)
+        public Personaje(Datos datos, Caracteristicas caracteristicas)
         {
-            this.datos = datosPersonaje;
-            this.caracteristicas = caracteristicasPersonaje;
+            this.datos = datos;
+            this.caracteristicas = caracteristicas;
         }
 
         public Datos DatosPersonaje { get => datos; }
