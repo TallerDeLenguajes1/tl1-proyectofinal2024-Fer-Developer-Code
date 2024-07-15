@@ -43,21 +43,28 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
     }
     public class HistorialJson
     {
-        List<HistorialPartida> historial = new List<HistorialPartida>();
         public void GuardarGanador(Personaje ganador, DetallesPartida informacionPartida, string nombreArchivo)
         {
-
+            List<HistorialPartida> listaGanadores = new List<HistorialPartida>();
             if (Existe(nombreArchivo))
             {
-                historial = LeerGanadores(nombreArchivo);
+                string jsonExistente = File.ReadAllText(nombreArchivo);
+                listaGanadores = JsonSerializer.Deserialize<List<HistorialPartida>>(jsonExistente);
             }
 
             HistorialPartida nuevaEntrada = new HistorialPartida(ganador, informacionPartida, DateTime.Now);
 
-            historial.Add(nuevaEntrada);
+            listaGanadores.Add(nuevaEntrada);
 
-            string jsonHistorial = JsonSerializer.Serialize(historial);
-            File.WriteAllText(nombreArchivo, jsonHistorial);
+            try
+            {
+                string jsonNuevo = JsonSerializer.Serialize(listaGanadores);
+                File.WriteAllText(nombreArchivo, jsonNuevo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al serializar y guardar el archivo JSON: {ex.Message}");
+            }
         }
 
         // Método para leer una lista de personajes ganadores desde un archivo JSON
@@ -76,38 +83,34 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
             return File.Exists(nombreArchivo) && new FileInfo(nombreArchivo).Length > 0;
         }
     }
+
     public class HistorialPartida
     {
         private Personaje ganador;
         private DetallesPartida informacionPartida;
         private DateTime fecha;
 
-        public HistorialPartida(Personaje ganador, DetallesPartida detalles, DateTime fecha)
+        public HistorialPartida(Personaje ganador, DetallesPartida informacionPartida, DateTime fecha)
         {
             this.ganador = ganador;
-            this.informacionPartida = detalles;
+            this.informacionPartida = informacionPartida;
             this.fecha = fecha;
-        }
-
+        }//Ya empezó a funcionar, estaba mal instanciado el constructor
         public Personaje Ganador { get => ganador; }
         public DetallesPartida InformacionPartida { get => informacionPartida; }
         public DateTime Fecha { get => fecha; }
     }
     public class DetallesPartida
     {
-        private int totalAtaques;
         private int duracion;
         private DateTime hora;
 
-        public DetallesPartida(int totalAtaques, int duracion)
+        public DetallesPartida(int duracion)
         {
-            this.totalAtaques = totalAtaques;
             this.duracion = duracion;
             this.hora = DateTime.Now;
         }
-
-        public int TotalAtaques => totalAtaques;
-        public int Duracion => duracion;
-        public DateTime Hora => hora;
+        public int Duracion { get => duracion; }
+        public DateTime Hora { get => hora; }
     }
 }

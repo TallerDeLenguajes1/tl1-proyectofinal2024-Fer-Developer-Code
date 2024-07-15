@@ -127,13 +127,13 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
         Console.ReadKey(); // Esperar a que el usuario presione una tecla antes de continuar
     }
     stopwatch.Stop();
-    if (personajes.Count == 0 && !jugadorDerrotado)
+    if (!jugadorDerrotado)
     {
         // El jugador es el último en pie, por lo tanto, gana el torneo.
+        Console.WriteLine("��Felicidades! Has ganado el torneo!");
         int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
-        var detallesPartida = new DetallesPartida(jugador.ContadorAtaques, duracion);
+        var detallesPartida = new DetallesPartida(duracion);
         archivosPjsGanadores.GuardarGanador(jugador, detallesPartida, rutaGanadores);
-
     }
     else if (jugadorDerrotado)
     {
@@ -142,8 +142,6 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
         SimularTorneo(personajes, rutaGanadores, stopwatch);
     }
 }
-
-
 // En caso de que el jugador sea derrotado simula un torneo entre los personajes restantes
 void SimularTorneo(List<Personaje> personajes, string rutaGanadores, Stopwatch stopwatch)
 {
@@ -202,7 +200,7 @@ void SimularTorneo(List<Personaje> personajes, string rutaGanadores, Stopwatch s
     {
         Console.WriteLine($"{ganador.DatosPersonaje.Nombre} es el campeón del torneo.");
         int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
-        var detallesPartida = new DetallesPartida(ganador.ContadorAtaques, duracion);
+        var detallesPartida = new DetallesPartida(duracion);
         archivosPjsGanadores.GuardarGanador(ganador, detallesPartida, rutaGanadores);
     }
 }
