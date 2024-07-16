@@ -1,192 +1,192 @@
 [
-  {
-    "DatosPersonaje": {
-      "Raza": 4,
-      "Nombre": "Garrick Grady",
-      "Apodo": "maddison97",
-      "FechaNac": "2008-12-22T00:00:00",
-      "Edad": 16
+    {
+        "Datos": {
+            "Raza": 3,
+            "Nombre": "Mrs. Janae Conn DDS",
+            "Apodo": "nicole51",
+            "FechaNac": "1999-09-14T00:00:00",
+            "Edad": 25
+        },
+        "Caracteristicas": {
+            "Velocidad": 1,
+            "Destreza": 2,
+            "Fuerza": 10,
+            "Nivel": 1,
+            "Armadura": 6,
+            "Salud": 100
+        },
+        "Pociones": 3,
+        "ContadorAtaques": 0
     },
-    "CaracteristicasPersonaje": {
-      "Velocidad": 8,
-      "Destreza": 5,
-      "Fuerza": 7,
-      "Nivel": 2,
-      "Armadura": 9,
-      "Salud": 100
+    {
+        "Datos": {
+            "Raza": 0,
+            "Nombre": "Vena Kutch",
+            "Apodo": "beahanadonis",
+            "FechaNac": "1977-02-28T00:00:00",
+            "Edad": 47
+        },
+        "Caracteristicas": {
+            "Velocidad": 8,
+            "Destreza": 3,
+            "Fuerza": 6,
+            "Nivel": 4,
+            "Armadura": 3,
+            "Salud": 100
+        },
+        "Pociones": 3,
+        "ContadorAtaques": 0
     },
-    "Pociones": 3,
-    "ContadorAtaques": 0
-  },
-  {
-    "DatosPersonaje": {
-      "Raza": 6,
-      "Nombre": "Marshall Connelly",
-      "Apodo": "rosalindkassulk",
-      "FechaNac": "1990-09-05T00:00:00",
-      "Edad": 34
+    {
+        "Datos": {
+            "Raza": 10,
+            "Nombre": "Dr. Hayley Herzog",
+            "Apodo": "hmonahan",
+            "FechaNac": "1973-10-12T00:00:00",
+            "Edad": 51
+        },
+        "Caracteristicas": {
+            "Velocidad": 6,
+            "Destreza": 5,
+            "Fuerza": 9,
+            "Nivel": 4,
+            "Armadura": 3,
+            "Salud": 100
+        },
+        "Pociones": 3,
+        "ContadorAtaques": 0
     },
-    "CaracteristicasPersonaje": {
-      "Velocidad": 5,
-      "Destreza": 3,
-      "Fuerza": 10,
-      "Nivel": 6,
-      "Armadura": 3,
-      "Salud": 100
+    {
+        "Datos": {
+            "Raza": 1,
+            "Nombre": "Alexane Ryan",
+            "Apodo": "karleetreutel",
+            "FechaNac": "1767-09-11T00:00:00",
+            "Edad": 257
+        },
+        "Caracteristicas": {
+            "Velocidad": 1,
+            "Destreza": 1,
+            "Fuerza": 2,
+            "Nivel": 6,
+            "Armadura": 8,
+            "Salud": 100
+        },
+        "Pociones": 3,
+        "ContadorAtaques": 0
     },
-    "Pociones": 3,
-    "ContadorAtaques": 0
-  },
-  {
-    "DatosPersonaje": {
-      "Raza": 11,
-      "Nombre": "Miss Melyna Corwin",
-      "Apodo": "rosettacummings",
-      "FechaNac": "1969-12-12T00:00:00",
-      "Edad": 55
+    {
+        "Datos": {
+            "Raza": 4,
+            "Nombre": "Mavis Hirthe",
+            "Apodo": "hilllcallie",
+            "FechaNac": "1972-10-20T00:00:00",
+            "Edad": 52
+        },
+        "Caracteristicas": {
+            "Velocidad": 7,
+            "Destreza": 1,
+            "Fuerza": 9,
+            "Nivel": 6,
+            "Armadura": 3,
+            "Salud": 100
+        },
+        "Pociones": 3,
+        "ContadorAtaques": 0
     },
-    "CaracteristicasPersonaje": {
-      "Velocidad": 2,
-      "Destreza": 5,
-      "Fuerza": 10,
-      "Nivel": 6,
-      "Armadura": 5,
-      "Salud": 100
+    {
+        "Datos": {
+            "Raza": 4,
+            "Nombre": "Esta Trantow",
+            "Apodo": "joellehuel",
+            "FechaNac": "1931-09-02T00:00:00",
+            "Edad": 93
+        },
+        "Caracteristicas": {
+            "Velocidad": 2,
+            "Destreza": 1,
+            "Fuerza": 3,
+            "Nivel": 5,
+            "Armadura": 10,
+            "Salud": 100
+        },
+        "Pociones": 3,
+        "ContadorAtaques": 0
     },
-    "Pociones": 3,
-    "ContadorAtaques": 0
-  },
-  {
-    "DatosPersonaje": {
-      "Raza": 7,
-      "Nombre": "Prof. Jackson Ward Sr.",
-      "Apodo": "keira39",
-      "FechaNac": "2017-03-15T00:00:00",
-      "Edad": 7
+    {
+        "Datos": {
+            "Raza": 7,
+            "Nombre": "Alexzander Reynolds PhD",
+            "Apodo": "qbrekke",
+            "FechaNac": "1971-05-12T00:00:00",
+            "Edad": 53
+        },
+        "Caracteristicas": {
+            "Velocidad": 5,
+            "Destreza": 1,
+            "Fuerza": 6,
+            "Nivel": 9,
+            "Armadura": 2,
+            "Salud": 100
+        },
+        "Pociones": 3,
+        "ContadorAtaques": 0
     },
-    "CaracteristicasPersonaje": {
-      "Velocidad": 1,
-      "Destreza": 1,
-      "Fuerza": 10,
-      "Nivel": 8,
-      "Armadura": 7,
-      "Salud": 100
+    {
+        "Datos": {
+            "Raza": 6,
+            "Nombre": "Raven Rempel",
+            "Apodo": "hartmanntania",
+            "FechaNac": "1932-08-17T00:00:00",
+            "Edad": 92
+        },
+        "Caracteristicas": {
+            "Velocidad": 6,
+            "Destreza": 4,
+            "Fuerza": 1,
+            "Nivel": 4,
+            "Armadura": 3,
+            "Salud": 100
+        },
+        "Pociones": 3,
+        "ContadorAtaques": 0
     },
-    "Pociones": 3,
-    "ContadorAtaques": 0
-  },
-  {
-    "DatosPersonaje": {
-      "Raza": 8,
-      "Nombre": "Amber Nolan",
-      "Apodo": "eugeneconroy",
-      "FechaNac": "1985-08-22T00:00:00",
-      "Edad": 39
+    {
+        "Datos": {
+            "Raza": 9,
+            "Nombre": "Ms. Lorena Smith",
+            "Apodo": "kschmeler",
+            "FechaNac": "1944-02-17T00:00:00",
+            "Edad": 80
+        },
+        "Caracteristicas": {
+            "Velocidad": 10,
+            "Destreza": 2,
+            "Fuerza": 9,
+            "Nivel": 9,
+            "Armadura": 5,
+            "Salud": 100
+        },
+        "Pociones": 3,
+        "ContadorAtaques": 0
     },
-    "CaracteristicasPersonaje": {
-      "Velocidad": 9,
-      "Destreza": 5,
-      "Fuerza": 8,
-      "Nivel": 2,
-      "Armadura": 10,
-      "Salud": 100
-    },
-    "Pociones": 3,
-    "ContadorAtaques": 0
-  },
-  {
-    "DatosPersonaje": {
-      "Raza": 9,
-      "Nombre": "Micheal VonRueden",
-      "Apodo": "rathcedrick",
-      "FechaNac": "1998-02-15T00:00:00",
-      "Edad": 26
-    },
-    "CaracteristicasPersonaje": {
-      "Velocidad": 3,
-      "Destreza": 5,
-      "Fuerza": 6,
-      "Nivel": 10,
-      "Armadura": 4,
-      "Salud": 100
-    },
-    "Pociones": 3,
-    "ContadorAtaques": 0
-  },
-  {
-    "DatosPersonaje": {
-      "Raza": 9,
-      "Nombre": "Lowell McDermott",
-      "Apodo": "tklocko",
-      "FechaNac": "1999-10-22T00:00:00",
-      "Edad": 25
-    },
-    "CaracteristicasPersonaje": {
-      "Velocidad": 2,
-      "Destreza": 5,
-      "Fuerza": 3,
-      "Nivel": 1,
-      "Armadura": 10,
-      "Salud": 100
-    },
-    "Pociones": 3,
-    "ContadorAtaques": 0
-  },
-  {
-    "DatosPersonaje": {
-      "Raza": 11,
-      "Nombre": "Mr. Devan Hamill",
-      "Apodo": "augustabins",
-      "FechaNac": "1991-03-13T00:00:00",
-      "Edad": 33
-    },
-    "CaracteristicasPersonaje": {
-      "Velocidad": 4,
-      "Destreza": 5,
-      "Fuerza": 3,
-      "Nivel": 6,
-      "Armadura": 2,
-      "Salud": 100
-    },
-    "Pociones": 3,
-    "ContadorAtaques": 0
-  },
-  {
-    "DatosPersonaje": {
-      "Raza": 8,
-      "Nombre": "Prof. Amely Ullrich II",
-      "Apodo": "smithmaia",
-      "FechaNac": "1990-02-03T00:00:00",
-      "Edad": 34
-    },
-    "CaracteristicasPersonaje": {
-      "Velocidad": 2,
-      "Destreza": 4,
-      "Fuerza": 5,
-      "Nivel": 2,
-      "Armadura": 4,
-      "Salud": 100
-    },
-    "Pociones": 3,
-    "ContadorAtaques": 0
-  },
-  {
-    "DatosPersonaje": {
-      "Raza": 7,
-      "Nombre": "Drew Hagenes",
-      "Apodo": "wolffisabella",
-      "FechaNac": "1942-01-07T00:00:00",
-      "Edad": 82
-    },
-    "CaracteristicasPersonaje": {
-      "Velocidad": 2,
-      "Destreza": 2,
-      "Fuerza": 8,
-      "Nivel": 9,
-      "Armadura": 2,
-      "Salud": 100
-    },
-    "Pociones": 3,
-    "ContadorAtaques": 0
-  }
+    {
+        "Datos": {
+            "Raza": 6,
+            "Nombre": "Yasmin Ledner",
+            "Apodo": "eve26",
+            "FechaNac": "2001-11-12T00:00:00",
+            "Edad": 23
+        },
+        "Caracteristicas": {
+            "Velocidad": 7,
+            "Destreza": 5,
+            "Fuerza": 5,
+            "Nivel": 1,
+            "Armadura": 9,
+            "Salud": 100
+        },
+        "Pociones": 3,
+        "ContadorAtaques": 0
+    }
 ]

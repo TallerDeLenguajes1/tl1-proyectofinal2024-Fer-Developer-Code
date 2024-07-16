@@ -73,12 +73,12 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
         var luchador2 = personajes[posicionEnemigo];
         stopwatch.Start();
         Console.Clear(); // Limpiar la consola
-        Console.WriteLine($"¡Combate entre {luchador1.DatosPersonaje.Nombre} y {luchador2.DatosPersonaje.Nombre}!");
+        Console.WriteLine($"¡Combate entre {luchador1.Datos.Nombre} y {luchador2.Datos.Nombre}!");
 
         MostrarCaracteristicas(luchador1);
         MostrarCaracteristicas(luchador2);
 
-        while (luchador1.CaracteristicasPersonaje.Salud > 0 && luchador2.CaracteristicasPersonaje.Salud > 0)
+        while (luchador1.Caracteristicas.Salud > 0 && luchador2.Caracteristicas.Salud > 0)
         {
             int respuesta;
             do
@@ -93,7 +93,7 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
             {
                 case 1:
                     luchador1.Atacar(luchador2);
-                    Console.WriteLine($"Vida de {luchador2.DatosPersonaje.Nombre}: {luchador2.CaracteristicasPersonaje.Salud}");
+                    Console.WriteLine($"Vida de {luchador2.Datos.Nombre}: {luchador2.Caracteristicas.Salud}");
                     break;
                 case 2:
                     luchador1.TomarPocion();
@@ -102,18 +102,18 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
                     break;
             }
 
-            if (luchador2.CaracteristicasPersonaje.Salud <= 0)
+            if (luchador2.Caracteristicas.Salud <= 0)
             {
-                Console.WriteLine($"{luchador1.DatosPersonaje.Nombre} ha ganado el combate.");
+                Console.WriteLine($"{luchador1.Datos.Nombre} ha ganado el combate.");
                 personajes.Remove(luchador2);
                 break;
             }
 
             luchador2.Atacar(luchador1);
-            Console.WriteLine($"Vida de {luchador1.DatosPersonaje.Nombre}: {luchador1.CaracteristicasPersonaje.Salud}");
-            if (luchador1.CaracteristicasPersonaje.Salud <= 0)
+            Console.WriteLine($"Vida de {luchador1.Datos.Nombre}: {luchador1.Caracteristicas.Salud}");
+            if (luchador1.Caracteristicas.Salud <= 0)
             {
-                Console.WriteLine($"{luchador2.DatosPersonaje.Nombre} ha ganado el combate.");
+                Console.WriteLine($"{luchador2.Datos.Nombre} ha ganado el combate.");
                 if (luchador1 == jugador)
                 {
                     jugadorDerrotado = true;
@@ -138,7 +138,7 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
     else if (jugadorDerrotado)
     {
         // El jugador ha sido derrotado, continuar el torneo entre los personajes restantes.
-        Console.WriteLine($"{jugador.DatosPersonaje.Nombre} ha sido derrotado y eliminado del torneo.");
+        Console.WriteLine($"{jugador.Datos.Nombre} ha sido derrotado y eliminado del torneo.");
         SimularTorneo(personajes, rutaGanadores, stopwatch);
     }
 }
@@ -162,32 +162,32 @@ void SimularTorneo(List<Personaje> personajes, string rutaGanadores, Stopwatch s
         personajes.RemoveAt(posicion2);
 
         Console.Clear();
-        Console.WriteLine($"Combate entre {luchador1.DatosPersonaje.Nombre} y {luchador2.DatosPersonaje.Nombre}");
+        Console.WriteLine($"Combate entre {luchador1.Datos.Nombre} y {luchador2.Datos.Nombre}");
         MostrarCaracteristicas(luchador1);
         MostrarCaracteristicas(luchador2);
 
-        while (luchador1.CaracteristicasPersonaje.Salud > 0 && luchador2.CaracteristicasPersonaje.Salud > 0)
+        while (luchador1.Caracteristicas.Salud > 0 && luchador2.Caracteristicas.Salud > 0)
         {
             luchador1.Atacar(luchador2);
-            Console.WriteLine($"Vida de {luchador2.DatosPersonaje.Nombre}: {luchador2.CaracteristicasPersonaje.Salud}");
+            Console.WriteLine($"Vida de {luchador2.Datos.Nombre}: {luchador2.Caracteristicas.Salud}");
 
             Thread.Sleep(2000); // Pausa de 2 segundos
 
-            if (luchador2.CaracteristicasPersonaje.Salud <= 0)
+            if (luchador2.Caracteristicas.Salud <= 0)
             {
-                Console.WriteLine($"{luchador1.DatosPersonaje.Nombre} ha ganado el combate.");
+                Console.WriteLine($"{luchador1.Datos.Nombre} ha ganado el combate.");
                 personajes.Add(luchador1);
                 break;
             }
 
             luchador2.Atacar(luchador1);
-            Console.WriteLine($"Vida de {luchador1.DatosPersonaje.Nombre}: {luchador1.CaracteristicasPersonaje.Salud}");
+            Console.WriteLine($"Vida de {luchador1.Datos.Nombre}: {luchador1.Caracteristicas.Salud}");
 
             Thread.Sleep(2000); // Pausa de 2 segundos
 
-            if (luchador1.CaracteristicasPersonaje.Salud <= 0)
+            if (luchador1.Caracteristicas.Salud <= 0)
             {
-                Console.WriteLine($"{luchador2.DatosPersonaje.Nombre} ha ganado el combate.");
+                Console.WriteLine($"{luchador2.Datos.Nombre} ha ganado el combate.");
                 personajes.Add(luchador2);
                 break;
             }
@@ -198,7 +198,7 @@ void SimularTorneo(List<Personaje> personajes, string rutaGanadores, Stopwatch s
     var ganador = personajes.FirstOrDefault();
     if (ganador != null)
     {
-        Console.WriteLine($"{ganador.DatosPersonaje.Nombre} es el campeón del torneo.");
+        Console.WriteLine($"{ganador.Datos.Nombre} es el campeón del torneo.");
         int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
         var detallesPartida = new DetallesPartida(duracion);
         archivosPjsGanadores.GuardarGanador(ganador, detallesPartida, rutaGanadores);
@@ -206,10 +206,10 @@ void SimularTorneo(List<Personaje> personajes, string rutaGanadores, Stopwatch s
 }
 void MostrarCaracteristicas(Personaje personaje)
 {
-    Console.WriteLine($"Nombre: {personaje.DatosPersonaje.Nombre}, Apodo: {personaje.DatosPersonaje.Apodo}");
-    Console.WriteLine($"Raza: {personaje.DatosPersonaje.Raza}, Edad: {personaje.DatosPersonaje.Edad}");
-    Console.WriteLine($"Velocidad: {personaje.CaracteristicasPersonaje.Velocidad}, Destreza: {personaje.CaracteristicasPersonaje.Destreza}");
-    Console.WriteLine($"Fuerza: {personaje.CaracteristicasPersonaje.Fuerza}, Nivel: {personaje.CaracteristicasPersonaje.Nivel}");
-    Console.WriteLine($"Armadura: {personaje.CaracteristicasPersonaje.Armadura}, Salud: {personaje.CaracteristicasPersonaje.Salud}");
+    Console.WriteLine($"Nombre: {personaje.Datos.Nombre}, Apodo: {personaje.Datos.Apodo}");
+    Console.WriteLine($"Raza: {personaje.Datos.Raza}, Edad: {personaje.Datos.Edad}");
+    Console.WriteLine($"Velocidad: {personaje.Caracteristicas.Velocidad}, Destreza: {personaje.Caracteristicas.Destreza}");
+    Console.WriteLine($"Fuerza: {personaje.Caracteristicas.Fuerza}, Nivel: {personaje.Caracteristicas.Nivel}");
+    Console.WriteLine($"Armadura: {personaje.Caracteristicas.Armadura}, Salud: {personaje.Caracteristicas.Salud}");
     Console.WriteLine();
 }

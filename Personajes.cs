@@ -15,33 +15,33 @@ namespace EspacioPersonajes
             this.caracteristicas = caracteristicas;
         }
 
-        public Datos DatosPersonaje { get => datos; }
-        public Caracteristicas CaracteristicasPersonaje { get => caracteristicas; }
+        public Datos Datos { get => datos; }
+        public Caracteristicas Caracteristicas { get => caracteristicas; }//Empezó a funcionar el programa cuando cambié el nombre de DatosPersonajes CaracteristicasPersonajes a solo Datos y Caracteristicas
         public int Pociones { get => pociones; set => pociones = value; }
         public int ContadorAtaques { get => contadorAtaques; }
 
         public void Atacar(Personaje Defensor)
         {
             Random random = new Random();
-            int ataque = CaracteristicasPersonaje.Destreza * CaracteristicasPersonaje.Fuerza * CaracteristicasPersonaje.Nivel;
+            int ataque = Caracteristicas.Destreza * Caracteristicas.Fuerza * Caracteristicas.Nivel;
             int efectividad = random.Next(1, 101);
-            int defensa = Defensor.CaracteristicasPersonaje.Armadura * Defensor.CaracteristicasPersonaje.Velocidad;
+            int defensa = Defensor.Caracteristicas.Armadura * Defensor.Caracteristicas.Velocidad;
             int constAjuste = Constantes.ajuste;
             int danioProvocado = ((ataque * efectividad) - defensa) / constAjuste;
-            Defensor.CaracteristicasPersonaje.ReducirSalud(danioProvocado);
+            Defensor.Caracteristicas.ReducirSalud(danioProvocado);
             contadorAtaques++;
         }
         public void TomarPocion()
         {
             if (Pociones > 0)
             {
-                CaracteristicasPersonaje.Salud += 20; // Recuperar 20 puntos de salud (puedes ajustar este valor)
+                Caracteristicas.Salud += 20; // Recuperar 20 puntos de salud (puedes ajustar este valor)
                 Pociones--;
-                Console.WriteLine($"{DatosPersonaje.Nombre} ha tomado una poción de vida. Salud: {CaracteristicasPersonaje.Salud}, Pociones restantes: {Pociones}");
+                Console.WriteLine($"{Datos.Nombre} ha tomado una poción de vida. Salud: {Caracteristicas.Salud}, Pociones restantes: {Pociones}");
             }
             else
             {
-                Console.WriteLine($"{DatosPersonaje.Nombre} no tiene más pociones.");
+                Console.WriteLine($"{Datos.Nombre} no tiene más pociones.");
             }
         }
     }
