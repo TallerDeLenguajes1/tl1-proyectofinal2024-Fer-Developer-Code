@@ -1,12 +1,12 @@
 ﻿using espacioFabricaPersonajes;
 using EspacioJsonCreacion;
 using EspacioPersonajes;
-using EspacioArteAscii;
+using EspacioArteAscii.Helpers;
 using System.Diagnostics;
 
-var ascii = new ArteAscii();
-var archivos = new PersonajesJson();
-var archivosPjsGanadores = new HistorialJson();
+ArteAscii ascii = new ArteAscii();
+PersonajesJson archivos = new PersonajesJson();
+HistorialJson archivosPjsGanadores = new HistorialJson();
 
 // Rutas de los archivos JSON
 string rutaListaPjs = "JsonFolder/Personajes.json";
@@ -37,7 +37,7 @@ if (archivos.Existe(rutaListaPjs) && archivos.Existe(rutaJugador))
             File.Delete(rutaJugador);
             Console.WriteLine($"El archivo {rutaJugador} ha sido borrado correctamente.");
             FabricaDePersonajes personajes = new FabricaDePersonajes();
-            var fabrica = new FabricaDePersonajes();
+            FabricaDePersonajes fabrica = new FabricaDePersonajes();
             fabrica.CrearPersonajeUsuario();
             archivos.GuardarPersonajeJugador(fabrica.Pj, rutaJugador);
         }
@@ -51,7 +51,7 @@ if (archivos.Existe(rutaListaPjs) && archivos.Existe(rutaJugador))
 else
 {
     FabricaDePersonajes personajes = new FabricaDePersonajes();
-    var fabrica = new FabricaDePersonajes();
+    FabricaDePersonajes fabrica = new FabricaDePersonajes();
     fabrica.CrearPersonajeUsuario();
     await personajes.CrearPersonajes(); //Logro funcionar, supongo que es porque despues de todo este tiempo habia que tener cuidado con el await
     archivos.GuardarPersonajes(personajes.ListaPersonajes, rutaListaPjs);
@@ -68,9 +68,9 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
 
     while (personajes.Count > 1 && !jugadorDerrotado)
     {
-        var luchador1 = jugador;
-        var posicionEnemigo = RandomGenerator.Next(personajes.Count);
-        var luchador2 = personajes[posicionEnemigo];
+        Personaje luchador1 = jugador;
+        int posicionEnemigo = RandomGenerator.Next(personajes.Count);
+        Personaje luchador2 = personajes[posicionEnemigo];
         stopwatch.Start();
         Console.Clear(); // Limpiar la consola
         Console.WriteLine($"¡Combate entre {luchador1.Datos.Nombre} y {luchador2.Datos.Nombre}!");
@@ -132,7 +132,7 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
         // El jugador es el último en pie, por lo tanto, gana el torneo.
         Console.WriteLine("��Felicidades! Has ganado el torneo!");
         int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
-        var detallesPartida = new DetallesPartida(duracion);
+        DetallesPartida detallesPartida = new DetallesPartida(duracion);
         archivosPjsGanadores.GuardarGanador(jugador, detallesPartida, rutaGanadores);
     }
     else if (jugadorDerrotado)
@@ -153,12 +153,12 @@ void SimularTorneo(List<Personaje> personajes, string rutaGanadores, Stopwatch s
     Random RandomGenerator = new Random();
     while (personajes.Count > 1)
     {
-        var posicion1 = RandomGenerator.Next(personajes.Count);
-        var luchador1 = personajes[posicion1];
+        int posicion1 = RandomGenerator.Next(personajes.Count);
+        Personaje luchador1 = personajes[posicion1];
         personajes.RemoveAt(posicion1);
 
-        var posicion2 = RandomGenerator.Next(personajes.Count);
-        var luchador2 = personajes[posicion2];
+        int posicion2 = RandomGenerator.Next(personajes.Count);
+        Personaje luchador2 = personajes[posicion2];
         personajes.RemoveAt(posicion2);
 
         Console.Clear();
@@ -195,12 +195,12 @@ void SimularTorneo(List<Personaje> personajes, string rutaGanadores, Stopwatch s
     }
     // Detener el stopwatch al finalizar SimularTorneo
     stopwatch.Stop();
-    var ganador = personajes.FirstOrDefault();
+    Personaje ganador = personajes.FirstOrDefault();
     if (ganador != null)
     {
         Console.WriteLine($"{ganador.Datos.Nombre} es el campeón del torneo.");
         int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
-        var detallesPartida = new DetallesPartida(duracion);
+        DetallesPartida detallesPartida = new DetallesPartida(duracion);
         archivosPjsGanadores.GuardarGanador(ganador, detallesPartida, rutaGanadores);
     }
 }

@@ -1,5 +1,5 @@
 using DatosYCaracteristicas;
-using EspConstantes;
+using EspConstantes.Helpers;
 namespace EspacioPersonajes
 {
     public class Personaje

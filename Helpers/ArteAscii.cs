@@ -1,4 +1,4 @@
-namespace EspacioArteAscii
+namespace EspacioArteAscii.Helpers
 {
   public class ArteAscii()
   {

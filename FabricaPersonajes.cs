@@ -1,6 +1,6 @@
 using EspacioPersonajes;
 using DatosYCaracteristicas;
-using EspConstantes;
+using EspConstantes.Helpers;
 using EspacioFunciones.Helpers;
 
 namespace espacioFabricaPersonajes
@@ -20,7 +20,7 @@ namespace espacioFabricaPersonajes
             // Creación de personajes aleatorios
             for (int i = 0; i < maxEnemigos; i++)
             {
-                var informacionEnemigo = await funcionesAsync.GetNombreAsync();//informacion sobre nombre y apodo para el enemigo creado al azar
+                EspacioApiJsonToCsharp.Helpers.infoPj informacionEnemigo = await funcionesAsync.GetNombreAsync();//informacion sobre nombre y apodo para el enemigo creado al azar
                 string nombreEnemigo = informacionEnemigo.name;
                 string apodoEnemigo = informacionEnemigo.username;
                 CrearPersonajeAleatorio(nombreEnemigo, apodoEnemigo);//LLama a la funcuon que crea un personaje al azar y le asigna el nombre y apodos generados en informacion enemigo
@@ -31,7 +31,7 @@ namespace espacioFabricaPersonajes
             Console.WriteLine("Crea tu personaje:");
             Console.Write("Elige tu raza:\n");
             int i = 1;
-            foreach (var raza in Enum.GetValues(typeof(RazasPersonaje)))
+            foreach (object raza in Enum.GetValues(typeof(RazasPersonaje)))
             {
                 Console.WriteLine($"\t{i}. {raza}");
                 i++;
@@ -89,9 +89,9 @@ namespace espacioFabricaPersonajes
 
 
             DateTime fechaNac = DateTime.Today.AddYears(-edad);
-            var datosUsuario = new Datos(razaUsuario, nombre, apodo, fechaNac, edad);
-            var caracteristicasUsuario = AsignarCaracteristicas(razaUsuario);
-            var personajeUsuario = new Personaje(datosUsuario, caracteristicasUsuario);
+            Datos datosUsuario = new Datos(razaUsuario, nombre, apodo, fechaNac, edad);
+            Caracteristicas caracteristicasUsuario = AsignarCaracteristicas(razaUsuario);
+            Personaje personajeUsuario = new Personaje(datosUsuario, caracteristicasUsuario);
             pj = personajeUsuario;
         }
 
@@ -99,10 +99,10 @@ namespace espacioFabricaPersonajes
         {
             RazasPersonaje razaAleatoria = (RazasPersonaje)random.Next(Enum.GetNames(typeof(RazasPersonaje)).Length);
             DateTime fechaNac = CrearFechaNac(razaAleatoria, out int edad);
-            var datosAleatorios = new Datos(razaAleatoria, nombrePj, apodoPj, fechaNac, edad);
+            Datos datosAleatorios = new Datos(razaAleatoria, nombrePj, apodoPj, fechaNac, edad);
 
-            var caracteristicasAleatorias = AsignarCaracteristicas(razaAleatoria);
-            var personajeAleatorio = new Personaje(datosAleatorios, caracteristicasAleatorias);
+            Caracteristicas caracteristicasAleatorias = AsignarCaracteristicas(razaAleatoria);
+            Personaje personajeAleatorio = new Personaje(datosAleatorios, caracteristicasAleatorias);
             listaPersonajes.Add(personajeAleatorio);
         }
 

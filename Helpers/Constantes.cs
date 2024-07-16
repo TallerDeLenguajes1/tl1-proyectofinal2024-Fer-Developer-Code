@@ -1,4 +1,4 @@
-namespace EspConstantes
+namespace EspConstantes.Helpers
 {
     public class Constantes
     {
