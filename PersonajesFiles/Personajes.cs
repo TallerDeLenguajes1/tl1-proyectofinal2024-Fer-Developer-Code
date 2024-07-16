@@ -1,6 +1,6 @@
-using DatosYCaracteristicas;
+using DatosYCaracteristicas.PersonajesFiles;
 using EspConstantes.Helpers;
-namespace EspacioPersonajes
+namespace EspacioPersonajes.PersonajesFiles
 {
     public class Personaje
     {

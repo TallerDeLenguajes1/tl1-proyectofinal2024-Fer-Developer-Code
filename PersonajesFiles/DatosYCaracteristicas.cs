@@ -1,5 +1,5 @@
-using EspacioPersonajes;
-namespace DatosYCaracteristicas
+using EspacioPersonajes.PersonajesFiles;
+namespace DatosYCaracteristicas.PersonajesFiles
 {
     public class Datos
     {

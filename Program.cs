@@ -1,6 +1,6 @@
 ﻿using espacioFabricaPersonajes;
 using EspacioJsonCreacion;
-using EspacioPersonajes;
+using EspacioPersonajes.PersonajesFiles;
 using EspacioArteAscii.Helpers;
 using System.Diagnostics;
 

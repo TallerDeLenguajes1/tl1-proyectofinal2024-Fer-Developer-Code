@@ -1,5 +1,5 @@
-using EspacioPersonajes;
-using DatosYCaracteristicas;
+using EspacioPersonajes.PersonajesFiles;
+using DatosYCaracteristicas.PersonajesFiles;
 using EspConstantes.Helpers;
 using EspacioFunciones.Helpers;
 
