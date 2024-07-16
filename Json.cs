@@ -43,9 +43,9 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
     }
     public class HistorialJson
     {
+        List<HistorialPartida> listaGanadores = new List<HistorialPartida>();//Lo moví 2 lineas mas arriba desde la 49 para ver si sigue funcionando
         public void GuardarGanador(Personaje ganador, DetallesPartida informacionPartida, string nombreArchivo)
         {
-            List<HistorialPartida> listaGanadores = new List<HistorialPartida>();
             if (Existe(nombreArchivo))
             {
                 string jsonExistente = File.ReadAllText(nombreArchivo);

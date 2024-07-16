@@ -1,1 +1,54 @@
-[{"Ganador":{"DatosPersonaje":{"Raza":9,"Nombre":"Micheal VonRueden","Apodo":"rathcedrick","FechaNac":"1998-02-15T00:00:00","Edad":26},"CaracteristicasPersonaje":{"Velocidad":3,"Destreza":5,"Fuerza":6,"Nivel":10,"Armadura":4,"Salud":88},"Pociones":3,"ContadorAtaques":6},"InformacionPartida":{"Duracion":116,"Hora":"2024-07-14T23:18:03.7731781-03:00"},"Fecha":"2024-07-14T23:18:03.7741686-03:00"}]
+[
+    {
+        "Ganador": {
+            "Datos": {
+                "Raza": 1,
+                "Nombre": "Hola",
+                "Apodo": "Mund",
+                "FechaNac": "1977-07-15T00:00:00-03:00",
+                "Edad": 47
+            },
+            "Caracteristicas": {
+                "Velocidad": 336,
+                "Destreza": 434,
+                "Fuerza": 442,
+                "Nivel": 10,
+                "Armadura": 4,
+                "Salud": 3100
+            },
+            "Pociones": 3,
+            "ContadorAtaques": 0
+        },
+        "InformacionPartida": {
+            "Duracion": 6,
+            "Hora": "2024-07-15T22:15:16.8833191-03:00"
+        },
+        "Fecha": "2024-07-15T22:14:29.6134494-03:00"
+    },
+    {
+        "Ganador": {
+            "Datos": {
+                "Raza": 1,
+                "Nombre": "Hola34",
+                "Apodo": "Mund1",
+                "FechaNac": "1977-07-15T00:00:00-03:00",
+                "Edad": 47
+            },
+            "Caracteristicas": {
+                "Velocidad": 336,
+                "Destreza": 434,
+                "Fuerza": 442,
+                "Nivel": 10,
+                "Armadura": 4,
+                "Salud": 3100
+            },
+            "Pociones": 3,
+            "ContadorAtaques": 9
+        },
+        "InformacionPartida": {
+            "Duracion": 12,
+            "Hora": "2024-07-15T22:15:16.8731975-03:00"
+        },
+        "Fecha": "2024-07-15T22:15:16.8838218-03:00"
+    }
+]
