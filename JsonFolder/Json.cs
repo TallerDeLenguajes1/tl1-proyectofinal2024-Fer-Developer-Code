@@ -103,14 +103,17 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
     public class DetallesPartida
     {
         private int duracion;
+        private int contadorAtaques;
         private DateTime hora;
 
-        public DetallesPartida(int duracion)
+        public DetallesPartida(int duracion, int contadorAtaques)
         {
             this.duracion = duracion;
+            this.contadorAtaques = contadorAtaques;
             this.hora = DateTime.Now;
         }
         public int Duracion { get => duracion; }
+        public int ContadorAtaques{get => contadorAtaques;}
         public DateTime Hora { get => hora; }
     }
 }

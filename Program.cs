@@ -132,7 +132,7 @@ void ComenzarTorneo(List<Personaje> personajes, Personaje jugador)
         // El jugador es el último en pie, por lo tanto, gana el torneo.
         Console.WriteLine("��Felicidades! Has ganado el torneo!");
         int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
-        DetallesPartida detallesPartida = new DetallesPartida(duracion);
+        DetallesPartida detallesPartida = new DetallesPartida(duracion, jugador.ContadorAtaques);
         archivosPjsGanadores.GuardarGanador(jugador, detallesPartida, rutaGanadores);
         HistorialGanadores(rutaGanadores);
     }
@@ -201,7 +201,7 @@ void SimularTorneo(List<Personaje> personajes, string rutaGanadores, Stopwatch s
     {
         Console.WriteLine($"{ganador.Datos.Nombre} es el campeón del torneo.");
         int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
-        DetallesPartida detallesPartida = new DetallesPartida(duracion);
+        DetallesPartida detallesPartida = new DetallesPartida(duracion, ganador.ContadorAtaques);
         archivosPjsGanadores.GuardarGanador(ganador, detallesPartida, rutaGanadores);
         HistorialGanadores(rutaGanadores);
     }
@@ -230,7 +230,7 @@ void HistorialGanadores(string rutaGanadores)
     {
         MostrarCaracteristicas(ganador.Ganador);
         Console.WriteLine($"Duración del torneo: {ganador.InformacionPartida.Duracion} segundos");
-        Console.WriteLine($"Cantidad de ataques: {ganador.Ganador.ContadorAtaques}");
+        Console.WriteLine($"Cantidad de ataques: {ganador.InformacionPartida.ContadorAtaques}");
         Console.WriteLine($"Hora de la victoria: {ganador.InformacionPartida.Hora.Hour}:{ganador.InformacionPartida.Hora.Minute}");
     }
 }
