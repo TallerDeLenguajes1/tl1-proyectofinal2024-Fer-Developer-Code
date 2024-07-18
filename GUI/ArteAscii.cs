@@ -2,12 +2,96 @@ namespace EspacioArteAscii.GUI
 {
   public class ArteAscii
   {
-    ConsoleColor colorOriginalTexto = Console.ForegroundColor;
-    ConsoleColor colorOriginalFondo = Console.BackgroundColor;
+    public void ColorOriginal()
+    {
+      ConsoleColor colorOriginalTexto = Console.ForegroundColor;
+      ConsoleColor colorOriginalFondo = Console.BackgroundColor;
+      Console.ForegroundColor = colorOriginalTexto;
+      Console.BackgroundColor = colorOriginalFondo;
+    }
+    public void limpiar()
+    {
+      Console.Clear();
+    }
+    public void CambiarColorTexto(string color)
+    {
+      switch (color.ToLower())
+      {
+        case "azul":
+          Console.BackgroundColor = ConsoleColor.Blue;
+          break;
+        case "rojo":
+          Console.BackgroundColor = ConsoleColor.Red;
+          break;
+        case "amarillo":
+          Console.BackgroundColor = ConsoleColor.Yellow;
+          break;
+        case "verde":
+          Console.BackgroundColor = ConsoleColor.Green;
+          break;
+        case "magenta":
+          Console.BackgroundColor = ConsoleColor.Magenta;
+          break;
+        case "cyan":
+          Console.BackgroundColor = ConsoleColor.Cyan;
+          break;
+        case "gris":
+          Console.BackgroundColor = ConsoleColor.Gray;
+          break;
+        case "negro":
+          Console.BackgroundColor = ConsoleColor.Black;
+          break;
+        default:
+          Console.WriteLine("Color inválido.");
+          break;
+      }
+    }
+    public void CambiarColorFondo(string color)
+    {
+      switch (color.ToLower())
+      {
+        case "azul":
+          Console.ForegroundColor = ConsoleColor.Blue;
+          break;
+        case "rojo":
+          Console.ForegroundColor = ConsoleColor.Red;
+          break;
+        case "amarillo":
+          Console.ForegroundColor = ConsoleColor.Yellow;
+          break;
+        case "verde":
+          Console.ForegroundColor = ConsoleColor.Green;
+          break;
+        case "magenta":
+          Console.ForegroundColor = ConsoleColor.Magenta;
+          break;
+        case "cyan":
+          Console.ForegroundColor = ConsoleColor.Cyan;
+          break;
+        case "gris":
+          Console.ForegroundColor = ConsoleColor.Gray;
+          break;
+        case "negro":
+          Console.ForegroundColor = ConsoleColor.Black;
+          break;
+        default:
+          Console.WriteLine("Color inválido.");
+          break;
+      }
+    }
+    public void EscribirConAnimacion(string texto, int delay)
+    {
+      foreach (char letra in texto)
+      {
+        Console.Write(letra);
+        Thread.Sleep(delay); // Pausa entre cada letra
+      }
+      Console.WriteLine(); // Para asegurar que la próxima línea empiece en una nueva línea
+    }
     public void MostrarLogo()
 
     {
-      string bienvenida = @"
+      string asciiBienvenida = @"
 ______      _                                                  _          __                              __          _                                      
 |_   _ \    (_)                                                (_)        |  ]                            [  |        (_)                                     
   | |_) |   __    .---.   _ .--.    _   __   .---.   _ .--.    __     .--.| |    .--.    .--.      ,--.    | |        __   __   _    .---.    .--./)   .--.   
@@ -17,11 +101,11 @@ ______      _                                                  _          __    
                                                                                                                    \____/                   ( ( __))          
                                                                                                                    ";
       string banner = @"*************************************************************************************************************************************************************";
-      Console.ForegroundColor = ConsoleColor.Magenta;
-      Console.WriteLine(banner);
-      Console.WriteLine(bienvenida);
-      Console.WriteLine(banner);
-      string hechicero = @"
+      CambiarColorFondo("magenta");
+      EscribirConAnimacion(banner, 15);
+      EscribirConAnimacion(asciiBienvenida, 25);
+      EscribirConAnimacion(banner, 15);
+      string asciiHechicero = @"
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓█▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -107,22 +191,21 @@ ______      _                                                  _          __    
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓████████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▒▒▒▓▓▓▓▓█████████▓▓▓▓▓▓▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ";
-      string aventura = @" _______                _                                _                                                                   
+      string asciiPalabraAventura = @" _______                _                                _                                                                   
                           (_______)              (_)                              | |                                         _                        
                           _         ___   ____   _  _____  ____   _____  _____   | |  _____    _____  _   _  _____  ____   _| |_  _   _   ____  _____ 
                           | |       / _ \ |    \ | || ___ ||  _ \ (___  )(____ |  | | (____ |  (____ || | | || ___ ||  _ \ (_   _)| | | | / ___)(____ |
                           | |_____ | |_| || | | || || ____|| | | | / __/ / ___ |  | | / ___ |  / ___ | \ V / | ____|| | | |  | |_ | |_| || |    / ___ |
                           \______) \___/ |_|_|_||_||_____)|_| |_|(_____)\_____|   \_)\_____|  \_____|  \_/  |_____)|_| |_|   \__)|____/ |_|    \_____|                                                                                                                          
 ";
-      Console.WriteLine($"\t{hechicero}");
-      Console.ForegroundColor = colorOriginalTexto;
-      Console.BackgroundColor = colorOriginalFondo;
-      Console.WriteLine(aventura);
-      Console.WriteLine(banner);
+      Console.WriteLine($"\t{asciiHechicero}");
+      ColorOriginal();
+      EscribirConAnimacion(asciiPalabraAventura, 15);
+      EscribirConAnimacion(banner, 15);
     }
     public void MostrarTrono()
     {
-      string trono = @"                                                                                                        
+      string asciiTrono = @"                                                                                                        
                                                                                                   
                                             .:                                                    
                                    .#.      #@.      *@       :.                                  
@@ -196,11 +279,10 @@ ______      _                                                  _          __    
           .-::                                                                          -=-.      
                                                                                                   
 ";
-      Console.BackgroundColor = ConsoleColor.Black;
-      Console.ForegroundColor = ConsoleColor.Gray;
-      Console.WriteLine(trono);
-      Console.BackgroundColor = colorOriginalFondo;
-      Console.ForegroundColor = colorOriginalTexto;
+      CambiarColorFondo("Negro");
+      CambiarColorTexto("Gris");
+      Console.WriteLine(asciiTrono);
+      ColorOriginal();
     }
   }
 }
