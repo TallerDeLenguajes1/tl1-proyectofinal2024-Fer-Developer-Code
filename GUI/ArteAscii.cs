@@ -11,42 +11,6 @@ namespace EspacioArteAscii.GUI
       switch (color.ToLower())
       {
         case "azul":
-          Console.BackgroundColor = ConsoleColor.Blue;
-          break;
-        case "rojo":
-          Console.BackgroundColor = ConsoleColor.Red;
-          break;
-        case "amarillo":
-          Console.BackgroundColor = ConsoleColor.Yellow;
-          break;
-        case "verde":
-          Console.BackgroundColor = ConsoleColor.Green;
-          break;
-        case "magenta":
-          Console.BackgroundColor = ConsoleColor.Magenta;
-          break;
-        case "cyan":
-          Console.BackgroundColor = ConsoleColor.Cyan;
-          break;
-        case "gris":
-          Console.BackgroundColor = ConsoleColor.Gray;
-          break;
-        case "negro":
-          Console.BackgroundColor = ConsoleColor.Black;
-          break;
-        case "blanco":
-          Console.BackgroundColor = ConsoleColor.White;
-          break;
-        default:
-          Console.WriteLine("Color inválido.");
-          break;
-      }
-    }
-    public void CambiarColorFondo(string color)
-    {
-      switch (color.ToLower())
-      {
-        case "azul":
           Console.ForegroundColor = ConsoleColor.Blue;
           break;
         case "rojo":
@@ -78,6 +42,42 @@ namespace EspacioArteAscii.GUI
           break;
       }
     }
+    public void CambiarColorFondo(string color)
+    {
+      switch (color.ToLower())
+      {
+        case "azul":
+          Console.BackgroundColor = ConsoleColor.Blue;
+          break;
+        case "rojo":
+          Console.BackgroundColor = ConsoleColor.Red;
+          break;
+        case "amarillo":
+          Console.BackgroundColor = ConsoleColor.Yellow;
+          break;
+        case "verde":
+          Console.BackgroundColor = ConsoleColor.Green;
+          break;
+        case "magenta":
+          Console.BackgroundColor = ConsoleColor.Magenta;
+          break;
+        case "cyan":
+          Console.BackgroundColor = ConsoleColor.Cyan;
+          break;
+        case "gris":
+          Console.BackgroundColor = ConsoleColor.Gray;
+          break;
+        case "negro":
+          Console.BackgroundColor = ConsoleColor.Black;
+          break;
+        case "blanco":
+          Console.BackgroundColor = ConsoleColor.White;
+          break;
+        default:
+          Console.WriteLine("Color inválido.");
+          break;
+      }
+    }
     public void EscribirConAnimacion(string texto, int delay)
     {
       foreach (char letra in texto)
@@ -99,8 +99,8 @@ namespace EspacioArteAscii.GUI
 |_______/  [___]  '.__.' [___||__]   \__/    '.__.' [___||__] [___]  '.__.;__]  '.__.'  [\__) )   \'-;__/ [___]   [ \_| |  '.__.'_/  '.__.'  .',__`   '.__.'  
                                                                                                                    \____/                   ( ( __))          
                                                                                                                    ";
-      string banner = @"*************************************************************************************************************************************************************";
-      CambiarColorFondo("magenta");
+      string banner = new string('*', Console.WindowWidth);
+      CambiarColorTexto("magenta");
       EscribirConAnimacion(banner, 1);
       Console.WriteLine(asciiBienvenida);
       EscribirConAnimacion(banner, 1);
@@ -200,7 +200,7 @@ namespace EspacioArteAscii.GUI
 ";
       Console.WriteLine($"\t{asciiHechicero}");
       Console.ResetColor();
-      EscribirConAnimacion(asciiPalabraAventura, 1);
+      Console.WriteLine(asciiPalabraAventura);
       EscribirConAnimacion(banner, 1);
     }
     public void MostrarTrono()

@@ -4,6 +4,7 @@ using EspacioPersonajes.PersonajesFiles;
 using EspacioArteAscii.GUI;
 using EspacioTorneo;
 using EspacioMostrarDatos.Helpers;
+using EspacioMenu;
 
 string rutaGanadores = "JsonFolder/rutaGanadores";
 ArteAscii ascii = new ArteAscii();
@@ -15,6 +16,14 @@ MostrarDatos mostrar = new MostrarDatos();
 string rutaListaPjs = "JsonFolder/Personajes.json";
 string rutaJugador = "JsonFolder/rutaJugador.json";
 
+//Inicializar menu
+
+ascii.MostrarLogo();
+string saludo = "";
+string[] opciones = {"Jugar", "Creditos", "Salir"};
+MenuGrafico menuJuego = new MenuGrafico(saludo, opciones);
+int indiceMenu = menuJuego.Run();
+
 // Comprobamos si los archivos existen y leemos los datos
 if (archivos.Existe(rutaListaPjs) && archivos.Existe(rutaJugador))
 {
@@ -22,7 +31,7 @@ if (archivos.Existe(rutaListaPjs) && archivos.Existe(rutaJugador))
     Personaje jugador = archivos.LeerJugador(rutaJugador);
     int respuesta = PreguntarCambiarPersonaje();
 
-    if (respuesta == 1)
+    if (respuesta == 0)
     {
         // El jugador desea seguir con su personaje actual
         Console.WriteLine("¡Excelente! Continuemos con tu personaje actual.");
@@ -58,12 +67,8 @@ mostrar.EscribirHistorialGanadores(rutaGanadores);
 
 int PreguntarCambiarPersonaje()
 {
-    int respuesta, delay = 25;
     string pregunta = "¿Deseas seguir con tu personaje actual o crear uno nuevo? (1: Sí, 2: No): ";
-    do
-    {
-        ascii.limpiar();
-        ascii.EscribirConAnimacion(pregunta, delay);
-    } while (!int.TryParse(Console.ReadLine(), out respuesta) || respuesta != 1 && respuesta != 2);
-    return respuesta;
+    string[] opciones = { "Si", "No" };
+    MenuGrafico menuCambiarPersonaje = new MenuGrafico(pregunta, opciones);
+    return menuCambiarPersonaje.Run();
 }
