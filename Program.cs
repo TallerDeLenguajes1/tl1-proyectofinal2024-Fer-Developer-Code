@@ -42,7 +42,6 @@ internal class Program
                 {
                     File.Delete(rutaJugador);
                     Console.WriteLine($"El archivo {rutaJugador} ha sido borrado correctamente.");
-                    FabricaDePersonajes personajes = new FabricaDePersonajes();
                     FabricaDePersonajes fabrica = new FabricaDePersonajes();
                     fabrica.CrearPersonajeUsuario();
                     archivos.GuardarPersonajeJugador(fabrica.Pj, rutaJugador);
@@ -56,13 +55,12 @@ internal class Program
         }
         else
         {
-            FabricaDePersonajes personajes = new FabricaDePersonajes();
             FabricaDePersonajes fabrica = new FabricaDePersonajes();
             fabrica.CrearPersonajeUsuario();
-            await personajes.CrearPersonajes(); //Logro funcionar, supongo que es porque despues de todo este tiempo habia que tener cuidado con el await
-            archivos.GuardarPersonajes(personajes.ListaPersonajes, rutaListaPjs);
+            await fabrica.CrearPersonajes(); //Logro funcionar, supongo que es porque despues de todo este tiempo habia que tener cuidado con el await
+            archivos.GuardarPersonajes(fabrica.ListaPersonajes, rutaListaPjs);
             archivos.GuardarPersonajeJugador(fabrica.Pj, rutaJugador);
-            torneo.ComenzarTorneo(personajes.ListaPersonajes, fabrica.Pj);
+            torneo.ComenzarTorneo(fabrica.ListaPersonajes, fabrica.Pj);
         }
         mostrar.EscribirHistorialGanadores(rutaGanadores);
     }
