@@ -80,11 +80,10 @@ namespace EspacioTorneo
             if (!jugadorDerrotado)
             {
                 // El jugador es el último en pie, por lo tanto, gana el torneo.
-                Console.WriteLine("��Felicidades! Has ganado el torneo!");
+                Console.WriteLine("Felicidades! Has ganado el torneo!");
                 int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
                 DetallesPartida detallesPartida = new DetallesPartida(duracion, jugador.ContadorAtaques);
                 archivosPjsGanadores.GuardarGanador(jugador, detallesPartida, rutaGanadores);
-                showStats.EscribirHistorialGanadores(rutaGanadores);
             }
             else if (jugadorDerrotado)
             {
@@ -153,7 +152,6 @@ namespace EspacioTorneo
                 int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
                 DetallesPartida detallesPartida = new DetallesPartida(duracion, ganador.ContadorAtaques);
                 archivosPjsGanadores.GuardarGanador(ganador, detallesPartida, rutaGanadores);
-                showStats.EscribirHistorialGanadores(rutaGanadores);
             }
         }
     }

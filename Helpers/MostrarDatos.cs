@@ -5,7 +5,6 @@ namespace EspacioMostrarDatos.Helpers
     public class MostrarDatos
     {
         HistorialJson archivosPjsGanadores = new HistorialJson();
-        string rutaGanadores = "JsonFolder/rutaGanadores.json";
         public void MostrarCaracteristicas(Personaje personaje)
         {
             Console.WriteLine($"Nombre: {personaje.Datos.Nombre}, Apodo: {personaje.Datos.Apodo}");

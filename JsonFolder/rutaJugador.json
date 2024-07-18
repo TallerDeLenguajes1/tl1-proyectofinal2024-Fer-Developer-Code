@@ -1,18 +1,18 @@
 {
     "Datos": {
-        "Raza": 1,
-        "Nombre": "Hola34",
-        "Apodo": "Mund1",
-        "FechaNac": "1977-07-15T00:00:00-03:00",
+        "Raza": 0,
+        "Nombre": "Holi",
+        "Apodo": "Pero",
+        "FechaNac": "1977-07-17T00:00:00-03:00",
         "Edad": 47
     },
     "Caracteristicas": {
-        "Velocidad": 336,
-        "Destreza": 434,
-        "Fuerza": 442,
-        "Nivel": 10,
-        "Armadura": 4,
-        "Salud": 3100
+        "Velocidad": 114,
+        "Destreza": 114,
+        "Fuerza": 1117,
+        "Nivel": 14,
+        "Armadura": 13,
+        "Salud": 11100
     },
     "Pociones": 3,
     "ContadorAtaques": 0

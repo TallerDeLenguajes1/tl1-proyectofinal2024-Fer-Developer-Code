@@ -3,14 +3,17 @@ using EspacioJsonCreacion;
 using EspacioPersonajes.PersonajesFiles;
 using EspacioArteAscii.GUI;
 using EspacioTorneo;
+using EspacioMostrarDatos.Helpers;
 
 internal class Program
 {
     private static async Task Main(string[] args)
     {
+        string rutaGanadores = "JsonFolder/rutaGanadores";
         ArteAscii ascii = new ArteAscii();
         PersonajesJson archivos = new PersonajesJson();
-        var torneo = new Torneo();
+        Torneo torneo = new Torneo();
+        MostrarDatos mostrar = new MostrarDatos();
 
         // Rutas de los archivos JSON
         string rutaListaPjs = "JsonFolder/Personajes.json";
@@ -49,7 +52,7 @@ internal class Program
                     Console.WriteLine($"Error al borrar el archivo: {ex.Message}");
                 }
             }
-            torneo.ComenzarTorneo(archivos.LeerPersonajes(rutaListaPjs), archivos.LeerJugador(rutaJugador));
+            torneo.ComenzarTorneo(listaPersonajesGuardados, jugador);
         }
         else
         {
@@ -61,5 +64,6 @@ internal class Program
             archivos.GuardarPersonajeJugador(fabrica.Pj, rutaJugador);
             torneo.ComenzarTorneo(personajes.ListaPersonajes, fabrica.Pj);
         }
+        mostrar.EscribirHistorialGanadores(rutaGanadores);
     }
 }
