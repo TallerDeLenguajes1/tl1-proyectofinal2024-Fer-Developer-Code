@@ -15,6 +15,8 @@ MostrarDatos mostrar = new MostrarDatos();
 string rutaListaPjs = "JsonFolder/Personajes.json";
 string rutaJugador = "JsonFolder/rutaJugador.json";
 
+ascii.MostrarLogo();
+
 // Comprobamos si los archivos existen y leemos los datos
 if (archivos.Existe(rutaListaPjs) && archivos.Existe(rutaJugador))
 {

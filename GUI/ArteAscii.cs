@@ -2,10 +2,10 @@ namespace EspacioArteAscii.GUI
 {
   public class ArteAscii
   {
+    ConsoleColor colorOriginalTexto = Console.ForegroundColor;
+    ConsoleColor colorOriginalFondo = Console.BackgroundColor;
     public void ColorOriginal()
     {
-      ConsoleColor colorOriginalTexto = Console.ForegroundColor;
-      ConsoleColor colorOriginalFondo = Console.BackgroundColor;
       Console.ForegroundColor = colorOriginalTexto;
       Console.BackgroundColor = colorOriginalFondo;
     }
@@ -92,7 +92,7 @@ namespace EspacioArteAscii.GUI
 
     {
       string asciiBienvenida = @"
-______      _                                                  _          __                              __          _                                      
+ ______      _                                                  _          __                              __          _                                      
 |_   _ \    (_)                                                (_)        |  ]                            [  |        (_)                                     
   | |_) |   __    .---.   _ .--.    _   __   .---.   _ .--.    __     .--.| |    .--.    .--.      ,--.    | |        __   __   _    .---.    .--./)   .--.   
   |  __'.  [  |  / /__\\ [ `.-. |  [ \ [  ] / /__\\ [ `.-. |  [  |  / /'`\' |  / .'`\ \ ( (`\]    `'_\ :   | |       [  | [  | | |  / /__\\  / /'`\; / .'`\ \ 
@@ -102,9 +102,9 @@ ______      _                                                  _          __    
                                                                                                                    ";
       string banner = @"*************************************************************************************************************************************************************";
       CambiarColorFondo("magenta");
-      EscribirConAnimacion(banner, 15);
-      EscribirConAnimacion(asciiBienvenida, 25);
-      EscribirConAnimacion(banner, 15);
+      EscribirConAnimacion(banner, 1);
+      Console.WriteLine(asciiBienvenida);
+      EscribirConAnimacion(banner, 1);
       string asciiHechicero = @"
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓█▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -191,17 +191,18 @@ ______      _                                                  _          __    
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓████████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▒▒▒▓▓▓▓▓█████████▓▓▓▓▓▓▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ";
-      string asciiPalabraAventura = @" _______                _                                _                                                                   
+      string asciiPalabraAventura = @" 
+                           _______                _                                _                                                                   
                           (_______)              (_)                              | |                                         _                        
-                          _         ___   ____   _  _____  ____   _____  _____   | |  _____    _____  _   _  _____  ____   _| |_  _   _   ____  _____ 
+                          _         ___   ____   _  _____  ____   _____  _____    | |  _____    _____  _   _  _____  ____   _| |_  _   _   ____  _____ 
                           | |       / _ \ |    \ | || ___ ||  _ \ (___  )(____ |  | | (____ |  (____ || | | || ___ ||  _ \ (_   _)| | | | / ___)(____ |
                           | |_____ | |_| || | | || || ____|| | | | / __/ / ___ |  | | / ___ |  / ___ | \ V / | ____|| | | |  | |_ | |_| || |    / ___ |
-                          \______) \___/ |_|_|_||_||_____)|_| |_|(_____)\_____|   \_)\_____|  \_____|  \_/  |_____)|_| |_|   \__)|____/ |_|    \_____|                                                                                                                          
+                           \______) \___/ |_|_|_||_||_____)|_| |_|(_____)\_____|   \_)\_____|  \_____|  \_/  |_____)|_| |_|   \__)|____/ |_|    \_____|                                                                                                                          
 ";
       Console.WriteLine($"\t{asciiHechicero}");
       ColorOriginal();
-      EscribirConAnimacion(asciiPalabraAventura, 15);
-      EscribirConAnimacion(banner, 15);
+      EscribirConAnimacion(asciiPalabraAventura, 1);
+      EscribirConAnimacion(banner, 1);
     }
     public void MostrarTrono()
     {
