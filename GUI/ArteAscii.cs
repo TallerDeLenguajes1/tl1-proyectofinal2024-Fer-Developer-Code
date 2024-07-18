@@ -1,6 +1,6 @@
-namespace EspacioArteAscii.Helpers
+namespace EspacioArteAscii.GUI
 {
-  public class ArteAscii()
+  public class ArteAscii
   {
     ConsoleColor colorOriginalTexto = Console.ForegroundColor;
     ConsoleColor colorOriginalFondo = Console.BackgroundColor;
