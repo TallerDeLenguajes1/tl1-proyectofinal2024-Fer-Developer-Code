@@ -2,6 +2,7 @@ using EspacioPersonajes.PersonajesFiles;
 using EspacioMostrarDatos.Helpers;
 using EspacioJsonCreacion;
 using System.Diagnostics;
+using EspacioMenu;
 namespace EspacioTorneo
 {
     public class Torneo
@@ -30,16 +31,9 @@ namespace EspacioTorneo
 
                 while (luchador1.Caracteristicas.Salud > 0 && luchador2.Caracteristicas.Salud > 0)
                 {
-                    int respuesta;
-                    do
-                    {
-                        Console.WriteLine("Elige tu acción:");
-                        Console.WriteLine("1. Atacar");
-                        Console.WriteLine("2. Tomar poción de vida");
-                        Console.Write("Opción: ");
-                    } while (!int.TryParse(Console.ReadLine(), out respuesta) || respuesta != 1 && respuesta != 2);
+                    int accionJugador = Acciones() + 1;
 
-                    switch (respuesta)
+                    switch (accionJugador)
                     {
                         case 1:
                             luchador1.Atacar(luchador2);
@@ -92,6 +86,15 @@ namespace EspacioTorneo
                 SimularTorneo(personajes, rutaGanadores, stopwatch);
             }
         }
+
+        private static int Acciones()
+        {
+            string entrada = "Elige tu acción:";
+            string[] opciones = { "Atacar", "Tomar pociones" };
+            MenuGrafico menuAcciones = new MenuGrafico(entrada, opciones);
+            return menuAcciones.Run();
+        }
+
         // En caso de que el jugador sea derrotado simula un torneo entre los personajes restantes
         public void SimularTorneo(List<Personaje> personajes, string rutaGanadores, Stopwatch stopwatch)
         {
