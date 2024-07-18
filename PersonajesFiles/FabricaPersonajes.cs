@@ -108,33 +108,93 @@ namespace espacioFabricaPersonajes
 
         private Caracteristicas AsignarCaracteristicas(RazasPersonaje raza)
         {
-            int velocidad = random.Next(1, 11);
-            int destreza = random.Next(1, 6);
-            int fuerza = random.Next(1, 11);
+            int velocidad = 0;
+            int destreza = 0;
+            int fuerza = 0;
             int nivel = random.Next(1, 11);
-            int armadura = random.Next(1, 11);
+            int armadura = 0;
             int salud = Constantes.MaxSalud;
+            int suerte = random.Next(1, 11); // Asignar la suerte
 
-            switch (raza)
+            switch (raza)//Use gpt para que randomice datos segun la raza
             {
                 case RazasPersonaje.Humano:
-                    fuerza = random.Next(1, 8); // Ejemplo: Fuerza de un humano es de 1 a 7
+                    velocidad = random.Next(5, 8); // Velocidad moderada
+                    destreza = random.Next(3, 5); // Destreza alta
+                    fuerza = random.Next(3, 6); // Fuerza moderada
+                    armadura = random.Next(3, 6); // Armadura moderada
                     break;
                 case RazasPersonaje.Elfo:
-                    fuerza = random.Next(1, 6); // Ejemplo: Fuerza de un elfo es de 1 a 5
+                    velocidad = random.Next(6, 10); // Velocidad alta
+                    destreza = random.Next(4, 5); // Destreza muy alta
+                    fuerza = random.Next(2, 5); // Fuerza baja
+                    armadura = random.Next(2, 5); // Armadura baja
                     break;
                 case RazasPersonaje.Enano:
-                    fuerza = random.Next(4, 10); // Ejemplo: Fuerza de un enano es de 4 a 9
-                    armadura = random.Next(5, 11); // Ejemplo: Armadura de un enano es de 5 a 10
+                    velocidad = random.Next(2, 5); // Velocidad baja
+                    destreza = random.Next(2, 4); // Destreza moderada
+                    fuerza = random.Next(6, 9); // Fuerza alta
+                    armadura = random.Next(6, 10); // Armadura alta
                     break;
                 case RazasPersonaje.Orco:
-                    fuerza = random.Next(7, 11); // Ejemplo: Fuerza de un orco es de 7 a 10
-                    velocidad = random.Next(1, 6); // Ejemplo: Velocidad de un orco es de 1 a 5
+                    velocidad = random.Next(3, 6); // Velocidad baja-moderada
+                    destreza = random.Next(2, 4); // Destreza baja-moderada
+                    fuerza = random.Next(7, 10); // Fuerza alta
+                    armadura = random.Next(5, 8); // Armadura alta
+                    break;
+                case RazasPersonaje.Goblin:
+                    velocidad = random.Next(6, 10); // Velocidad alta
+                    destreza = random.Next(3, 5); // Destreza alta
+                    fuerza = random.Next(2, 4); // Fuerza baja
+                    armadura = random.Next(1, 4); // Armadura baja
+                    break;
+                case RazasPersonaje.Centauro:
+                    velocidad = random.Next(7, 10); // Velocidad muy alta
+                    destreza = random.Next(3, 5); // Destreza alta
+                    fuerza = random.Next(5, 8); // Fuerza alta
+                    armadura = random.Next(4, 6); // Armadura moderada
+                    break;
+                case RazasPersonaje.Minotauro:
+                    velocidad = random.Next(3, 6); // Velocidad moderada
+                    destreza = random.Next(2, 4); // Destreza baja-moderada
+                    fuerza = random.Next(8, 10); // Fuerza muy alta
+                    armadura = random.Next(6, 9); // Armadura alta
+                    break;
+                case RazasPersonaje.Vampiro:
+                    velocidad = random.Next(5, 8); // Velocidad alta
+                    destreza = random.Next(4, 5); // Destreza muy alta
+                    fuerza = random.Next(5, 7); // Fuerza alta
+                    armadura = random.Next(3, 6); // Armadura moderada
+                    break;
+                case RazasPersonaje.Licántropo:
+                    velocidad = random.Next(6, 9); // Velocidad alta
+                    destreza = random.Next(3, 5); // Destreza alta
+                    fuerza = random.Next(6, 9); // Fuerza muy alta
+                    armadura = random.Next(4, 7); // Armadura alta
+                    break;
+                case RazasPersonaje.Troll:
+                    velocidad = random.Next(2, 5); // Velocidad baja
+                    destreza = random.Next(1, 3); // Destreza baja
+                    fuerza = random.Next(8, 10); // Fuerza muy alta
+                    armadura = random.Next(6, 9); // Armadura alta
+                    break;
+                case RazasPersonaje.Gólem:
+                    velocidad = random.Next(1, 3); // Velocidad muy baja
+                    destreza = random.Next(1, 2); // Destreza muy baja
+                    fuerza = random.Next(9, 10); // Fuerza muy alta
+                    armadura = random.Next(8, 10); // Armadura muy alta
+                    break;
+                case RazasPersonaje.Harpía:
+                    velocidad = random.Next(7, 10); // Velocidad muy alta
+                    destreza = random.Next(4, 5); // Destreza muy alta
+                    fuerza = random.Next(2, 5); // Fuerza baja-moderada
+                    armadura = random.Next(2, 5); // Armadura baja-moderada
                     break;
             }
 
-            return new Caracteristicas(velocidad, destreza, fuerza, nivel, armadura, salud);
+            return new Caracteristicas(velocidad, destreza, fuerza, nivel, armadura, salud, suerte);
         }
+
 
         private DateTime CrearFechaNac(RazasPersonaje raza, out int edad)
         {

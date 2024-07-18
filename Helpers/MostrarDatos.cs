@@ -9,9 +9,9 @@ namespace EspacioMostrarDatos.Helpers
         {
             Console.WriteLine($"Nombre: {personaje.Datos.Nombre}, Apodo: {personaje.Datos.Apodo}");
             Console.WriteLine($"Raza: {personaje.Datos.Raza}, Edad: {personaje.Datos.Edad}");
-            Console.WriteLine($"Velocidad: {personaje.Caracteristicas.Velocidad}, Destreza: {personaje.Caracteristicas.Destreza}");
+            Console.WriteLine($"Velocidad: {personaje.Caracteristicas.Velocidad}, Destreza: {personaje.Caracteristicas.Agilidad}");
             Console.WriteLine($"Fuerza: {personaje.Caracteristicas.Fuerza}, Nivel: {personaje.Caracteristicas.Nivel}");
-            Console.WriteLine($"Armadura: {personaje.Caracteristicas.Armadura}, Salud: {personaje.Caracteristicas.Salud}");
+            Console.WriteLine($"Armadura: {personaje.Caracteristicas.Defensa}, Salud: {personaje.Caracteristicas.Salud}");
             Console.WriteLine();
         }
         public void EscribirHistorialGanadores(string rutaGanadores)

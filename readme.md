@@ -26,6 +26,7 @@ La razón detrás de esta elección es que, aunque existen muchas APIs que gener
 - Copilot de Microsoft (Asistente virtual)
 - ChatGPT para algunas funciones y ahorrarme de automatizar, sobre todo en fabrica de personajes
 - Youtube para algunos detalles en la consola, animaciones, etc.
+- **Como crear menús** [CrearMenusC#](https://www.youtube.com/watch?v=qAWhGEPMlS8&t=454s)
 
 ## DATOS DEL ALUMNO
 ### NOMBRE:

@@ -2,13 +2,6 @@ namespace EspacioArteAscii.GUI
 {
   public class ArteAscii
   {
-    ConsoleColor colorOriginalTexto = Console.ForegroundColor;
-    ConsoleColor colorOriginalFondo = Console.BackgroundColor;
-    public void ColorOriginal()
-    {
-      Console.ForegroundColor = colorOriginalTexto;
-      Console.BackgroundColor = colorOriginalFondo;
-    }
     public void limpiar()
     {
       Console.Clear();
@@ -40,6 +33,9 @@ namespace EspacioArteAscii.GUI
           break;
         case "negro":
           Console.BackgroundColor = ConsoleColor.Black;
+          break;
+        case "blanco":
+          Console.BackgroundColor = ConsoleColor.White;
           break;
         default:
           Console.WriteLine("Color inválido.");
@@ -73,6 +69,9 @@ namespace EspacioArteAscii.GUI
           break;
         case "negro":
           Console.ForegroundColor = ConsoleColor.Black;
+          break;
+        case "blanco":
+          Console.ForegroundColor = ConsoleColor.White;
           break;
         default:
           Console.WriteLine("Color inválido.");
@@ -200,7 +199,7 @@ namespace EspacioArteAscii.GUI
                            \______) \___/ |_|_|_||_||_____)|_| |_|(_____)\_____|   \_)\_____|  \_____|  \_/  |_____)|_| |_|   \__)|____/ |_|    \_____|                                                                                                                          
 ";
       Console.WriteLine($"\t{asciiHechicero}");
-      ColorOriginal();
+      Console.ResetColor();
       EscribirConAnimacion(asciiPalabraAventura, 1);
       EscribirConAnimacion(banner, 1);
     }
@@ -283,7 +282,7 @@ namespace EspacioArteAscii.GUI
       CambiarColorFondo("Negro");
       CambiarColorTexto("Gris");
       Console.WriteLine(asciiTrono);
-      ColorOriginal();
+      Console.ResetColor();
     }
   }
 }

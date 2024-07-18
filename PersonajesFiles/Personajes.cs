@@ -24,12 +24,27 @@ namespace EspacioPersonajes.PersonajesFiles
         {
             Random random = new Random();
             contadorAtaques++;
-            int ataque = Caracteristicas.Destreza * Caracteristicas.Fuerza * Caracteristicas.Nivel;
-            int efectividad = random.Next(1, 101);
-            int defensa = Defensor.Caracteristicas.Armadura * Defensor.Caracteristicas.Velocidad;
+            int ataque = Caracteristicas.Agilidad * Caracteristicas.Fuerza * Caracteristicas.Nivel;
+            int efectividad = random.Next(49, 101);
+            int defensa = Defensor.Caracteristicas.Defensa * Defensor.Caracteristicas.Velocidad;
             int constAjuste = Constantes.ajuste;
-            int danioProvocado = ((ataque * efectividad) - defensa) / constAjuste;
+            int danioBase = ((ataque * efectividad) - defensa) / constAjuste;
+
+            // Calcular si es un ataque crítico
+            int suerte = Caracteristicas.Suerte;
+            int probabilidadCritico = random.Next(1, 101);
+            bool esCritico = probabilidadCritico <= suerte;
+            int danioProvocado = esCritico ? danioBase * 2 : danioBase;//Operador ternario
+
+            // Asegurarse de que el daño no sea negativo
+            danioProvocado = Math.Max(danioProvocado, 0);
+
             Defensor.Caracteristicas.ReducirSalud(danioProvocado);
+
+            if (esCritico)
+            {
+                Console.WriteLine($"¡{Datos.Nombre} Ha acertado un ataque crítico!");
+            }
         }
         public void TomarPocion()
         {

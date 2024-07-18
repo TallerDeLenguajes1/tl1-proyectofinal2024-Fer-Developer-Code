@@ -26,27 +26,31 @@ namespace DatosYCaracteristicas.PersonajesFiles
     public class Caracteristicas
     {
         private int velocidad;   // Rango: 1-10
-        private int destreza;    // Rango: 1-5
+        private int agilidad;    // Rango: 1-5
         private int fuerza;      // Rango: 1-10
         private int nivel;       // Rango: 1-10
-        private int armadura;    // Rango: 1-10
+        private int defensa;    // Rango: 1-10
         private int salud;       // Valor máximo: 100
+        private int suerte;
 
-        public Caracteristicas(int velocidad, int destreza, int fuerza, int nivel, int armadura, int salud)
+        public Caracteristicas(int velocidad, int agilidad, int fuerza, int nivel, int defensa, int salud, int suerte)
         {
             this.velocidad = velocidad;
-            this.destreza = destreza;
+            this.agilidad = agilidad;
             this.fuerza = fuerza;
             this.nivel = nivel;
-            this.armadura = armadura;
+            this.defensa = defensa;
             this.salud = salud;
+            this.suerte = suerte;
         }
         public int Velocidad { get => velocidad; }
-        public int Destreza { get => destreza; }
+        public int Agilidad { get => agilidad; }
         public int Fuerza { get => fuerza; }
         public int Nivel { get => nivel; }
-        public int Armadura { get => armadura; }
+        public int Defensa { get => defensa; }
         public int Salud { get => salud; set => salud = value; }
+        public int Suerte { get => suerte; }
+
         public void ReducirSalud(int danio)
         {
             Salud -= danio;
