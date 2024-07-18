@@ -1,4 +1,4 @@
-# Bienvenidos al Proyecto de Generación de Personajes
+# Bienvenidos al Proyecto de Juego de Rol en Consola
 
 ## Introducción
 
@@ -22,6 +22,10 @@ La razón detrás de esta elección es que, aunque existen muchas APIs que gener
 - Genera nombres y apodos aleatorios para tus personajes.
 - Personaliza los datos ficticios según tus necesidades.
 
+##Recursos utilizados
+- Copilot de Microsoft (Asistente virtual)
+- ChatGPT para algunas funciones y ahorrarme de automatizar, sobre todo en fabrica de personajes
+- Youtube para algunos detalles en la consola, animaciones, etc.
 
 ## DATOS DEL ALUMNO
 ### NOMBRE:
