@@ -36,7 +36,7 @@ namespace EspacioOpciones
 
             Console.WriteLine("Presione una tecla para continuar");
             Console.ReadKey();
-            Juego empezar = new Juego();
+            Juego empezar = new Juego();//Debe estar dentro del metodo y no en la clase porque se rompe el program
             empezar.RunMainMenu(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
         }
     }

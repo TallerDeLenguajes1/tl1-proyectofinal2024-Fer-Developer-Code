@@ -24,6 +24,7 @@ namespace EspacioTorneo
                 Personaje luchador2 = personajes[posicionEnemigo];
                 stopwatch.Start();
                 Console.Clear(); // Limpiar la consola
+                //Insertar aca una presentacion sobre los luchadores 
                 Console.WriteLine($"¡Combate entre {luchador1.Datos.Nombre} y {luchador2.Datos.Nombre}!");
 
                 showStats.MostrarCaracteristicas(luchador1);
@@ -31,8 +32,10 @@ namespace EspacioTorneo
 
                 while (luchador1.Caracteristicas.Salud > 0 && luchador2.Caracteristicas.Salud > 0)
                 {
-                    int accionJugador = Acciones() + 1;
-
+                    string entrada = "Elige tu acción:";
+                    string[] opciones = { "Atacar", "Tomar pociones" };
+                    MenuGrafico menuAcciones = new MenuGrafico(entrada, opciones);
+                    int accionJugador = menuAcciones.Run();
                     switch (accionJugador)
                     {
                         case 1:
@@ -85,14 +88,6 @@ namespace EspacioTorneo
                 Console.WriteLine($"{jugador.Datos.Nombre} ha sido derrotado y eliminado del torneo.");
                 SimularTorneo(personajes, rutaGanadores, stopwatch);
             }
-        }
-
-        private static int Acciones()
-        {
-            string entrada = "Elige tu acción:";
-            string[] opciones = { "Atacar", "Tomar pociones" };
-            MenuGrafico menuAcciones = new MenuGrafico(entrada, opciones);
-            return menuAcciones.Run();
         }
 
         // En caso de que el jugador sea derrotado simula un torneo entre los personajes restantes

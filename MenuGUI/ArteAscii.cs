@@ -78,6 +78,13 @@ namespace EspacioArteAscii.GUI
           break;
       }
     }
+    public void EscribirSeparador(string ascii)
+    {
+      string separador = new string('-', Console.WindowWidth);
+      CambiarColorTexto("Amarillo");
+      Console.WriteLine(separador);
+      Console.ResetColor();
+    }
     public void EscribirConAnimacion(string texto, int delay)
     {
       foreach (char letra in texto)
@@ -88,7 +95,6 @@ namespace EspacioArteAscii.GUI
       Console.WriteLine(); // Para asegurar que la próxima línea empiece en una nueva línea
     }
     public void MostrarLogo()
-
     {
       string asciiBienvenida = @"
  ______      _                                                  _          __                              __          _                                      
