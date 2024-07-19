@@ -72,6 +72,7 @@ namespace EspacioJuego
                         FabricaDePersonajes fabrica = new FabricaDePersonajes();
                         fabrica.CrearPersonajeUsuario();
                         archivos.GuardarPersonajeJugador(fabrica.Pj, rutaJugador);
+                        jugador = archivos.LeerJugador(rutaJugador);
                     }
                     catch (Exception ex)
                     {

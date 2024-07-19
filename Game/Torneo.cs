@@ -27,22 +27,22 @@ namespace EspacioTorneo
                 //Insertar aca una presentacion sobre los luchadores 
                 Console.WriteLine($"¡Combate entre {luchador1.Datos.Nombre} y {luchador2.Datos.Nombre}!");
 
-                showStats.MostrarCaracteristicas(luchador1);
-                showStats.MostrarCaracteristicas(luchador2);
 
                 while (luchador1.Caracteristicas.Salud > 0 && luchador2.Caracteristicas.Salud > 0)
                 {
                     string entrada = "Elige tu acción:";
                     string[] opciones = { "Atacar", "Tomar pociones" };
                     MenuGrafico menuAcciones = new MenuGrafico(entrada, opciones);
+                    showStats.MostrarCaracteristicas(luchador1);
+                    showStats.MostrarCaracteristicas(luchador2);
                     int accionJugador = menuAcciones.Run();
                     switch (accionJugador)
                     {
-                        case 1:
+                        case 0:
                             luchador1.Atacar(luchador2);
                             Console.WriteLine($"Vida de {luchador2.Datos.Nombre}: {luchador2.Caracteristicas.Salud}");
                             break;
-                        case 2:
+                        case 1:
                             luchador1.TomarPocion();
                             break;
                         default:

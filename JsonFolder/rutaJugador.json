@@ -1,1 +1,20 @@
-{"Datos":{"Raza":0,"Nombre":"Gerardo","Apodo":"Sofovich","FechaNac":"1987-07-18T00:00:00-03:00","Edad":37},"Caracteristicas":{"Velocidad":6,"Agilidad":3,"Fuerza":3,"Nivel":2,"Defensa":3,"Salud":100,"Suerte":3},"Pociones":3,"ContadorAtaques":0}
+{
+    "Datos": {
+        "Raza": 6,
+        "Nombre": "Nuevo",
+        "Apodo": "Personaje",
+        "FechaNac": "1990-07-19T00:00:00-03:00",
+        "Edad": 34
+    },
+    "Caracteristicas": {
+        "Velocidad": 13,
+        "Agilidad": 13,
+        "Fuerza": 181,
+        "Nivel": 131,
+        "Defensa": 711,
+        "Salud": 1100,
+        "Suerte": 5
+    },
+    "Pociones": 3,
+    "ContadorAtaques": 0
+}
