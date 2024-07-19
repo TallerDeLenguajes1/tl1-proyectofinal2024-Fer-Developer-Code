@@ -70,5 +70,4 @@ namespace EspacioMenu
             return indexSelec;
         }
     }
-    //Environment.Exit(0);//Cierra la app
 }

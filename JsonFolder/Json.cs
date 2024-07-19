@@ -70,14 +70,18 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
         // Método para leer una lista de personajes ganadores desde un archivo JSON
         public List<HistorialPartida> LeerGanadores(string nombreArchivo)
         {
-            if (!Existe(nombreArchivo))
+            try
             {
-                throw new FileNotFoundException($"El archivo {nombreArchivo} no existe o está vacío.");
+                string jsonString = File.ReadAllText(nombreArchivo);
+                return JsonSerializer.Deserialize<List<HistorialPartida>>(jsonString);
             }
-
-            string jsonString = File.ReadAllText(nombreArchivo);
-            return JsonSerializer.Deserialize<List<HistorialPartida>>(jsonString);
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al deserializar el archivo JSON: {ex.Message}");
+                return new List<HistorialPartida>(); // Retornar lista vacía en caso de excepción
+            }
         }
+
         public bool Existe(string nombreArchivo)
         {
             return File.Exists(nombreArchivo) && new FileInfo(nombreArchivo).Length > 0;
@@ -113,7 +117,7 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
             this.hora = DateTime.Now;
         }
         public int Duracion { get => duracion; }
-        public int ContadorAtaques{get => contadorAtaques;}
+        public int ContadorAtaques { get => contadorAtaques; }
         public DateTime Hora { get => hora; }
     }
 }
