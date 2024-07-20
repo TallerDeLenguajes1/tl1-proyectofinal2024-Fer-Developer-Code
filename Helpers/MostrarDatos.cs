@@ -12,6 +12,7 @@ namespace EspacioMostrarDatos.Helpers
         {
             // Crear un borde decorativo
             string borde = new string('-', Console.WindowWidth);//Imprime tantas lineas como ancho tenga la consola
+
             ascii.CambiarColorTexto("Cyan");
             EscribirLineaConEfecto(borde);
             ascii.CambiarColorTexto("Amarillo");
@@ -27,20 +28,21 @@ namespace EspacioMostrarDatos.Helpers
             Console.WriteLine();
         }
 
-        private static void EscribirConEfecto(string texto, int delay = 1)
+        private static void EscribirConEfecto(string texto)
         {
             foreach (char c in texto)
             {
                 Console.Write(c);
-                Thread.Sleep(delay);
             }
         }
-
-        private static void EscribirLineaConEfecto(string texto, int delay = 1)
+        private static void EscribirLineaConEfecto(string texto)
         {
-            EscribirConEfecto(texto, delay);
+            int posicionX = (Console.WindowWidth - texto.Length) / 2;
+            Console.SetCursorPosition(posicionX, Console.CursorTop);
+            EscribirConEfecto(texto);
             Console.WriteLine();
         }
+
         public void EscribirHistorialGanadores(string rutaGanadores)
         {
             List<HistorialPartida> ganadores = archivosPjsGanadores.LeerGanadores(rutaGanadores);

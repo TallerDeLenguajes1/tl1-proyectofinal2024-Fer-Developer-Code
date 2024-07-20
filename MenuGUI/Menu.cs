@@ -43,7 +43,9 @@ namespace EspacioMenu
             do
             {
                 Console.Clear();
+                ascii.CambiarColorTexto("naranja");
                 Console.WriteLine(textoEntrada);
+                ascii.CambiarColorTexto("Blanco");
                 MostrarOpciones();
 
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
