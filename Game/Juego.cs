@@ -6,58 +6,65 @@ using EspacioTorneo;
 using EspacioMostrarDatos.Helpers;
 using EspacioMenu;
 using EspacioOpciones;
+using System.Text;
 
 namespace EspacioJuego
 {
     public class Juego
     {
         Creditos creditos = new Creditos();
+        ArteAscii ascii = new ArteAscii();
         private MostrarDatos mostrar = new MostrarDatos();
         private int PreguntarCambiarPersonaje()
         {
             string pregunta = "¿Deseas seguir con tu personaje actual o crear uno nuevo? (1: Sí, 2: No): ";
             string[] opciones = { "Si", "No" };
-            MenuGrafico menuCambiarPersonaje = new MenuGrafico(pregunta, opciones);
+            string[] guerreros = ascii.AsciiGuerreros;
+
+            MenuGrafico menuCambiarPersonaje = new MenuGrafico(guerreros, pregunta, opciones);
             return menuCambiarPersonaje.Run();
         }
 
         public async void RunMainMenu(PersonajesJson archivos, Torneo torneo, string rutaListaPjs, string rutaJugador, string rutaGanadores)
         {
-            string presentacion = @"
-
- _____             _       ______              _            
-/  __ \           | |      | ___ \            | |           
-| /  \/  ___    __| |  ___ | |_/ / ___   __ _ | | _ __ ___  
-| |     / _ \  / _` | / _ \|    / / _ \ / _` || || '_ ` _ \ 
-| \__/\| (_) || (_| ||  __/| |\ \|  __/| (_| || || | | | | |
- \____/ \___/  \__,_| \___|\_| \_|\___| \__,_||_||_| |_| |_|
-                                                            
-                      +.                     
-               .:-===-##.=--:.               
-           .-=+++++=-#*%*-+++++=-.           
-         -++++++++==%+###%-=+++++++:         
-       -+++++++++==@##%@%%@:+++++++++:       
-   . .++++++++++-+%*++*###%@+-+++++++++. .   
-  : :+++++++++-+####*+=++*%###+-=+++++++. :  
- :.:++++++++==#%@@***=*+=#*#@@%#-=+++++++..: 
- - +++++++++=-#@@%.#+*+***#.@@@%:-++++++++ : 
-- :+-=-=+-+==%%@@*#*+-*+-*++#@@@@#*==+++++. -
-= =-*++*+*==@##@@@+:::::::--%@@@#%@@+-++++- =
-= +=:+*=*+*%#%%@@@::.  :..-*+@%##***#*===+- =
-= ++++*#*=++%#%@@@--  .=:.+++@#**#%%#%%%#=. =
-- =*@@%*===-=#@@@@@=...-:::%#*#@@%*+#####%#:-
- +#@%*+*=---==-++#@%+:..:=#%*@@@#*###*##%@%#.
-.#@@##*#@#+=%%%@@*%@+%===--==+#%*#***+*%%@@#=
-:%@@%**+*%@@%*@@@@+%@*-=*=-=+*==*+++*++%@@@%-
-.%@@@%*++++++%@@@@#+#==*=-:::=+-*++++++@@@@@-
- =@@@@%##**#*%@@@@@+*=++==--+++=##+++*%@@@@#.
-  *@@@@@@#-::@%%@@@++#=*=*+***+=%%+=@@@@@@%= 
-   +%%%%=:+:@@#%@@%++#**#******%%@:-:*%%%*:  
-    .-: .--@%##@@@*+**#+*++#@@@##%@--  .     
-          :+##%@@%++*+@***++#@@%#*=:         
-             .=*#++*+*@%+*+++#*=.            ";
             string[] opciones = { "Jugar", "Mostrar historial de Ganadores", "Acerca de", "Salir" };
-            MenuGrafico menuJuego = new MenuGrafico(presentacion, opciones);
+            string elegir = "Elige una opcion";
+            string[] portada = new string[]
+            {
+@" _____             _       ______              _            ",
+@"/  __ \           | |      | ___ \            | |           ",
+@"| /  \/  ___    __| |  ___ | |_/ / ___   __ _ | | _ __ ___  ",
+@"| |     / _ \  / _` | / _ \|    / / _ \ / _` || || '_ ` _ \ ",
+@"| \__/\| (_) || (_| ||  __/| |\ \|  __/| (_| || || | | | | |",
+@" \____/ \___/  \__,_| \___|\_| \_|\___| \__,_||_||_| |_| |_|",
+
+"                      +.                     ",
+"               .:-===-##.=--:.               ",
+"           .-=+++++=-#*%*-+++++=-.           ",
+"         -++++++++==%+###%-=+++++++:         ",
+"       -+++++++++==@##%@%%@:+++++++++:       ",
+"   . .++++++++++-+%*++*###%@+-+++++++++. .   ",
+"  : :+++++++++-+####*+=++*%###+-=+++++++. :  ",
+" :.:++++++++==#%@@***=*+=#*#@@%#-=+++++++..: ",
+" - +++++++++=-#@@%.#+*+***#.@@@%:-++++++++ : ",
+"- :+-=-=+-+==%%@@*#*+-*+-*++#@@@@#*==+++++. -",
+"= =-*++*+*==@##@@@+:::::::--%@@@#%@@+-++++- =",
+"= +=:+*=*+*%#%%@@@::.  :..-*+@%##***#*===+- =",
+"= ++++*#*=++%#%@@@--  .=:.+++@#**#%%#%%%#=. =",
+"- =*@@%*===-=#@@@@@=...-:::%#*#@@%*+#####%#:-",
+" +#@%*+*=---==-++#@%+:..:=#%*@@@#*###*##%@%#.",
+".#@@##*#@#+=%%%@@*%@+%===--==+#%*#***+*%%@@#=",
+":%@@%**+*%@@%*@@@@+%@*-=*=-=+*==*+++*++%@@@%-",
+".%@@@%*++++++%@@@@#+#==*=-:::=+-*++++++@@@@@-",
+" =@@@@%##**#*%@@@@@+*=++==--+++=##+++*%@@@@#.",
+"  *@@@@@@#-::@%%@@@++#=*=*+***+=%%+=@@@@@@%= ",
+"   +%%%%=:+:@@#%@@%++#**#******%%@:-:*%%%*:  ",
+"    .-: .--@%##@@@*+**#+*++#@@@##%@--  .     ",
+"          :+##%@@%++*+@***++#@@%#*=:         ",
+"             .=*#++*+*@%+*+++#*=.            "
+};
+
+            MenuGrafico menuJuego = new MenuGrafico(portada, elegir, opciones);
             int opcion = menuJuego.Run();
             switch (opcion)
             {
@@ -117,9 +124,9 @@ namespace EspacioJuego
             {
                 FabricaDePersonajes fabrica = new FabricaDePersonajes();
                 fabrica.CrearPersonajeUsuario();
+                archivos.GuardarPersonajeJugador(fabrica.Pj, rutaJugador);
                 await fabrica.CrearPersonajes(); //Logro funcionar, supongo que es porque despues de todo este tiempo habia que tener cuidado con el await
                 archivos.GuardarPersonajes(fabrica.ListaPersonajes, rutaListaPjs);
-                archivos.GuardarPersonajeJugador(fabrica.Pj, rutaJugador);
                 torneo.ComenzarTorneo(fabrica.ListaPersonajes, fabrica.Pj);
             }
         }

@@ -6,12 +6,14 @@ namespace EspacioMenu
         ArteAscii ascii = new ArteAscii();
         private string textoEntrada;
         private string[] opciones;
+        private string[] graficoAscii;
         private int indexSelec;
 
-        public MenuGrafico(string TextoEntrada, string[] opciones)
+        public MenuGrafico(string[] GraficoAscii, string TextoEntrada, string[] opciones)
         {
             this.textoEntrada = TextoEntrada;
             this.opciones = opciones;
+            this.graficoAscii = GraficoAscii;
             this.indexSelec = 0;
         }
         private void MostrarOpciones()
@@ -33,7 +35,7 @@ namespace EspacioMenu
                     ascii.CambiarColorTexto("Blanco");
                     ascii.CambiarColorFondo("Negro");
                 }
-                Console.WriteLine($"{prefijo} << {opcionActual} >>");
+                ascii.EscribirCentrado($"{prefijo} << {opcionActual} >>");
             }
             Console.ResetColor();
         }
@@ -44,7 +46,8 @@ namespace EspacioMenu
             {
                 Console.Clear();
                 ascii.CambiarColorTexto("naranja");
-                Console.WriteLine(textoEntrada);
+                ascii.CentrarAscii(graficoAscii);
+                ascii.EscribirCentrado(textoEntrada);
                 ascii.CambiarColorTexto("Blanco");
                 MostrarOpciones();
 

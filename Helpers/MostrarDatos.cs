@@ -8,7 +8,7 @@ namespace EspacioMostrarDatos.Helpers
     {
         HistorialJson archivosPjsGanadores = new HistorialJson();
         ArteAscii ascii = new ArteAscii();
-        public void MostrarCaracteristicas(Personaje personaje)
+        public void MostrarCaracteristicas(Personaje personaje, string titulo)
         {
             // Crear un borde decorativo
             string borde = new string('-', Console.WindowWidth);//Imprime tantas lineas como ancho tenga la consola
@@ -16,16 +16,16 @@ namespace EspacioMostrarDatos.Helpers
             ascii.CambiarColorTexto("Cyan");
             EscribirLineaConEfecto(borde);
             ascii.CambiarColorTexto("Amarillo");
-            EscribirLineaConEfecto($"Nombre: {personaje.Datos.Nombre}, Apodo: {personaje.Datos.Apodo}");
-            EscribirLineaConEfecto($"Raza: {personaje.Datos.Raza}, Edad: {personaje.Datos.Edad}");
+            Console.WriteLine($"{titulo}");
+            Console.WriteLine($"Nombre: {personaje.Datos.Nombre}, Apodo: {personaje.Datos.Apodo}");
+            Console.WriteLine($"Raza: {personaje.Datos.Raza}, Edad: {personaje.Datos.Edad}");
             ascii.CambiarColorTexto("Verde");
-            EscribirLineaConEfecto($"Velocidad: {personaje.Caracteristicas.Velocidad}, Destreza: {personaje.Caracteristicas.Agilidad}");
-            EscribirLineaConEfecto($"Fuerza: {personaje.Caracteristicas.Fuerza}, Nivel: {personaje.Caracteristicas.Nivel}");
-            EscribirLineaConEfecto($"Armadura: {personaje.Caracteristicas.Defensa}, Salud: {personaje.Caracteristicas.Salud}, Suerte:{personaje.Caracteristicas.Suerte}");
-            ascii.CambiarColorTexto("cyan");
-            EscribirLineaConEfecto(borde);
+            Console.WriteLine($"Velocidad: {personaje.Caracteristicas.Velocidad}, Destreza: {personaje.Caracteristicas.Agilidad}");
+            Console.WriteLine($"Fuerza: {personaje.Caracteristicas.Fuerza}, Nivel: {personaje.Caracteristicas.Nivel}");
+            Console.WriteLine($"Armadura: {personaje.Caracteristicas.Defensa}, Salud: {personaje.Caracteristicas.Salud}, Suerte: {personaje.Caracteristicas.Suerte}");
+            ascii.CambiarColorTexto("Cyan");
+            Console.WriteLine(borde);
             Console.ResetColor();
-            Console.WriteLine();
         }
 
         private static void EscribirConEfecto(string texto)
@@ -60,7 +60,7 @@ namespace EspacioMostrarDatos.Helpers
 
             foreach (HistorialPartida ganador in ganadores)
             {
-                MostrarCaracteristicas(ganador.Ganador);
+                MostrarCaracteristicas(ganador.Ganador, "Ganadores del torneo");
                 ascii.CambiarColorTexto("Magenta");
                 EscribirLineaConEfecto($"Duración del torneo: {ganador.InformacionPartida.Duracion} segundos");
                 EscribirLineaConEfecto($"Cantidad de ataques: {ganador.InformacionPartida.ContadorAtaques}");

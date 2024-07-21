@@ -2,11 +2,35 @@ namespace EspacioArteAscii.GUI
 {
   public class ArteAscii
   {
+    public void CentrarAscii(string[] graficoAscii)
+    {
+      foreach (var linea in graficoAscii)
+      {
+        EscribirCentrado(linea);
+      }
+    }
     public void EscribirCentrado(string texto)
     {
       int posicionX = (Console.WindowWidth - texto.Length) / 2;
       Console.SetCursorPosition(posicionX, Console.CursorTop);
       Console.WriteLine(texto);
+    }
+    public void MostrarBarraDeCarga(int duracionEnSegundos)
+    {
+      int anchoConsola = Console.WindowWidth;
+      int anchoBarra = anchoConsola - 2;
+      int totalPasos = anchoBarra;
+      int tiempoPaso = duracionEnSegundos * 1000 / totalPasos;
+
+      Console.Write("[");
+      for (int i = 0; i < totalPasos; i++)
+      {
+        Console.Write("-");
+        Thread.Sleep(tiempoPaso);
+      }
+      Console.WriteLine("]");
+      EscribirCentrado("¡Carga Completa! Presiona cualquier tecla para continuar...");
+      Console.ReadKey(); // Esperar a que el usuario presione una tecla antes de continuar
     }
     public void limpiar()
     {
@@ -89,13 +113,6 @@ namespace EspacioArteAscii.GUI
           Console.WriteLine("Color inválido.");
           break;
       }
-    }
-    public void EscribirSeparador(string ascii)
-    {
-      string separador = new string('-', Console.WindowWidth);
-      CambiarColorTexto("Amarillo");
-      Console.WriteLine(separador);
-      Console.ResetColor();
     }
     public void EscribirConAnimacion(string texto, int delay)
     {
@@ -224,6 +241,48 @@ namespace EspacioArteAscii.GUI
       CambiarColorTexto("Gris");
       Console.WriteLine(asciiTrono);
       Console.ResetColor();
+    }
+    public string[] AsciiGuerreros
+    {
+      get
+      {
+        return new string[]
+        {
+@"                                                           ████████                                 ",
+@"                                                         ███████████                                ",
+@"                                                       █████████████                                ",
+@"                                                        ███████████                                 ",
+@"                   ███████                     ███████████████████                                  ",
+@"                  ███████████            ███  █████████████████████                                 ",
+@"                  ███████████            ██████████████████████████                                 ",
+@"██               █████████████               █████████ ████████████                                 ",
+@"████              █████████████████      █       ████████████████████                               ",
+@" ████              ██████████████████████████      █████████████ █████                              ",
+@"  ███               ███████████████████████████       █████████   ██████                            ",
+@"   ███             ████████████████████████████      ████████████   █████                           ",
+@"    ███            ███████████████   ███████████   █████████████████ █████                          ",
+@"     ███           ████████████████  ████████████  ████████████████████████                         ",
+@"      ███          █████████████████ ████████████ ████████████████████████████                      ",
+@"       ███          █████████████████████████████ ████████████████████   ██████                     ",
+@"        ███         ████ ████████████████████████████████████████████      ████████                 ",
+@"         ███ █   ███████████████████████████████████████████ ████████            █████ ██           ",
+@"         ███████████████████████████████████████████████     █████                  ███████ ██      ",
+@"         ███████████  ███████████████████ █████████████     █████                      █████████    ",
+@"           ██████   ██████████  ██████████      ██████     █████                          ███████   ",
+@"           █████   █████████     ██████████  ███████      ██████                            ████████",
+@"             ██   █████████        █████████████████       █████                                    ",
+@"                  █████████████      ██████████████         █████                                   ",
+@"                   ██████████████      ██████████            █████                                  ",
+@"                        █████████        █████████             ██                                   ",
+@"                             ████        ███████████                                                ",
+@"                             ████        ████████████                                               ",
+@"                             ████        ████  ████████                                             ",
+@"                                         ████   ███████                                             ",
+@"                                          ███    ██████                                             ",
+@"                                                  █████                                             ",
+@"                                                ███████                                             "
+        };
+      }
     }
   }
 }
