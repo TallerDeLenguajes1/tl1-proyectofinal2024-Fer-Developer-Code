@@ -6,7 +6,7 @@ namespace EspacioOpciones
 {
     public class Creditos
     {
-        public void MostrarCreditosYLeerReadme(PersonajesJson archivos, Torneo torneo, string rutaListaPjs, string rutaJugador, string rutaGanadores)
+        public async Task MostrarCreditosYLeerReadme(PersonajesJson archivos, Torneo torneo, string rutaListaPjs, string rutaJugador, string rutaGanadores)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace EspacioOpciones
             Console.WriteLine("Presione una tecla para continuar");
             Console.ReadKey();
             Juego empezar = new Juego();//Debe estar dentro del metodo y no en la clase porque se rompe el program
-            empezar.RunMainMenu(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
+            await empezar.RunMainMenu(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
         }
     }
 }

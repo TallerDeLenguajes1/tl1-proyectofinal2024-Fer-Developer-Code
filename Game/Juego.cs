@@ -25,7 +25,7 @@ namespace EspacioJuego
             return menuCambiarPersonaje.Run();
         }
 
-        public async void RunMainMenu(PersonajesJson archivos, Torneo torneo, string rutaListaPjs, string rutaJugador, string rutaGanadores)
+        public async Task RunMainMenu(PersonajesJson archivos, Torneo torneo, string rutaListaPjs, string rutaJugador, string rutaGanadores)
         {
             string[] opciones = { "Jugar", "Mostrar historial de Ganadores", "Acerca de", "Salir" };
             string elegir = "Elige una opcion";
@@ -75,10 +75,10 @@ namespace EspacioJuego
                     mostrar.EscribirHistorialGanadores(rutaGanadores);
                     Console.WriteLine("Presione una tecla para continuar");
                     Console.ReadKey(); // Esperar a que el usuario presione una tecla antes de continuar
-                    RunMainMenu(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
+                    await RunMainMenu(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
                     break;
                 case 2:
-                    creditos.MostrarCreditosYLeerReadme(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
+                    await creditos.MostrarCreditosYLeerReadme(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
                     break;
                 case 3:
                     Environment.Exit(0);//Cierra la app
