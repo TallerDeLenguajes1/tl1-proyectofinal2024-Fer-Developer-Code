@@ -17,7 +17,7 @@ namespace EspacioJuego
         private MostrarDatos mostrar = new MostrarDatos();
         private int PreguntarCambiarPersonaje()
         {
-            string pregunta = "¿Deseas seguir con tu personaje actual o crear uno nuevo? (1: Sí, 2: No): ";
+            string pregunta = "¿Deseas seguir con tu personaje actual o crear uno nuevo?";
             string[] opciones = { "Si", "No" };
             string[] guerreros = ascii.AsciiGuerreros;
 
@@ -37,7 +37,7 @@ namespace EspacioJuego
 @"| |     / _ \  / _` | / _ \|    / / _ \ / _` || || '_ ` _ \ ",
 @"| \__/\| (_) || (_| ||  __/| |\ \|  __/| (_| || || | | | | |",
 @" \____/ \___/  \__,_| \___|\_| \_|\___| \__,_||_||_| |_| |_|",
-
+"                                             ",
 "                      +.                     ",
 "               .:-===-##.=--:.               ",
 "           .-=+++++=-#*%*-+++++=-.           ",
@@ -61,7 +61,8 @@ namespace EspacioJuego
 "   +%%%%=:+:@@#%@@%++#**#******%%@:-:*%%%*:  ",
 "    .-: .--@%##@@@*+**#+*++#@@@##%@--  .     ",
 "          :+##%@@%++*+@***++#@@%#*=:         ",
-"             .=*#++*+*@%+*+++#*=.            "
+"             .=*#++*+*@%+*+++#*=.            ",
+"                                             "
 };
 
             MenuGrafico menuJuego = new MenuGrafico(portada, elegir, opciones);

@@ -2,11 +2,15 @@ using EspacioPersonajes.PersonajesFiles;
 using DatosYCaracteristicas.PersonajesFiles;
 using EspConstantes.Helpers;
 using EspacioFunciones.Helpers;
+using EspacioMenu;
+using EspacioArteAscii;
+using EspacioArteAscii.GUI;
 
 namespace espacioFabricaPersonajes
 {
     public class FabricaDePersonajes
     {
+        ArteAscii ascii = new ArteAscii();
         private List<Personaje> listaPersonajes = new List<Personaje>();
         private Personaje pj;//Personaje propio del jugador
         private Random random = new Random();
@@ -28,59 +32,41 @@ namespace espacioFabricaPersonajes
         }
         public void CrearPersonajeUsuario()//Genera un personaje propio para le usuario
         {
-            Console.WriteLine("Crea tu personaje:");
-            Console.Write("Elige tu raza:\n");
-            int i = 1;
-            foreach (object raza in Enum.GetValues(typeof(RazasPersonaje)))
-            {
-                Console.WriteLine($"\t{i}. {raza}");
-                i++;
-            }
+            string[] graficoAscii = new string[] { "", "" };
+            string[] razas = Enum.GetNames(typeof(RazasPersonaje)); // Convertir enum a arreglo de strings
+            string titulo = "Elige una raza";
+            MenuGrafico menuPersonajes = new MenuGrafico(graficoAscii, titulo, razas);
+            int opcion = menuPersonajes.Run();
 
             RazasPersonaje razaUsuario;//Invoco al enum con las razas de los personajes
-            while (true)
-            {
-                Console.Write("Elige la posición o el nombre de la raza: ");
-                string input = Console.ReadLine();
 
-                // Intentar parsear como número de opción
-                if (int.TryParse(input, out int opcion) && opcion >= 1 && opcion <= Enum.GetValues(typeof(RazasPersonaje)).Length)
-                {
-                    razaUsuario = (RazasPersonaje)(opcion - 1);
-                    break; // Salir del bucle si el parseo fue exitoso
-                }
+            razaUsuario = (RazasPersonaje)(opcion);
 
-                // Intentar parsear como nombre del enum 
-                else if (Enum.TryParse<RazasPersonaje>(input, true, out razaUsuario))
-                {
-                    break; // Salir del bucle si el parseo fue exitoso
-                }
-                Console.WriteLine("Raza no válida. Por favor, elige una raza válida.");
-            }
-
-            Console.WriteLine($"Raza seleccionada: {razaUsuario}");
+            ascii.EscribirCentrado($"Raza seleccionada: {razaUsuario}");
             string linea, apodo, nombre;
             int edad;
             do
             {
-                Console.Write("Nombre: ");
+                Console.Clear();
+                ascii.EscribirCentrado("Raza seleccionada: " + razaUsuario);
+                ascii.EscribirCentrado("Nombre: ");
                 nombre = Console.ReadLine();
-                Console.Write("Apodo: ");
+                ascii.EscribirCentrado("Apodo: ");
                 apodo = Console.ReadLine();
-                Console.Write("Edad: ");
+                ascii.EscribirCentrado("Edad: ");
                 linea = Console.ReadLine();
 
                 // Intenta convertir la entrada en un número entero
                 if (!int.TryParse(linea, out edad))
                 {
-                    Console.WriteLine("Edad no válida. Por favor, introduce una edad válida.");
+                    ascii.EscribirCentrado("Edad no válida. Por favor, introduce una edad válida.");
                     continue; // Vuelve al inicio del bucle
                 }
 
                 // Verifica si la edad está dentro del rango permitido
                 if (edad <= 18 || edad > Constantes.MaxEdad)
                 {
-                    Console.WriteLine("Edad fuera de rango. Por favor, introduce una edad válida.");
+                    ascii.EscribirCentrado("Edad fuera de rango. Por favor, introduce una edad válida.");
                     continue; // Vuelve al inicio del bucle
                 }
                 break;
