@@ -3,6 +3,7 @@ using EspacioJsonCreacion;
 using EspacioTorneo;
 using EspacioArteAscii.GUI;
 using static System.Console;
+
 namespace EspacioInicio
 {
     public class Iniciar

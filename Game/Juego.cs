@@ -6,7 +6,6 @@ using EspacioTorneo;
 using EspacioMostrarDatos.Helpers;
 using EspacioMenu;
 using EspacioOpciones;
-using System.Text;
 
 namespace EspacioJuego
 {
