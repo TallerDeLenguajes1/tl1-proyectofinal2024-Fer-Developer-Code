@@ -32,7 +32,7 @@ namespace espacioFabricaPersonajes
         }
         public void CrearPersonajeUsuario()//Genera un personaje propio para le usuario
         {
-            string[] graficoAscii = new string[] { "", "" };
+            string[] graficoAscii = ascii.asciiHacha;
             string[] razas = Enum.GetNames(typeof(RazasPersonaje)); // Convertir enum a arreglo de strings
             string titulo = "Elige una raza";
             MenuGrafico menuPersonajes = new MenuGrafico(graficoAscii, titulo, razas);

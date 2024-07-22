@@ -118,6 +118,7 @@ namespace EspacioJuego
                         ascii.EscribirCentrado($"Error al borrar el archivo: {ex.Message}");
                     }
                 }
+                ascii.PresentacionTorneo();
                 torneo.ComenzarTorneo(listaPersonajesGuardados, jugador);
             }
             else
@@ -127,6 +128,7 @@ namespace EspacioJuego
                 archivos.GuardarPersonajeJugador(fabrica.Pj, rutaJugador);
                 await fabrica.CrearPersonajes(); //Logro funcionar, supongo que es porque despues de todo este tiempo habia que tener cuidado con el await
                 archivos.GuardarPersonajes(fabrica.ListaPersonajes, rutaListaPjs);
+                ascii.PresentacionTorneo();
                 torneo.ComenzarTorneo(fabrica.ListaPersonajes, fabrica.Pj);
             }
         }
