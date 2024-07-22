@@ -40,10 +40,10 @@ namespace EspacioTorneo
 
                     string entrada = "Elige tu acción:";
                     string[] opciones = { "Atacar", "Tomar pociones" };
-                    string[] guerrerosAscii = ascii.AsciiGuerreros;
+                    string[] asciiTrofeo = ascii.AsciiTrofeo;
 
 
-                    MenuGrafico menuAcciones = new MenuGrafico(guerrerosAscii,entrada, opciones);
+                    MenuGrafico menuAcciones = new MenuGrafico(asciiTrofeo,entrada, opciones);
                     int accionJugador = menuAcciones.Run();
 
                     switch (accionJugador)

@@ -74,7 +74,7 @@ namespace EspacioJuego
                     break;
                 case 1:
                     mostrar.EscribirHistorialGanadores(rutaGanadores);
-                    Console.WriteLine("Presione una tecla para continuar");
+                    ascii.EscribirCentrado("Presione una tecla para continuar");
                     Console.ReadKey(); // Esperar a que el usuario presione una tecla antes de continuar
                     await RunMainMenu(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
                     break;
@@ -100,15 +100,15 @@ namespace EspacioJuego
                 if (respuesta == 0)
                 {
                     // El jugador desea seguir con su personaje actual
-                    Console.WriteLine("¡Excelente! Continuemos con tu personaje actual.");
+                    ascii.EscribirCentrado("¡Excelente! Continuemos con tu personaje actual.");
                 }
                 else
                 {
-                    Console.WriteLine("¡Entendido! Vamos a crear un nuevo personaje.");
+                    ascii.EscribirCentrado("¡Entendido! Vamos a crear un nuevo personaje.");
                     try
                     {
                         File.Delete(rutaJugador);
-                        Console.WriteLine($"El archivo {rutaJugador} ha sido borrado correctamente.");
+                        ascii.EscribirCentrado($"El archivo {rutaJugador} ha sido borrado correctamente.");
                         FabricaDePersonajes fabrica = new FabricaDePersonajes();
                         fabrica.CrearPersonajeUsuario();
                         archivos.GuardarPersonajeJugador(fabrica.Pj, rutaJugador);
@@ -116,7 +116,7 @@ namespace EspacioJuego
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Error al borrar el archivo: {ex.Message}");
+                        ascii.EscribirCentrado($"Error al borrar el archivo: {ex.Message}");
                     }
                 }
                 torneo.ComenzarTorneo(listaPersonajesGuardados, jugador);

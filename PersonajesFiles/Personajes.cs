@@ -1,9 +1,12 @@
 using DatosYCaracteristicas.PersonajesFiles;
+using EspacioArteAscii.GUI;
 using EspConstantes.Helpers;
+
 namespace EspacioPersonajes.PersonajesFiles
 {
     public class Personaje
     {
+        ArteAscii ascii = new ArteAscii();
         private Datos datos;
         private Caracteristicas caracteristicas;
         private int pociones = 3;
@@ -43,7 +46,7 @@ namespace EspacioPersonajes.PersonajesFiles
 
             if (esCritico)
             {
-                Console.WriteLine($"¡{Datos.Nombre} Ha acertado un ataque crítico!");
+                ascii.EscribirCentrado($"¡{Datos.Nombre} Ha acertado un ataque crítico!");
             }
         }
         public void TomarPocion()
@@ -52,11 +55,11 @@ namespace EspacioPersonajes.PersonajesFiles
             {
                 Caracteristicas.Salud += 35; // Recuperar 20 puntos de salud (puedes ajustar este valor)
                 Pociones--;
-                Console.WriteLine($"{Datos.Nombre} ha tomado una poción de vida. Salud: {Caracteristicas.Salud}, Pociones restantes: {Pociones}");
+                ascii.EscribirCentrado($"{Datos.Nombre} ha tomado una poción de vida. Salud: {Caracteristicas.Salud}, Pociones restantes: {Pociones}");
             }
             else
             {
-                Console.WriteLine($"{Datos.Nombre} no tiene más pociones.");
+                ascii.EscribirCentrado($"{Datos.Nombre} no tiene más pociones.");
             }
         }
     }

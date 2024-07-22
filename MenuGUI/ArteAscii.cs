@@ -15,23 +15,6 @@ namespace EspacioArteAscii.GUI
       Console.SetCursorPosition(posicionX, Console.CursorTop);
       Console.WriteLine(texto);
     }
-    public void MostrarBarraDeCarga(int duracionEnSegundos)
-    {
-      int anchoConsola = Console.WindowWidth;
-      int anchoBarra = anchoConsola - 2;
-      int totalPasos = anchoBarra;
-      int tiempoPaso = duracionEnSegundos * 1000 / totalPasos;
-
-      Console.Write("[");
-      for (int i = 0; i < totalPasos; i++)
-      {
-        Console.Write("-");
-        Thread.Sleep(tiempoPaso);
-      }
-      Console.WriteLine("]");
-      EscribirCentrado("¡Carga Completa! Presiona cualquier tecla para continuar...");
-      Console.ReadKey(); // Esperar a que el usuario presione una tecla antes de continuar
-    }
     public void limpiar()
     {
       Console.Clear();
@@ -133,32 +116,35 @@ namespace EspacioArteAscii.GUI
         KeyPressed = tecla.Key;
       } while (KeyPressed != ConsoleKey.Enter);
       Console.Clear();
-      string asciiBienvenida = @"
- ______      _                                                  _          __                              __          _                                      
-|_   _ \    (_)                                                (_)        |  ]                            [  |        (_)                                     
-  | |_) |   __    .---.   _ .--.    _   __   .---.   _ .--.    __     .--.| |    .--.    .--.      ,--.    | |        __   __   _    .---.    .--./)   .--.   
-  |  __'.  [  |  / /__\\ [ `.-. |  [ \ [  ] / /__\\ [ `.-. |  [  |  / /'`\' |  / .'`\ \ ( (`\]    `'_\ :   | |       [  | [  | | |  / /__\\  / /'`\; / .'`\ \ 
- _| |__) |  | |  | \__.,  | | | |   \ \/ /  | \__.,  | | | |   | |  | \__/  |  | \__. |  `'.'.    // | |,  | |     _  | |  | \_/ |, | \__.,  \ \._// | \__. | 
-|_______/  [___]  '.__.' [___||__]   \__/    '.__.' [___||__] [___]  '.__.;__]  '.__.'  [\__) )   \'-;__/ [___]   [ \_| |  '.__.'_/  '.__.'  .',__`   '.__.'  
-                                                                                                                   \____/                   ( ( __))          
-                                                                                                                   ";
+      string[] asciiBienvenida = new string[]{
+@"______  _                                   _      _                      _     _                             _ ",
+@"| ___ \(_)                                 (_)    | |                    | |   (_)                           | |",
+@"| |_/ / _   ___  _ __  __   __  ___  _ __   _   __| |  ___   ___    __ _ | |    _  _   _   ___   __ _   ___  | |",
+@"| ___ \| | / _ \| '_ \ \ \ / / / _ \| '_ \ | | / _` | / _ \ / __|  / _` || |   | || | | | / _ \ / _` | / _ \ | |",
+@"| |_/ /| ||  __/| | | | \ V / |  __/| | | || || (_| || (_) |\__ \ | (_| || |   | || |_| ||  __/| (_| || (_) ||_|",
+@"\____/ |_| \___||_| |_|  \_/   \___||_| |_||_| \__,_| \___/ |___/  \__,_||_|   | | \__,_| \___| \__, | \___/ (_)",
+@"                                                                              _/ |               __/ |          ",
+@"                                                                             |__/               |___/            "
+      };
       string banner = new string('*', Console.WindowWidth);
       CambiarColorTexto("magenta");
       EscribirConAnimacion(banner, 1);
-      Console.WriteLine(asciiBienvenida);
+      CentrarAscii(asciiBienvenida);
       EscribirConAnimacion(banner, 1);
-      string asciiPalabraAventura = @" 
-                         _______                _                                _                                                                   
-                        (_______)              (_)                              | |                                         _                        
-                         _         ___   ____   _  _____  ____   _____  _____    | |  _____    _____  _   _  _____  ____   _| |_  _   _   ____  _____ 
-                        | |       / _ \ |    \ | || ___ ||  _ \ (___  )(____ |  | | (____ |  (____ || | | || ___ ||  _ \ (_   _)| | | | / ___)(____ |
-                        | |_____ | |_| || | | || || ____|| | | | / __/ / ___ |  | | / ___ |  / ___ | \ V / | ____|| | | |  | |_ | |_| || |    / ___ |
-                         \______) \___/ |_|_|_||_||_____)|_| |_|(_____)\_____|   \_)\_____|  \_____|  \_/  |_____)|_| |_|   \__)|____/ |_|    \_____|                                                                                                                          
-";
+      string[] asciiPalabraAventura = new string[]{
+@" _______                _                                _                                                                   ",
+@"(_______)              (_)                              | |                                         _                        ",
+@" _         ___   ____   _  _____  ____   _____  _____   | |  _____    _____  _   _  _____  ____   _| |_  _   _   ____  _____ ",
+@"| |       / _ \ |    \ | || ___ ||  _ \ (___  )(____ |  | | (____ |  (____ || | | || ___ ||  _ \ (_   _)| | | | / ___)(____ |",
+@"| |_____ | |_| || | | || || ____|| | | | / __/ / ___ |  | | / ___ |  / ___ | \ V / | ____|| | | |  | |_ | |_| || |    / ___ |",
+@" \______) \___/ |_|_|_||_||_____)|_| |_|(_____)\_____|   \_)\_____|  \_____|  \_/  |_____)|_| |_|   \__)|____/ |_|    \_____|",
+@"                                                                                                                             "
+};
       Console.ResetColor();
       CambiarColorTexto("Rojo");
-      Console.WriteLine(asciiPalabraAventura);
+      CentrarAscii(asciiPalabraAventura);
       EscribirConAnimacion(banner, 1);
+      Thread.Sleep(233);
       Console.ResetColor();
     }
     public void MostrarTrono()
@@ -281,6 +267,45 @@ namespace EspacioArteAscii.GUI
 @"                                          ███    ██████                                             ",
 @"                                                  █████                                             ",
 @"                                                ███████                                             "
+        };
+      }
+    }
+    public string[] AsciiTrofeo
+    {
+      get
+      {
+        return new string[]
+        {
+          @"
+
+                                                  ",
+@"              -------------====+++++              ",
+@"            -:::::::::::::-----======+            ",
+@"      +=====-::::....::::::----======+------      ",
+@"     +++   =:::........:::::----======-   ---     ",
+@"    +=+   ==--:.........::::----====++==   ---    ",
+@"     ===     -:........:::::----====+     ==-     ",
+@"      =-==   -:::.....::::::----====+   ++-=      ",
+@"        =---- -::::::::::::----====+ =====        ",
+@"           ----::::::::::-----=====+---           ",
+@"             --=--::--------======+--             ",
+@"            --- =---------=======+ ---            ",
+@"                #=---===========+                 ",
+@"                  +===========++                  ",
+@"                    ++======++                    ",
+@"                     -----==+                     ",
+@"                      ----=+                      ",
+@"                      ----=+                      ",
+@"                      ----=+                      ",
+@"                     -----=++                     ",
+@"                  +=-:----===+++                  ",
+@"              ######################              ",
+@"              ###===------:----==###              ",
+@"              ###==-----::----===###              ",
+@"              ###------:----=====###              ",
+@"              ######################              ",
+@"           ############################           ",
+@"                                                  "
         };
       }
     }

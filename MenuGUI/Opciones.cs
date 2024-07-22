@@ -2,12 +2,15 @@ using System.Diagnostics;
 using EspacioJuego;
 using EspacioJsonCreacion;
 using EspacioTorneo;
+using EspacioArteAscii.GUI;
+
 namespace EspacioOpciones
 {
     public class Creditos
     {
         public async Task MostrarCreditosYLeerReadme(PersonajesJson archivos, Torneo torneo, string rutaListaPjs, string rutaJugador, string rutaGanadores)
         {
+            ArteAscii ascii = new ArteAscii();
             try
             {
                 // Ruta relativa al archivo README.md
@@ -26,15 +29,15 @@ namespace EspacioOpciones
                 }
                 else
                 {
-                    Console.WriteLine("El archivo README.md no se encontró en la ruta especificada.");
+                    ascii.EscribirCentrado("El archivo README.md no se encontró en la ruta especificada.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Ocurrió un error al intentar abrir el archivo README.md: {ex.Message}");
+                ascii.EscribirCentrado($"Ocurrió un error al intentar abrir el archivo README.md: {ex.Message}");
             }
 
-            Console.WriteLine("Presione una tecla para continuar");
+            ascii.EscribirCentrado("Presione una tecla para continuar");
             Console.ReadKey();
             Juego empezar = new Juego();//Debe estar dentro del metodo y no en la clase porque se rompe el program
             await empezar.RunMainMenu(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
