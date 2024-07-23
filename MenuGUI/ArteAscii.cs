@@ -140,7 +140,7 @@ namespace EspacioArteAscii.GUI
       ConsoleKey KeyPressed;
       do
       {
-        Console.WriteLine("Antes de comenzar por favor ponga la terminal en pantalla completa, presione enter para continuar");
+        EscribirCentrado("Antes de comenzar por favor ponga la terminal en pantalla completa, presione enter para continuar");
         ConsoleKeyInfo tecla = Console.ReadKey(true); // Esperar a que el usuario presione una tecla antes de continuar
         KeyPressed = tecla.Key;
       } while (KeyPressed != ConsoleKey.Enter);
