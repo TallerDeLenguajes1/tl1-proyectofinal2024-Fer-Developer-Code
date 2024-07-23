@@ -5,6 +5,7 @@ using EspacioFunciones.Helpers;
 using EspacioMenu;
 using EspacioArteAscii;
 using EspacioArteAscii.GUI;
+using System.Text;
 
 namespace espacioFabricaPersonajes
 {
@@ -48,12 +49,13 @@ namespace espacioFabricaPersonajes
             do
             {
                 Console.Clear();
+                ascii.CambiarColorTexto("Naranja");
                 ascii.EscribirCentrado("Raza seleccionada: " + razaUsuario);
-                ascii.EscribirCentrado("Nombre: ");
+                ascii.EscribirCentradoReadLine("Nombre: ");
                 nombre = Console.ReadLine();
-                ascii.EscribirCentrado("Apodo: ");
+                ascii.EscribirCentradoReadLine("Apodo: ");
                 apodo = Console.ReadLine();
-                ascii.EscribirCentrado("Edad: ");
+                ascii.EscribirCentradoReadLine("Edad: ");
                 linea = Console.ReadLine();
 
                 // Intenta convertir la entrada en un número entero
@@ -69,10 +71,9 @@ namespace espacioFabricaPersonajes
                     ascii.EscribirCentrado("Edad fuera de rango. Por favor, introduce una edad válida.");
                     continue; // Vuelve al inicio del bucle
                 }
+                Console.ResetColor();
                 break;
-
             } while (true); // Bucle infinito, se sale con "break"
-
 
             DateTime fechaNac = DateTime.Today.AddYears(-edad);
             Datos datosUsuario = new Datos(razaUsuario, nombre, apodo, fechaNac, edad);

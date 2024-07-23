@@ -42,8 +42,7 @@ namespace EspacioTorneo
                     string[] opciones = { "Atacar", "Tomar pociones" };
                     string[] asciiTrofeo = ascii.AsciiTrofeo;
 
-
-                    MenuGrafico menuAcciones = new MenuGrafico(asciiTrofeo,entrada, opciones);
+                    MenuGrafico menuAcciones = new MenuGrafico(asciiTrofeo, entrada, opciones);
                     int accionJugador = menuAcciones.Run();
 
                     switch (accionJugador)
@@ -53,13 +52,13 @@ namespace EspacioTorneo
                             string saludOponente = $"Vida de {luchador2.Datos.Nombre}: {luchador2.Caracteristicas.Salud}";
                             ascii.EscribirCentrado(saludOponente);
                             ascii.EscribirCentrado("Presiona cualquier tecla para continuar...");
-                            Console.ReadKey(); 
+                            Console.ReadKey();
                             break;
                         case 1:
                             luchador1.TomarPocion();
                             ascii.EscribirCentrado("El jugador ha tomado una pocion");
                             ascii.EscribirCentrado("Presiona cualquier tecla para continuar...");
-                            Console.ReadKey(); 
+                            Console.ReadKey();
                             break;
                         default:
                             break;
@@ -69,7 +68,7 @@ namespace EspacioTorneo
                     {
                         ascii.EscribirCentrado($"{luchador1.Datos.Nombre} ha ganado el combate.");
                         ascii.EscribirCentrado("Presiona cualquier tecla para continuar...");
-                        Console.ReadKey(); 
+                        Console.ReadKey();
                         personajes.Remove(luchador2);
                         break;
                     }
@@ -77,7 +76,7 @@ namespace EspacioTorneo
                     luchador2.Atacar(luchador1);
                     ascii.EscribirCentrado($"Vida de {luchador1.Datos.Nombre}: {luchador1.Caracteristicas.Salud}");
                     ascii.EscribirCentrado("Presiona cualquier tecla para continuar...");
-                    Console.ReadKey(); 
+                    Console.ReadKey();
                     if (luchador1.Caracteristicas.Salud <= 0)
                     {
                         ascii.EscribirCentrado($"{luchador2.Datos.Nombre} ha ganado el combate.");
@@ -110,7 +109,7 @@ namespace EspacioTorneo
                 // El jugador ha sido derrotado, continuar el torneo entre los personajes restantes.
                 ascii.EscribirCentrado($"{jugador.Datos.Nombre} ha sido derrotado y eliminado del torneo.");
                 ascii.EscribirCentrado("Presiona cualquier tecla para continuar...");
-                Console.ReadKey(); 
+                Console.ReadKey();
                 SimularTorneo(personajes, rutaGanadores, stopwatch);
             }
         }
@@ -172,7 +171,7 @@ namespace EspacioTorneo
             if (ganador != null)
             {
                 ascii.EscribirCentrado($"{ganador.Datos.Nombre} es el campeón del torneo.");
-                
+
                 int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
                 DetallesPartida detallesPartida = new DetallesPartida(duracion, ganador.ContadorAtaques);
                 archivosPjsGanadores.GuardarGanador(ganador, detallesPartida, rutaGanadores);
