@@ -78,8 +78,8 @@ namespace EspacioMostrarDatos.Helpers
             ascii.CentrarAscii(ascii.AsciiCombate);
             ascii.EscribirCentrado(presentacion);
             ascii.EscribirCentrado("Presione una tecla para continuar");
-            Console.ReadKey(); 
-
+            Console.ReadKey();
+            Console.Clear();
             // Mostrar características de ambos luchadores
             MostrarCaracteristicas(luchador1, "Jugador");
             MostrarCaracteristicas(luchador2, "Oponente");

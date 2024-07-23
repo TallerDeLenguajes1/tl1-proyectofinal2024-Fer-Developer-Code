@@ -65,7 +65,6 @@ namespace EspacioTorneo
 
                 while (luchador1.Caracteristicas.Salud > 0 && luchador2.Caracteristicas.Salud > 0)
                 {
-                    showStats.MostrarInformacionCombate(luchador1, luchador2);
                     string entrada = "Elige tu acción:";
                     string[] opciones = { "Atacar", "Tomar pociones" };
                     string[] asciiTrofeo = ascii.AsciiTrofeo;
