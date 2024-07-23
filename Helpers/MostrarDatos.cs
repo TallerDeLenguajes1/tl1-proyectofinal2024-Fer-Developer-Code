@@ -72,13 +72,13 @@ namespace EspacioMostrarDatos.Helpers
         public void MostrarInformacionCombate(Personaje luchador1, Personaje luchador2)
         {
             Console.Clear(); // Limpiar la consola al principio de cada turno
+            ascii.CambiarColorTexto("Amarillo");
             string presentacion = $"¡Combate entre {luchador1.Datos.Nombre} y {luchador2.Datos.Nombre}!";
 
-            // Aquí puedes añadir un arte ASCII para la presentación del combate
-            ascii.CambiarColorTexto("Amarillo");
+            ascii.CentrarAscii(ascii.AsciiCombate);
             ascii.EscribirCentrado(presentacion);
-            ascii.CentrarAscii(ascii.AsciiCombate); // Asegúrate de tener un arte ASCII para el combate en ascii.AsciiCombate
-            Console.WriteLine();
+            ascii.EscribirCentrado("Presione una tecla para continuar");
+            Console.ReadKey(); 
 
             // Mostrar características de ambos luchadores
             MostrarCaracteristicas(luchador1, "Jugador");

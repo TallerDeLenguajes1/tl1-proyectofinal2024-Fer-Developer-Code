@@ -43,7 +43,7 @@ namespace EspacioTorneo
 
         private bool PeleaDelJugador(List<Personaje> personajes, Personaje jugador, Stopwatch stopwatch, Random RandomGenerator, bool jugadorDerrotado)
         {
-            
+
 
             void MostrarMensaje(string mensaje, string color = "Blanco")
             {
@@ -79,23 +79,19 @@ namespace EspacioTorneo
                     {
                         case 0:
                             luchador1.Atacar(luchador2);
+                            ascii.CentrarAscii(ascii.AsciiAtaque);
                             MostrarMensaje($"Vida de {luchador2.Datos.Nombre}: {luchador2.Caracteristicas.Salud}", "Rojo");
                             MostrarMensaje("Presiona cualquier tecla para continuar...");
                             Console.ReadKey();
                             Console.Clear();
-
-                            // Aquí puedes añadir arte ASCII para el ataque
-                            ascii.CentrarAscii(ascii.AsciiAtaque); // Asegúrate de tener un arte ASCII para el ataque en ascii.AsciiAtaque
                             break;
                         case 1:
                             luchador1.TomarPocion();
+                            ascii.CentrarAscii(ascii.AsciiPocion);
                             MostrarMensaje("El jugador ha tomado una poción", "Verde");
                             MostrarMensaje("Presiona cualquier tecla para continuar...");
                             Console.ReadKey();
                             Console.Clear();
-
-                            // Aquí puedes añadir arte ASCII para tomar poción
-                            ascii.CentrarAscii(ascii.AsciiPocion); // Asegúrate de tener un arte ASCII para tomar poción en ascii.AsciiPocion
                             break;
                         default:
                             break;
@@ -103,14 +99,13 @@ namespace EspacioTorneo
 
                     if (luchador2.Caracteristicas.Salud <= 0)
                     {
+                        ascii.CentrarAscii(ascii.AsciiVictoria);
                         MostrarMensaje($"{luchador1.Datos.Nombre} ha ganado el combate.", "Amarillo");
                         MostrarMensaje("Presiona cualquier tecla para continuar...");
-                        Console.ReadKey();
                         personajes.Remove(luchador2);
                         Console.Clear();
 
-                        // Aquí puedes añadir arte ASCII para la victoria
-                        ascii.CentrarAscii(ascii.AsciiVictoria); // Asegúrate de tener un arte ASCII para la victoria en ascii.AsciiVictoria
+                        Console.ReadKey();
                         break;
                     }
 
@@ -123,6 +118,7 @@ namespace EspacioTorneo
                     if (luchador1.Caracteristicas.Salud <= 0)
                     {
                         MostrarMensaje($"{luchador2.Datos.Nombre} ha ganado el combate.", "Amarillo");
+                        ascii.CentrarAscii(ascii.AsciiDerrota);
                         Thread.Sleep(123);
                         if (luchador1 == jugador)
                         {
@@ -131,8 +127,6 @@ namespace EspacioTorneo
                         personajes.Remove(luchador1);
                         Console.Clear();
 
-                        // Aquí puedes añadir arte ASCII para la derrota
-                        ascii.CentrarAscii(ascii.AsciiDerrota); // Asegúrate de tener un arte ASCII para la derrota en ascii.AsciiDerrota
                         break;
                     }
                 }
