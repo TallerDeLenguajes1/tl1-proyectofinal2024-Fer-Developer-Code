@@ -98,7 +98,7 @@ namespace espacioFabricaPersonajes
             int velocidad = 0;
             int agilidad = 0;
             int fuerza = 0;
-            int nivel = random.Next(1, 11);
+            int nivel = 1;
             int defensa = 0;
             int salud = Constantes.MaxSalud;
             int suerte = random.Next(1, 11); // Asignar la suerte
