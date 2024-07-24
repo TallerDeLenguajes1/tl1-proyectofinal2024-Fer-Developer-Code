@@ -179,7 +179,8 @@ namespace EspacioTorneo
                 ascii.EscribirCentrado($"Combate entre {luchador1.Datos.Nombre} y {luchador2.Datos.Nombre}");
                 showStats.MostrarCaracteristicas(luchador1, "Luchador 1");
                 showStats.MostrarCaracteristicas(luchador2, "Luchador 2");
-
+                string borde = new string('-', Console.WindowWidth);
+                Console.WriteLine(borde);
                 while (luchador1.Caracteristicas.Salud > 0 && luchador2.Caracteristicas.Salud > 0)
                 {
                     ascii.CambiarColorTexto("Amarillo");
