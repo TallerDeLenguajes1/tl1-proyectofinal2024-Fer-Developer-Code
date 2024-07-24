@@ -66,7 +66,8 @@ namespace DatosYCaracteristicas.PersonajesFiles
         public void MejorarAtributos()
         {
             Console.Clear();
-            this.nivel = Math.Min(this.nivel + 1, 10);
+            this.nivel = Math.Min(this.nivel + 1, 10);//Sube un nivel por default y 35 puntos de salud para batallas mas acomodadas
+            this.salud += 35;
 
             var ascii = new ArteAscii();
             string[] GraficoAscii = new string[] { };

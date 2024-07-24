@@ -151,7 +151,6 @@ namespace EspacioTorneo
                     }
                 }
             }
-
             return jugadorDerrotado;
         }
 
