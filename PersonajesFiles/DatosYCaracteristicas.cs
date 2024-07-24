@@ -70,13 +70,14 @@ namespace DatosYCaracteristicas.PersonajesFiles
 
             var ascii = new ArteAscii();
             string[] GraficoAscii = new string[] { };
-            string[] atributos = { "Velocidad", "Agilidad", "Fuerza", "Defensa", "Salud", "Suerte" };
+            string[] atributos = { "Velocidad", "Agilidad", "Fuerza", "Defensa", "Salud +25", "Suerte" };
             string titulo = "¿Qué atributo desea mejorar?";
 
             // Verificar si todos los atributos (excepto salud) están maximizados
             bool todosMaximizados = velocidad >= 10 && agilidad >= 10 && fuerza >= 10 && defensa >= 10 && suerte >= 10;
             bool bandera;
             int opcion;
+
             MenuGrafico menuAtributos = new MenuGrafico(GraficoAscii, titulo, atributos);
 
             for (int i = 0; i < atributos.Length; i++)
@@ -93,7 +94,9 @@ namespace DatosYCaracteristicas.PersonajesFiles
 
             if (todosMaximizados)
             {
-                ascii.EscribirCentrado("¡Todos los atributos ya están mejorados al máximo!");
+                ascii.EscribirCentrado("¡Todos los atributos ya están mejorados al máximo! Añadiendo salud por default");
+                this.salud += 25;
+                Thread.Sleep(5000);
                 return; // Salir de la función si no hay nada más que mejorar
             }
 
@@ -110,11 +113,13 @@ namespace DatosYCaracteristicas.PersonajesFiles
                         {
                             // Incrementar velocidad hasta un máximo de 10
                             this.velocidad = Math.Min(this.velocidad + 3, 10);
+                            ascii.EscribirCentrado($"¡Has mejorado tu {atributos[opcion]} en 3 puntos!");
                             bandera = true;
                         }
                         else
                         {
                             ascii.EscribirCentrado("No puedes mejorar más la velocidad.");
+                            Thread.Sleep(3000);
                         }
                         break;
                     case "Agilidad":
@@ -122,11 +127,13 @@ namespace DatosYCaracteristicas.PersonajesFiles
                         {
                             // Incrementar agilidad hasta un máximo de 10
                             this.agilidad = Math.Min(this.agilidad + 3, 10);
+                            ascii.EscribirCentrado($"¡Has mejorado tu {atributos[opcion]} en 3 puntos!");
                             bandera = true;
                         }
                         else
                         {
                             ascii.EscribirCentrado("No puedes mejorar más la agilidad.");
+                            Thread.Sleep(3000);
                         }
                         break;
                     case "Fuerza":
@@ -134,11 +141,13 @@ namespace DatosYCaracteristicas.PersonajesFiles
                         {
                             // Incrementar fuerza hasta un máximo de 10
                             this.fuerza = Math.Min(this.fuerza + 3, 10);
+                            ascii.EscribirCentrado($"¡Has mejorado tu {atributos[opcion]} en 3 puntos!");
                             bandera = true;
                         }
                         else
                         {
                             ascii.EscribirCentrado("No puedes mejorar más la fuerza.");
+                            Thread.Sleep(3000);
                         }
                         break;
                     case "Defensa":
@@ -146,41 +155,43 @@ namespace DatosYCaracteristicas.PersonajesFiles
                         {
                             // Incrementar defensa hasta un máximo de 10
                             this.defensa = Math.Min(this.defensa + 3, 10);
+                            ascii.EscribirCentrado($"¡Has mejorado tu {atributos[opcion]} en 3 puntos!");
                             bandera = true;
                         }
                         else
                         {
                             ascii.EscribirCentrado("No puedes mejorar más la defensa.");
+                            Thread.Sleep(3000);
                         }
                         break;
-                    case "Salud":
+                    case "Salud +25"://Acomodar nombre para que se ajuste con la opcion
                         // Incrementar salud sin límite
-                        this.salud += 10;
+                        this.salud += 25;
+                        bandera = true;
                         break;
                     case "Suerte":
-                        if (this.velocidad < 10)
+                        if (this.suerte < 10)
                         {
                             // Incrementar suerte hasta un máximo de 10
                             this.suerte = Math.Min(this.suerte + 3, 10);
+                            ascii.EscribirCentrado($"¡Has mejorado tu {atributos[opcion]} en 3 puntos!");
                             bandera = true;
                         }
                         else
                         {
-                            ascii.EscribirCentrado("No puedes mejorar más la velocidad.");
+                            ascii.EscribirCentrado("No puedes mejorar más la Suerte.");
+                            Thread.Sleep(3000);
                         }
                         break;
                 }
+                // Verificar si todos los atributos (excepto salud) están maximizados después de la mejora
+                todosMaximizados = velocidad >= 10 && agilidad >= 10 && fuerza >= 10 && defensa >= 10 && suerte >= 10;
+
+                if (todosMaximizados)
+                {
+                    ascii.EscribirCentrado("¡Todos los atributos ahora están mejorados al máximo!");
+                }
             } while (bandera == false);
-
-            ascii.EscribirCentrado($"¡Has mejorado tu {atributos[opcion]} en 3 puntos!");
-
-            // Verificar si todos los atributos (excepto salud) están maximizados después de la mejora
-            todosMaximizados = velocidad >= 10 && agilidad >= 10 && fuerza >= 10 && defensa >= 10 && suerte >= 10;
-
-            if (todosMaximizados)
-            {
-                ascii.EscribirCentrado("¡Todos los atributos ahora están mejorados al máximo!");
-            }
         }
     }
 }
