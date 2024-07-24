@@ -1,4 +1,8 @@
 using EspacioPersonajes.PersonajesFiles;
+using EspacioMenu;
+using System.Text;
+using EspacioArteAscii.GUI;
+
 namespace DatosYCaracteristicas.PersonajesFiles
 {
     public class Datos
@@ -57,6 +61,125 @@ namespace DatosYCaracteristicas.PersonajesFiles
             if (Salud < 0)
             {
                 Salud = 0;
+            }
+        }
+        public void MejorarAtributos()
+        {
+            Console.Clear();
+            this.nivel = Math.Min(this.nivel + 1, 10);
+
+            var ascii = new ArteAscii();
+            string[] GraficoAscii = new string[] { };
+            string[] atributos = { "Velocidad", "Agilidad", "Fuerza", "Defensa", "Salud", "Suerte" };
+            string titulo = "¿Qué atributo desea mejorar?";
+
+            // Verificar si todos los atributos (excepto salud) están maximizados
+            bool todosMaximizados = velocidad >= 10 && agilidad >= 10 && fuerza >= 10 && defensa >= 10 && suerte >= 10;
+            bool bandera;
+            int opcion;
+            MenuGrafico menuAtributos = new MenuGrafico(GraficoAscii, titulo, atributos);
+
+            for (int i = 0; i < atributos.Length; i++)
+            {
+                if ((atributos[i] == "Velocidad" && this.velocidad >= 10) ||
+                    (atributos[i] == "Agilidad" && this.agilidad >= 10) ||
+                    (atributos[i] == "Fuerza" && this.fuerza >= 10) ||
+                    (atributos[i] == "Defensa" && this.defensa >= 10) ||
+                    (atributos[i] == "Suerte" && this.suerte >= 10))
+                {
+                    atributos[i] = atributos[i] + " (Maximizado)";
+                }
+            }
+
+            if (todosMaximizados)
+            {
+                ascii.EscribirCentrado("¡Todos los atributos ya están mejorados al máximo!");
+                return; // Salir de la función si no hay nada más que mejorar
+            }
+
+            do
+            {
+                // Ejecutar el menú y obtener la opción seleccionada
+                opcion = menuAtributos.Run();
+                bandera = false;//Marca la salida del programa
+                // Incrementar el atributo seleccionado
+                switch (atributos[opcion])
+                {
+                    case "Velocidad":
+                        if (this.velocidad < 10)
+                        {
+                            // Incrementar velocidad hasta un máximo de 10
+                            this.velocidad = Math.Min(this.velocidad + 3, 10);
+                            bandera = true;
+                        }
+                        else
+                        {
+                            ascii.EscribirCentrado("No puedes mejorar más la velocidad.");
+                        }
+                        break;
+                    case "Agilidad":
+                        if (this.agilidad < 10)
+                        {
+                            // Incrementar agilidad hasta un máximo de 10
+                            this.agilidad = Math.Min(this.agilidad + 3, 10);
+                            bandera = true;
+                        }
+                        else
+                        {
+                            ascii.EscribirCentrado("No puedes mejorar más la agilidad.");
+                        }
+                        break;
+                    case "Fuerza":
+                        if (this.fuerza < 10)
+                        {
+                            // Incrementar fuerza hasta un máximo de 10
+                            this.fuerza = Math.Min(this.fuerza + 3, 10);
+                            bandera = true;
+                        }
+                        else
+                        {
+                            ascii.EscribirCentrado("No puedes mejorar más la fuerza.");
+                        }
+                        break;
+                    case "Defensa":
+                        if (this.defensa < 10)
+                        {
+                            // Incrementar defensa hasta un máximo de 10
+                            this.defensa = Math.Min(this.defensa + 3, 10);
+                            bandera = true;
+                        }
+                        else
+                        {
+                            ascii.EscribirCentrado("No puedes mejorar más la defensa.");
+                        }
+                        break;
+                    case "Salud":
+                        // Incrementar salud sin límite
+                        this.salud += 10;
+                        break;
+                    case "Suerte":
+                        if (this.velocidad < 10)
+                        {
+                            // Incrementar suerte hasta un máximo de 10
+                            this.suerte = Math.Min(this.suerte + 3, 10);
+                            bandera = true;
+                        }
+                        else
+                        {
+                            ascii.EscribirCentrado("No puedes mejorar más la velocidad.");
+                        }
+                        break;
+                }
+            } while (bandera == false);
+
+            ascii.EscribirCentrado($"¡Has mejorado tu {atributos[opcion]} en 3 puntos!");
+
+            // Verificar si todos los atributos (excepto salud) están maximizados después de la mejora
+            todosMaximizados = velocidad >= 10 && agilidad >= 10 && fuerza >= 10 && defensa >= 10 && suerte >= 10;
+
+            if (todosMaximizados)
+            {
+                ascii.EscribirCentrado("¡Todos los atributos ahora están mejorados al máximo!");
             }
         }
     }

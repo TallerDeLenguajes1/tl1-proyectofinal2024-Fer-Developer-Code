@@ -77,7 +77,9 @@ namespace EspacioTorneo
                     switch (accionJugador)
                     {
                         case 0:
+                            Console.Clear();
                             luchador1.Atacar(luchador2);
+                            MostrarMensaje($"El jugador ha atacado a {luchador2.Datos.Nombre}", "Naranja");
                             ascii.CentrarAscii(ascii.AsciiAtaque);
                             MostrarMensaje($"Vida de {luchador2.Datos.Nombre}: {luchador2.Caracteristicas.Salud}", "Rojo");
                             MostrarMensaje("Presiona cualquier tecla para continuar...");
@@ -85,9 +87,11 @@ namespace EspacioTorneo
                             Console.Clear();
                             break;
                         case 1:
+                            Console.Clear();
                             luchador1.TomarPocion();
                             ascii.CentrarAscii(ascii.AsciiPocion);
-                            MostrarMensaje("El jugador ha tomado una poción", "Verde");
+                            MostrarMensaje($"El jugador ha tomado una poción", "Verde");
+                            MostrarMensaje($"Salud restante:{luchador1.Caracteristicas.Salud}, Pociones restantes:{luchador1.Pociones}", "verde");
                             MostrarMensaje("Presiona cualquier tecla para continuar...");
                             Console.ReadKey();
                             Console.Clear();
@@ -100,25 +104,29 @@ namespace EspacioTorneo
                     {
                         ascii.CentrarAscii(ascii.AsciiVictoria);
                         MostrarMensaje($"{luchador1.Datos.Nombre} ha ganado el combate.", "Amarillo");
-                        MostrarMensaje("Presiona cualquier tecla para continuar...");
+                        luchador1.Caracteristicas.MejorarAtributos();
                         personajes.Remove(luchador2);
-                        Console.Clear();
-
+                        MostrarMensaje("Presiona cualquier tecla para continuar...");
                         Console.ReadKey();
+                        Console.Clear();
                         break;
                     }
 
+                    Console.Clear();
                     luchador2.Atacar(luchador1);
+                    MostrarMensaje($"El oponente ha atacado a {luchador1.Datos.Nombre}", "Rojo");
+                    ascii.CentrarAscii(ascii.AsciiAtaque);
                     MostrarMensaje($"Vida de {luchador1.Datos.Nombre}: {luchador1.Caracteristicas.Salud}", "Rojo");
                     MostrarMensaje("Presiona cualquier tecla para continuar...");
                     Console.ReadKey();
-                    Console.Clear();
 
                     if (luchador1.Caracteristicas.Salud <= 0)
                     {
-                        MostrarMensaje($"{luchador2.Datos.Nombre} ha ganado el combate.", "Amarillo");
+                        Console.Clear();
                         ascii.CentrarAscii(ascii.AsciiDerrota);
-                        Thread.Sleep(123);
+                        MostrarMensaje($"{luchador2.Datos.Nombre} ha ganado el combate.", "Amarillo");
+                        MostrarMensaje("Presiona cualquier tecla para continuar...");
+                        Console.ReadKey();
                         if (luchador1 == jugador)
                         {
                             jugadorDerrotado = true;
@@ -128,13 +136,6 @@ namespace EspacioTorneo
 
                         break;
                     }
-                }
-
-                if (!jugadorDerrotado)
-                {
-                    showStats.MostrarInformacionCombate(luchador1, luchador2);
-                    MostrarMensaje("Presiona cualquier tecla para continuar...");
-                    Console.ReadKey();
                 }
             }
 

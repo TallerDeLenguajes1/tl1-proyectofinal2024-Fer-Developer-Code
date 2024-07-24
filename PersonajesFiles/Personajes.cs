@@ -55,7 +55,6 @@ namespace EspacioPersonajes.PersonajesFiles
             {
                 Caracteristicas.Salud += 35; // Recuperar 20 puntos de salud (puedes ajustar este valor)
                 Pociones--;
-                ascii.EscribirCentrado($"{Datos.Nombre} ha tomado una poción de vida. Salud: {Caracteristicas.Salud}, Pociones restantes: {Pociones}");
             }
             else
             {
