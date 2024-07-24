@@ -20,9 +20,9 @@ namespace EspacioMostrarDatos.Helpers
             ascii.EscribirCentrado($"Nombre: {personaje.Datos.Nombre}, Apodo: {personaje.Datos.Apodo}");
             ascii.EscribirCentrado($"Raza: {personaje.Datos.Raza}, Edad: {personaje.Datos.Edad}");
             ascii.CambiarColorTexto("Verde");
-            ascii.EscribirCentrado($"Velocidad: {personaje.Caracteristicas.Velocidad}, Destreza: {personaje.Caracteristicas.Agilidad}");
+            ascii.EscribirCentrado($"Velocidad: {personaje.Caracteristicas.Velocidad}, Agilidad: {personaje.Caracteristicas.Agilidad}");
             ascii.EscribirCentrado($"Fuerza: {personaje.Caracteristicas.Fuerza}, Nivel: {personaje.Caracteristicas.Nivel}");
-            ascii.EscribirCentrado($"Armadura: {personaje.Caracteristicas.Defensa}, Salud: {personaje.Caracteristicas.Salud}, Suerte: {personaje.Caracteristicas.Suerte}");
+            ascii.EscribirCentrado($"Defensa: {personaje.Caracteristicas.Defensa}, Salud: {personaje.Caracteristicas.Salud}, Suerte: {personaje.Caracteristicas.Suerte}");
             ascii.CambiarColorTexto("Cyan");
             ascii.EscribirCentrado(borde);
             Console.ResetColor();
