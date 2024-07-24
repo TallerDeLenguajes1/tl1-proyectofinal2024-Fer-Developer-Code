@@ -23,10 +23,15 @@ namespace EspacioTorneo
             stopwatch.Stop();
             if (!jugadorDerrotado)
             {
-                // El jugador es el último en pie, por lo tanto, gana el torneo.
+                ascii.CambiarColorTexto("Verde");
+                string[] asciiVictoria = ascii.AsciiVictoria;
+                string[] asciiTrono = ascii.AsciiTrono;
+                ascii.CentrarAscii(asciiVictoria);
                 ascii.EscribirCentrado("Felicidades! Has ganado el torneo!");
-                ascii.EscribirCentrado("Presiona cualquier tecla para continuar...");
-                Console.ReadKey();
+                PressToContinue();
+                ascii.EscribirCentrado("Eres el ganador indiscutido del trono de hierro, listo para gobernar como un tirano");
+                ascii.CentrarAscii(asciiTrono);
+                PressToContinue();
                 int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
                 DetallesPartida detallesPartida = new DetallesPartida(duracion, jugador.ContadorAtaques, DateTime.Now);
                 archivosPjsGanadores.GuardarGanador(jugador, detallesPartida, rutaGanadores);
@@ -39,6 +44,13 @@ namespace EspacioTorneo
                 Console.ReadKey();
                 SimularTorneo(personajes, rutaGanadores, stopwatch);
             }
+        }
+
+        private void PressToContinue()
+        {
+            ascii.EscribirCentrado("Presiona cualquier tecla para continuar...");
+            Console.ReadKey();
+            Console.Clear();
         }
 
         private bool PeleaDelJugador(List<Personaje> personajes, Personaje jugador, Stopwatch stopwatch, Random RandomGenerator, bool jugadorDerrotado)
@@ -79,8 +91,8 @@ namespace EspacioTorneo
                         case 0:
                             Console.Clear();
                             luchador1.Atacar(luchador2);
-                            MostrarMensaje($"El jugador ha atacado a {luchador2.Datos.Nombre}", "Naranja");
                             ascii.CentrarAscii(ascii.AsciiAtaque);
+                            MostrarMensaje($"El jugador ha atacado a {luchador2.Datos.Nombre}", "Naranja");
                             MostrarMensaje($"Vida de {luchador2.Datos.Nombre}: {luchador2.Caracteristicas.Salud}", "Rojo");
                             MostrarMensaje("Presiona cualquier tecla para continuar...");
                             Console.ReadKey();
@@ -89,6 +101,7 @@ namespace EspacioTorneo
                         case 1:
                             Console.Clear();
                             luchador1.TomarPocion();
+                            ascii.CambiarColorTexto("Verde");
                             ascii.CentrarAscii(ascii.AsciiPocion);
                             MostrarMensaje($"El jugador ha tomado una poción", "Verde");
                             MostrarMensaje($"Salud restante:{luchador1.Caracteristicas.Salud}, Pociones restantes:{luchador1.Pociones}", "verde");
@@ -102,6 +115,7 @@ namespace EspacioTorneo
 
                     if (luchador2.Caracteristicas.Salud <= 0)
                     {
+                        ascii.CambiarColorTexto("Amarillo");
                         ascii.CentrarAscii(ascii.AsciiVictoria);
                         MostrarMensaje($"{luchador1.Datos.Nombre} ha ganado el combate.", "Amarillo");
                         luchador1.Caracteristicas.MejorarAtributos();
@@ -114,8 +128,8 @@ namespace EspacioTorneo
 
                     Console.Clear();
                     luchador2.Atacar(luchador1);
-                    MostrarMensaje($"El oponente ha atacado a {luchador1.Datos.Nombre}", "Rojo");
                     ascii.CentrarAscii(ascii.AsciiAtaque);
+                    MostrarMensaje($"El oponente ha atacado a {luchador1.Datos.Nombre}", "Rojo");
                     MostrarMensaje($"Vida de {luchador1.Datos.Nombre}: {luchador1.Caracteristicas.Salud}", "Rojo");
                     MostrarMensaje("Presiona cualquier tecla para continuar...");
                     Console.ReadKey();
@@ -123,17 +137,18 @@ namespace EspacioTorneo
                     if (luchador1.Caracteristicas.Salud <= 0)
                     {
                         Console.Clear();
+                        ascii.CambiarColorTexto("Rojo");
                         ascii.CentrarAscii(ascii.AsciiDerrota);
                         MostrarMensaje($"{luchador2.Datos.Nombre} ha ganado el combate.", "Amarillo");
                         MostrarMensaje("Presiona cualquier tecla para continuar...");
                         Console.ReadKey();
+                        Console.ResetColor();
                         if (luchador1 == jugador)
                         {
                             jugadorDerrotado = true;
                         }
                         personajes.Remove(luchador1);
                         Console.Clear();
-
                         break;
                     }
                 }
