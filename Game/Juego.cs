@@ -16,7 +16,7 @@ namespace EspacioJuego
         private MostrarDatos mostrar = new MostrarDatos();
         private int PreguntarCambiarPersonaje()
         {
-            string pregunta = "¿Deseas seguir con tu personaje actual o crear uno nuevo?";
+            string pregunta = "¿Deseas seguir con tu personaje actual?";
             string[] opciones = { "Si", "No" };
             string[] guerreros = ascii.AsciiGuerreros;
 
