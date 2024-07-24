@@ -22,11 +22,14 @@ La razón detrás de esta elección es que, aunque existen muchas APIs que gener
 - Genera nombres y apodos aleatorios para tus personajes.
 - Personaliza los datos ficticios según tus necesidades.
 
-##Recursos utilizados
+## Recursos utilizados
 - Copilot de Microsoft (Asistente virtual)
 - ChatGPT para algunas funciones y ahorrarme de automatizar, sobre todo en fabrica de personajes
 - Youtube para algunos detalles en la consola, animaciones, etc.
 - **Como crear menús** [CrearMenusC#](https://www.youtube.com/watch?v=qAWhGEPMlS8&t=454s)
+
+## Tutorial del juego
+[Tutorial del juego](https://github.com/TallerDeLenguajes1/tl1-proyectofinal2024-Fer-Developer-Code/blob/main/Tutorial.md)
 
 ## DATOS DEL ALUMNO
 ### NOMBRE:Victor Ruben Fernando
