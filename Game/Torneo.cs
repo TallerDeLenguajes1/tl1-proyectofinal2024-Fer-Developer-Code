@@ -39,9 +39,6 @@ namespace EspacioTorneo
             else if (jugadorDerrotado)
             {
                 // El jugador ha sido derrotado, continuar el torneo entre los personajes restantes.
-                ascii.EscribirCentrado($"{jugador.Datos.Nombre} ha sido derrotado y eliminado del torneo.");
-                ascii.EscribirCentrado("Presiona cualquier tecla para continuar...");
-                Console.ReadKey();
                 SimularTorneo(personajes, rutaGanadores, stopwatch);
             }
         }
@@ -140,7 +137,8 @@ namespace EspacioTorneo
                         ascii.CambiarColorTexto("Rojo");
                         ascii.CentrarAscii(ascii.AsciiDerrota);
                         MostrarMensaje($"{luchador2.Datos.Nombre} ha ganado el combate.", "Amarillo");
-                        MostrarMensaje("Presiona cualquier tecla para continuar...");
+                        ascii.EscribirCentrado($"{jugador.Datos.Nombre} ha sido derrotado y eliminado del torneo.");
+                        ascii.EscribirCentrado("Presiona cualquier tecla para continuar...");
                         Console.ReadKey();
                         Console.ResetColor();
                         if (luchador1 == jugador)
