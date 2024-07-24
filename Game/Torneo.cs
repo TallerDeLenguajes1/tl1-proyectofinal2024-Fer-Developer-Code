@@ -182,8 +182,10 @@ namespace EspacioTorneo
 
                 while (luchador1.Caracteristicas.Salud > 0 && luchador2.Caracteristicas.Salud > 0)
                 {
+                    ascii.CambiarColorTexto("Amarillo");
                     luchador1.Atacar(luchador2);
-                    ascii.EscribirCentrado($"Vida de {luchador2.Datos.Nombre}: {luchador2.Caracteristicas.Salud}");
+                    ascii.EscribirCentrado($"Vida de luchador 2 {luchador2.Datos.Nombre}: {luchador2.Caracteristicas.Salud}");
+                    Console.ResetColor();
 
                     Thread.Sleep(2000); // Pausa de 2 segundos
 
@@ -194,8 +196,10 @@ namespace EspacioTorneo
                         break;
                     }
 
+                    ascii.CambiarColorTexto("Rojo");
                     luchador2.Atacar(luchador1);
-                    ascii.EscribirCentrado($"Vida de {luchador1.Datos.Nombre}: {luchador1.Caracteristicas.Salud}");
+                    ascii.EscribirCentrado($"Vida de luchador 1 {luchador1.Datos.Nombre}: {luchador1.Caracteristicas.Salud}");
+                    Console.ResetColor();
 
                     Thread.Sleep(2000); // Pausa de 2 segundos
 
