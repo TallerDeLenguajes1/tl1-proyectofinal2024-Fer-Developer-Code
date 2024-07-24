@@ -41,7 +41,7 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
             return File.Exists(nombreArchivo) && new FileInfo(nombreArchivo).Length > 0;
         }
     }
-    public class HistorialJson
+    public class HistorialGanadoresJson
     {
         List<HistorialPartida> listaGanadores = new List<HistorialPartida>();//Lo moví 2 lineas mas arriba desde la 49 para ver si sigue funcionando
         public void GuardarGanador(Personaje ganador, DetallesPartida informacionPartida, string nombreArchivo)
@@ -108,16 +108,16 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
     {
         private int duracion;
         private int contadorAtaques;
-        private DateTime hora;
+        private DateTime fecha;
 
         public DetallesPartida(int duracion, int contadorAtaques)
         {
             this.duracion = duracion;
             this.contadorAtaques = contadorAtaques;
-            this.hora = DateTime.Now;
+            this.fecha = DateTime.Now;
         }
         public int Duracion { get => duracion; }
         public int ContadorAtaques { get => contadorAtaques; }
-        public DateTime Hora { get => hora; }
+        public DateTime Fecha { get => fecha; }
     }
 }

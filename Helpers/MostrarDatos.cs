@@ -6,7 +6,7 @@ namespace EspacioMostrarDatos.Helpers
 {
     public class MostrarDatos
     {
-        HistorialJson archivosPjsGanadores = new HistorialJson();
+        HistorialGanadoresJson archivosPjsGanadores = new HistorialGanadoresJson();
         ArteAscii ascii = new ArteAscii();
         public void MostrarCaracteristicas(Personaje personaje, string titulo)
         {
@@ -24,7 +24,6 @@ namespace EspacioMostrarDatos.Helpers
             ascii.EscribirCentrado($"Fuerza: {personaje.Caracteristicas.Fuerza}, Nivel: {personaje.Caracteristicas.Nivel}");
             ascii.EscribirCentrado($"Defensa: {personaje.Caracteristicas.Defensa}, Salud: {personaje.Caracteristicas.Salud}, Suerte: {personaje.Caracteristicas.Suerte}");
             ascii.CambiarColorTexto("Cyan");
-            ascii.EscribirCentrado(borde);
             Console.ResetColor();
         }
 
@@ -45,6 +44,7 @@ namespace EspacioMostrarDatos.Helpers
 
         public void EscribirHistorialGanadores(string rutaGanadores)
         {
+            Console.Clear();
             List<HistorialPartida> ganadores = archivosPjsGanadores.LeerGanadores(rutaGanadores);
             if (ganadores.Count == 0)
             {
@@ -58,13 +58,14 @@ namespace EspacioMostrarDatos.Helpers
             EscribirLineaConEfecto("Historial de ganadores:");
             ascii.CambiarColorTexto("Verde");
 
-            foreach (HistorialPartida ganador in ganadores)
+            foreach (HistorialPartida participante in ganadores)
             {
-                MostrarCaracteristicas(ganador.Ganador, "Ganadores del torneo");
+                MostrarCaracteristicas(participante.Ganador, "Ganadores del torneo");
                 ascii.CambiarColorTexto("Magenta");
-                EscribirLineaConEfecto($"Duración del torneo: {ganador.InformacionPartida.Duracion} segundos");
-                EscribirLineaConEfecto($"Cantidad de ataques: {ganador.InformacionPartida.ContadorAtaques}");
-                EscribirLineaConEfecto($"Hora de la victoria: {ganador.InformacionPartida.Hora.Hour}:{ganador.InformacionPartida.Hora.Minute}");
+                EscribirLineaConEfecto($"Duración del torneo: {participante.InformacionPartida.Duracion} segundos");
+                EscribirLineaConEfecto($"Cantidad de ataques: {participante.InformacionPartida.ContadorAtaques}");
+                EscribirLineaConEfecto($"Hora de la victoria: {participante.InformacionPartida.Fecha.Hour}:{participante.InformacionPartida.Fecha.Minute}");
+                EscribirLineaConEfecto($"El dia {participante.InformacionPartida.Fecha.Day} del mes {participante.InformacionPartida.Fecha.Month}");
                 ascii.CambiarColorTexto("Magenta");
             }
             Console.ResetColor();

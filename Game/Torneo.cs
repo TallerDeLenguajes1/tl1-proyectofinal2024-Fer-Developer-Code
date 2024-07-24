@@ -10,7 +10,7 @@ namespace EspacioTorneo
     public class Torneo
     {
         MostrarDatos showStats = new MostrarDatos();
-        HistorialJson archivosPjsGanadores = new HistorialJson();
+        HistorialGanadoresJson archivosPjsGanadores = new HistorialGanadoresJson();
         ArteAscii ascii = new ArteAscii();
         string rutaGanadores = "JsonFolder/rutaGanadores.json";
         // Metodos para el torneo
