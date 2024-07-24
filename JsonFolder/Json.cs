@@ -52,7 +52,8 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
                 listaGanadores = JsonSerializer.Deserialize<List<HistorialPartida>>(jsonExistente);
             }
 
-            HistorialPartida nuevaEntrada = new HistorialPartida(ganador, informacionPartida, DateTime.Now);
+            DetallesPartida detallesConFecha = new DetallesPartida(informacionPartida.Duracion, informacionPartida.ContadorAtaques, DateTime.Now);
+            HistorialPartida nuevaEntrada = new HistorialPartida(ganador, informacionPartida);
 
             listaGanadores.Add(nuevaEntrada);
 
@@ -92,17 +93,14 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
     {
         private Personaje ganador;
         private DetallesPartida informacionPartida;
-        private DateTime fecha;
 
-        public HistorialPartida(Personaje ganador, DetallesPartida informacionPartida, DateTime fecha)
+        public HistorialPartida(Personaje ganador, DetallesPartida informacionPartida)
         {
             this.ganador = ganador;
             this.informacionPartida = informacionPartida;
-            this.fecha = fecha;
         }//Ya empezó a funcionar, estaba mal instanciado el constructor
         public Personaje Ganador { get => ganador; }
         public DetallesPartida InformacionPartida { get => informacionPartida; }
-        public DateTime Fecha { get => fecha; }
     }
     public class DetallesPartida
     {
@@ -110,11 +108,11 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
         private int contadorAtaques;
         private DateTime fecha;
 
-        public DetallesPartida(int duracion, int contadorAtaques)
+        public DetallesPartida(int duracion, int contadorAtaques, DateTime fecha)
         {
             this.duracion = duracion;
             this.contadorAtaques = contadorAtaques;
-            this.fecha = DateTime.Now;
+            this.fecha = fecha;
         }
         public int Duracion { get => duracion; }
         public int ContadorAtaques { get => contadorAtaques; }

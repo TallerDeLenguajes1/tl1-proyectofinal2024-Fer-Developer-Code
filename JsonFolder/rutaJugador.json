@@ -1,1 +1,20 @@
-{"Datos":{"Raza":0,"Nombre":"Humanito","Apodo":"Lindo","FechaNac":"2001-07-24T00:00:00-03:00","Edad":23},"Caracteristicas":{"Velocidad":7,"Agilidad":4,"Fuerza":5,"Nivel":1,"Defensa":3,"Salud":100,"Suerte":2},"Pociones":3,"ContadorAtaques":0}
+{
+    "Datos": {
+        "Raza": 6,
+        "Nombre": "Guerrero",
+        "Apodo": "Sanguinario",
+        "FechaNac": "1987-07-24T00:00:00-03:00",
+        "Edad": 37
+    },
+    "Caracteristicas": {
+        "Velocidad": 5,
+        "Agilidad": 2,
+        "Fuerza": 9,
+        "Nivel": 11,
+        "Defensa": 6,
+        "Salud": 100,
+        "Suerte": 9
+    },
+    "Pociones": 3,
+    "ContadorAtaques": 0
+}

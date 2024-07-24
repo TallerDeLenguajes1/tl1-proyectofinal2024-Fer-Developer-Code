@@ -64,7 +64,7 @@ namespace EspacioMostrarDatos.Helpers
                 ascii.CambiarColorTexto("Magenta");
                 EscribirLineaConEfecto($"Duración del torneo: {participante.InformacionPartida.Duracion} segundos");
                 EscribirLineaConEfecto($"Cantidad de ataques: {participante.InformacionPartida.ContadorAtaques}");
-                EscribirLineaConEfecto($"Hora de la victoria: {participante.InformacionPartida.Fecha.Hour}:{participante.InformacionPartida.Fecha.Minute}");
+                EscribirLineaConEfecto($"Hora de la victoria: {participante.InformacionPartida.Fecha.Hour:D2}:{participante.InformacionPartida.Fecha.Minute:D2}");//Este enfoque garantiza que los números de un solo dígito se presenten con un cero inicial, dando como resultado algo como "Hora de la victoria: 18:08" en lugar de "Hora de la victoria: 18:8".
                 EscribirLineaConEfecto($"El dia {participante.InformacionPartida.Fecha.Day} del mes {participante.InformacionPartida.Fecha.Month}");
                 ascii.CambiarColorTexto("Magenta");
             }

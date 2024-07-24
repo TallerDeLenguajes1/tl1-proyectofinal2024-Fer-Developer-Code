@@ -28,7 +28,7 @@ namespace EspacioTorneo
                 ascii.EscribirCentrado("Presiona cualquier tecla para continuar...");
                 Console.ReadKey();
                 int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
-                DetallesPartida detallesPartida = new DetallesPartida(duracion, jugador.ContadorAtaques);
+                DetallesPartida detallesPartida = new DetallesPartida(duracion, jugador.ContadorAtaques, DateTime.Now);
                 archivosPjsGanadores.GuardarGanador(jugador, detallesPartida, rutaGanadores);
             }
             else if (jugadorDerrotado)
@@ -203,7 +203,7 @@ namespace EspacioTorneo
                 ascii.EscribirCentrado($"{ganador.Datos.Nombre} es el campeón del torneo.");
 
                 int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
-                DetallesPartida detallesPartida = new DetallesPartida(duracion, ganador.ContadorAtaques);
+                DetallesPartida detallesPartida = new DetallesPartida(duracion, ganador.ContadorAtaques, DateTime.Now);
                 archivosPjsGanadores.GuardarGanador(ganador, detallesPartida, rutaGanadores);
             }
         }

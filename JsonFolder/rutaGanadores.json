@@ -2,85 +2,28 @@
     {
         "Ganador": {
             "Datos": {
-                "Raza": 5,
-                "Nombre": "Natalia Beier III",
-                "Apodo": "soniaschuppe",
-                "FechaNac": "1999-11-28T00:00:00",
-                "Edad": 25
-            },
-            "Caracteristicas": {
-                "Velocidad": 9,
-                "Agilidad": 4,
-                "Fuerza": 6,
-                "Nivel": 6,
-                "Defensa": 5,
-                "Salud": 51,
-                "Suerte": 4
-            },
-            "Pociones": 3,
-            "ContadorAtaques": 0
-        },
-        "InformacionPartida": {
-            "Duracion": 148,
-            "ContadorAtaques": 9,
-            "Hora": "2024-07-24T18:05:43.9782017-03:00"
-        },
-        "Fecha": "2024-07-22T17:24:56.7473453-03:00"
-    },
-    {
-        "Ganador": {
-            "Datos": {
                 "Raza": 6,
-                "Nombre": "Grer",
-                "Apodo": "Grsr",
-                "FechaNac": "1990-07-23T00:00:00-03:00",
-                "Edad": 34
+                "Nombre": "Guerrero",
+                "Apodo": "Sanguinario",
+                "FechaNac": "1987-07-24T00:00:00-03:00",
+                "Edad": 37
             },
             "Caracteristicas": {
                 "Velocidad": 10,
                 "Agilidad": 10,
                 "Fuerza": 10,
                 "Nivel": 10,
-                "Defensa": 10,
+                "Defensa": 9,
                 "Salud": 22,
                 "Suerte": 10
             },
-            "Pociones": 0,
-            "ContadorAtaques": 0
-        },
-        "InformacionPartida": {
-            "Duracion": 229,
-            "ContadorAtaques": 24,
-            "Hora": "2024-07-24T18:05:43.9786808-03:00"
-        },
-        "Fecha": "2024-07-24T17:50:44.9974753-03:00"
-    },
-    {
-        "Ganador": {
-            "Datos": {
-                "Raza": 6,
-                "Nombre": "Buck Huels",
-                "Apodo": "tania23",
-                "FechaNac": "1988-03-15T00:00:00",
-                "Edad": 36
-            },
-            "Caracteristicas": {
-                "Velocidad": 4,
-                "Agilidad": 2,
-                "Fuerza": 9,
-                "Nivel": 10,
-                "Defensa": 8,
-                "Salud": 58,
-                "Suerte": 9
-            },
             "Pociones": 3,
-            "ContadorAtaques": 6
+            "ContadorAtaques": 24
         },
         "InformacionPartida": {
-            "Duracion": 282,
-            "ContadorAtaques": 6,
-            "Hora": "2024-07-24T18:05:43.9699672-03:00"
-        },
-        "Fecha": "2024-07-24T18:05:43.9786981-03:00"
+            "Duracion": 90,
+            "ContadorAtaques": 24,
+            "Fecha": "2024-07-24T18:08:34.5796959-03:00"
+        }
     }
 ]
