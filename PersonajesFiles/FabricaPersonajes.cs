@@ -1,6 +1,6 @@
 using EspacioPersonajes.PersonajesFiles;
 using DatosYCaracteristicas.PersonajesFiles;
-using EspConstantes.Helpers;
+using EspacioConstantes.Helpers;
 using EspacioFunciones.Helpers;
 using EspacioMenu;
 using EspacioArteAscii;

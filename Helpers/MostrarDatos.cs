@@ -1,6 +1,6 @@
 using EspacioPersonajes.PersonajesFiles;
 using EspacioJsonCreacion;
-using System.Text;
+using EspacioConstantes.Helpers;
 using EspacioArteAscii.GUI;
 namespace EspacioMostrarDatos.Helpers
 {
@@ -70,12 +70,21 @@ namespace EspacioMostrarDatos.Helpers
             }
             Console.ResetColor();
         }
-        public void MostrarInformacionCombate(Personaje luchador1, Personaje luchador2)
+        public void MostrarInformacionCombate(Personaje luchador1, Personaje luchador2, int numBatalla)
         {
+            int totalEnemigos = Constantes.MaxEnemigos;
             Console.Clear(); // Limpiar la consola al principio de cada turno
             ascii.CambiarColorTexto("Amarillo");
-            string presentacion = $"¡Combate entre {luchador1.Datos.Nombre} y {luchador2.Datos.Nombre}!";
-
+            string presentacion;
+            if (numBatalla == totalEnemigos)
+            {
+                ascii.CambiarColorTexto("Rojo");
+                presentacion = $"¡COMBATE FINAL: {luchador1.Datos.Nombre} Y {luchador2.Datos.Nombre} AL CAMPO DE BATALLA!";
+            }
+            else
+            {
+                presentacion = $"¡Combate numero {numBatalla} entre {luchador1.Datos.Nombre} y {luchador2.Datos.Nombre}!";
+            }
             ascii.CentrarAscii(ascii.AsciiCombate);
             ascii.EscribirCentrado(presentacion);
             ascii.EscribirCentrado("Presione una tecla para continuar");

@@ -1,6 +1,6 @@
 using DatosYCaracteristicas.PersonajesFiles;
 using EspacioArteAscii.GUI;
-using EspConstantes.Helpers;
+using EspacioConstantes.Helpers;
 
 namespace EspacioPersonajes.PersonajesFiles
 {
@@ -30,7 +30,7 @@ namespace EspacioPersonajes.PersonajesFiles
             int ataque = Caracteristicas.Agilidad * Caracteristicas.Fuerza * Caracteristicas.Nivel;
             int efectividad = random.Next(15, 101);
             int defensa = Defensor.Caracteristicas.Defensa * Defensor.Caracteristicas.Velocidad;
-            int constAjuste = Constantes.ajuste;
+            int constAjuste = Constantes.Ajuste;
             int danioBase = ((ataque * efectividad) - defensa) / constAjuste;
 
             // Calcular si es un ataque crítico

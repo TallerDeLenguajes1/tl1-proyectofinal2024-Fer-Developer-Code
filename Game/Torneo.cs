@@ -65,10 +65,11 @@ namespace EspacioTorneo
             {
                 Personaje luchador1 = jugador;
                 int posicionEnemigo = RandomGenerator.Next(personajes.Count);
+                int numBatalla = 1;
                 Personaje luchador2 = personajes[posicionEnemigo];
                 stopwatch.Start();
 
-                showStats.MostrarInformacionCombate(luchador1, luchador2);
+                showStats.MostrarInformacionCombate(luchador1, luchador2, numBatalla);
                 MostrarMensaje("Presiona cualquier tecla para continuar...");
                 Console.ReadKey();
 
