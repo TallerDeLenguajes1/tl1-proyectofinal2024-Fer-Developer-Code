@@ -1,1 +1,20 @@
-{"Datos":{"Raza":1,"Nombre":"Elfo","Apodo":"Chiquito","FechaNac":"1970-07-24T00:00:00-03:00","Edad":54},"Caracteristicas":{"Velocidad":9,"Agilidad":4,"Fuerza":2,"Nivel":1,"Defensa":2,"Salud":100,"Suerte":1},"Pociones":3,"ContadorAtaques":0}
+{
+    "Datos": {
+        "Raza": 6,
+        "Nombre": "Jorgito",
+        "Apodo": "Probando",
+        "FechaNac": "1967-07-26T00:00:00-03:00",
+        "Edad": 57
+    },
+    "Caracteristicas": {
+        "Velocidad": 4,
+        "Agilidad": 2,
+        "Fuerza": 8,
+        "Nivel": 3,
+        "Defensa": 8,
+        "Salud": 100,
+        "Suerte": 5
+    },
+    "Pociones": 3,
+    "ContadorAtaques": 0
+}
