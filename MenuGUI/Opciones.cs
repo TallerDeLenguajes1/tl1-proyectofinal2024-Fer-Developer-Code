@@ -6,9 +6,9 @@ using EspacioArteAscii.GUI;
 
 namespace EspacioOpciones
 {
-    public class Creditos
+    public class AcercaDe
     {
-        public async Task MostrarCreditosYLeerReadme(PersonajesJson archivos, Torneo torneo, string rutaListaPjs, string rutaJugador, string rutaGanadores)
+        public async Task MostrarAcercaDeYLeerReadme(PersonajesJson archivos, Torneo torneo, string rutaListaPjs, string rutaJugador, string rutaGanadores)
         {
             ArteAscii ascii = new ArteAscii();
             try

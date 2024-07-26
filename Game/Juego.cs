@@ -11,7 +11,7 @@ namespace EspacioJuego
 {
     public class Juego
     {
-        Creditos creditos = new Creditos();
+        AcercaDe acerca = new AcercaDe();
         ArteAscii ascii = new ArteAscii();
         private MostrarDatos mostrar = new MostrarDatos();
         private int PreguntarCambiarPersonaje()
@@ -44,7 +44,7 @@ namespace EspacioJuego
                     await RunMainMenu(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
                     break;
                 case 2:
-                    await creditos.MostrarCreditosYLeerReadme(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
+                    await acerca.MostrarAcercaDeYLeerReadme(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
                     break;
                 case 3:
                     Environment.Exit(0);//Cierra la app

@@ -3,12 +3,12 @@ using EspacioTorneo;
 using EspacioInicio;
 
 
-await Inicializar();
+await InicializarPrograma();
 
-static async Task Inicializar()//Nota recordar extraer bien las funciones locales para evitar dolores de cabeza con el operador await
+static async Task InicializarPrograma()//Nota recordar extraer bien las funciones locales para evitar dolores de cabeza con el operador await
 {
     //Instanciando clases
-    var start = new Iniciar();
+    var startGame = new Iniciar();
     PersonajesJson archivos = new PersonajesJson();
     Torneo torneo = new Torneo();
     // Rutas de los archivos JSON
@@ -17,5 +17,5 @@ static async Task Inicializar()//Nota recordar extraer bien las funciones locale
     string rutaGanadores = "JsonFolder/rutaGanadores.json";
 
     //Inicializar juego
-    await start.InicializarJuego(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
+    await startGame.InicializarJuego(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
 }

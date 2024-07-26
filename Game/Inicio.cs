@@ -14,8 +14,8 @@ namespace EspacioInicio
             //Title = "Jueguito"; Añade el titulo a la terminal de una clase, ejecutar despues
             ArteAscii ascii = new ArteAscii();
             ascii.MostrarLogo();
-            Juego empezar = new Juego();
-            await empezar.RunMainMenu(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
+            Juego menuPrincipal = new Juego();
+            await menuPrincipal.RunMainMenu(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
         }
     }
 }
