@@ -20,4 +20,19 @@ static async Task InicializarPrograma()//Nota recordar extraer bien las funcione
 
     //Inicializar juego
     await startGame.InicializarJuego(archivos, torneo, rutaListaPjs, rutaJugador, rutaGanadores);
+    //Preguntar si desea seguir jugando o salir
+    string[] opciones = { "Seguir Jugando", "Salir" };
+    string elegir = "¿Desea seguir jugando?";
+    string[] portada = ascii.asciiMago;
+
+    MenuGrafico menuJuego = new MenuGrafico(portada, elegir, opciones);
+    int opcion = menuJuego.Run();
+    switch (opcion)
+    {
+        case 0:
+            await InicializarPrograma();
+            break;
+        case 1:
+            break;
+    }
 }
