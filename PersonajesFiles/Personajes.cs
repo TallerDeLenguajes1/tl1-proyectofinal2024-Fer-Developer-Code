@@ -50,6 +50,7 @@ namespace EspacioPersonajes.PersonajesFiles
                 ascii.CambiarColorTexto("Rojo");
                 ascii.CentrarAscii(ataqueCritico);
                 ascii.EscribirCentrado($"¡{Datos.Nombre} Ha acertado un ataque crítico!");
+                ascii.CambiarColorTexto("Blanco");
             }
         }
         public void TomarPocion()

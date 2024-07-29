@@ -89,6 +89,7 @@ namespace EspacioTorneo
                     {
                         case 0:
                             Console.Clear();
+                            ascii.CambiarColorTexto("Verde");
                             luchador1.Atacar(luchador2);
                             ascii.CentrarAscii(ascii.AsciiAtaque);
                             MostrarMensaje($"El jugador ha atacado a {luchador2.Datos.Nombre}", "Naranja");
@@ -126,6 +127,7 @@ namespace EspacioTorneo
                     }
 
                     Console.Clear();
+                    ascii.CambiarColorTexto("Rojo");
                     luchador2.Atacar(luchador1);
                     ascii.CentrarAscii(ascii.AsciiAtaque);
                     MostrarMensaje($"El oponente ha atacado a {luchador1.Datos.Nombre}", "Rojo");
