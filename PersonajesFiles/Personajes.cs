@@ -46,6 +46,9 @@ namespace EspacioPersonajes.PersonajesFiles
 
             if (esCritico)
             {
+                string[] ataqueCritico = ascii.AsciiCritico;
+                ascii.CambiarColorTexto("Rojo");
+                ascii.CentrarAscii(ataqueCritico);
                 ascii.EscribirCentrado($"¡{Datos.Nombre} Ha acertado un ataque crítico!");
             }
         }
