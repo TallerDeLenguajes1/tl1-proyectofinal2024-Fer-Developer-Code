@@ -4,11 +4,14 @@ using EspacioJsonCreacion;
 using System.Diagnostics;
 using EspacioArteAscii.GUI;
 using EspacioMenu;
+using EspacioSimularTorneo;
+
 
 namespace EspacioTorneo
 {
     public class Torneo
     {
+        ClaseSimularTorneo torneo = new ClaseSimularTorneo();
         MostrarDatos showStats = new MostrarDatos();
         HistorialGanadoresJson archivosPjsGanadores = new HistorialGanadoresJson();
         ArteAscii ascii = new ArteAscii();
@@ -39,7 +42,7 @@ namespace EspacioTorneo
             else if (jugadorDerrotado)
             {
                 // El jugador ha sido derrotado, continuar el torneo entre los personajes restantes.
-                SimularTorneo(personajes, rutaGanadores, stopwatch);
+                torneo.SimularTorneo(personajes, rutaGanadores, stopwatch);
             }
         }
 
@@ -52,8 +55,7 @@ namespace EspacioTorneo
 
         private bool PeleaDelJugador(List<Personaje> personajes, Personaje jugador, Stopwatch stopwatch, Random RandomGenerator, bool jugadorDerrotado)
         {
-
-
+            int numBatalla = 1;
             void MostrarMensaje(string mensaje, string color = "Blanco")
             {
                 ascii.CambiarColorTexto(color);
@@ -65,7 +67,6 @@ namespace EspacioTorneo
             {
                 Personaje luchador1 = jugador;
                 int posicionEnemigo = RandomGenerator.Next(personajes.Count);
-                int numBatalla = 1;
                 Personaje luchador2 = personajes[posicionEnemigo];
                 stopwatch.Start();
 
@@ -151,79 +152,9 @@ namespace EspacioTorneo
                         break;
                     }
                 }
+                numBatalla++;
             }
             return jugadorDerrotado;
-        }
-
-
-
-        // En caso de que el jugador sea derrotado simula un torneo entre los personajes restantes
-        public void SimularTorneo(List<Personaje> personajes, string rutaGanadores, Stopwatch stopwatch)
-        {
-            // Continuar el stopwatch si no se había detenido en ComenzarTorneo
-            if (!stopwatch.IsRunning)
-            {
-                stopwatch.Start();
-            }
-            Random RandomGenerator = new Random();
-            while (personajes.Count > 1)
-            {
-                int posicion1 = RandomGenerator.Next(personajes.Count);
-                Personaje luchador1 = personajes[posicion1];
-                personajes.RemoveAt(posicion1);
-
-                int posicion2 = RandomGenerator.Next(personajes.Count);
-                Personaje luchador2 = personajes[posicion2];
-                personajes.RemoveAt(posicion2);
-
-                Console.Clear();
-                ascii.EscribirCentrado($"Combate entre {luchador1.Datos.Nombre} y {luchador2.Datos.Nombre}");
-                showStats.MostrarCaracteristicas(luchador1, "Luchador 1");
-                showStats.MostrarCaracteristicas(luchador2, "Luchador 2");
-                string borde = new string('-', Console.WindowWidth);
-                Console.WriteLine(borde);
-                while (luchador1.Caracteristicas.Salud > 0 && luchador2.Caracteristicas.Salud > 0)
-                {
-                    ascii.CambiarColorTexto("Amarillo");
-                    luchador1.Atacar(luchador2);
-                    ascii.EscribirCentrado($"Vida de luchador 2 {luchador2.Datos.Nombre}: {luchador2.Caracteristicas.Salud}");
-                    Console.ResetColor();
-
-                    Thread.Sleep(2000); // Pausa de 2 segundos
-
-                    if (luchador2.Caracteristicas.Salud <= 0)
-                    {
-                        ascii.EscribirCentrado($"{luchador1.Datos.Nombre} ha ganado el combate.");
-                        personajes.Add(luchador1);
-                        break;
-                    }
-
-                    ascii.CambiarColorTexto("Rojo");
-                    luchador2.Atacar(luchador1);
-                    ascii.EscribirCentrado($"Vida de luchador 1 {luchador1.Datos.Nombre}: {luchador1.Caracteristicas.Salud}");
-                    Console.ResetColor();
-
-                    Thread.Sleep(2000); // Pausa de 2 segundos
-
-                    if (luchador1.Caracteristicas.Salud <= 0)
-                    {
-                        ascii.EscribirCentrado($"{luchador2.Datos.Nombre} ha ganado el combate.");
-                        personajes.Add(luchador2);
-                        break;
-                    }
-                }
-            }
-            // Detener el stopwatch al finalizar SimularTorneo
-            stopwatch.Stop();
-            Personaje ganador = personajes.FirstOrDefault();
-            if (ganador != null)
-            {
-                ascii.EscribirCentrado($"{ganador.Datos.Nombre} es el campeón del torneo.");
-
-                int duracion = (int)stopwatch.Elapsed.TotalSeconds; // Duración en segundos
-                DetallesPartida detallesPartida = new DetallesPartida(duracion, ganador.ContadorAtaques, DateTime.Now);
-                archivosPjsGanadores.GuardarGanador(ganador, detallesPartida, rutaGanadores);
-            }
         }
     }
 }
