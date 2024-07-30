@@ -6,6 +6,7 @@ using EspacioMenu;
 using EspacioArteAscii;
 using EspacioArteAscii.GUI;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace espacioFabricaPersonajes
 {
@@ -31,56 +32,88 @@ namespace espacioFabricaPersonajes
                 CrearPersonajeAleatorio(nombreEnemigo, apodoEnemigo);//LLama a la funcuon que crea un personaje al azar y le asigna el nombre y apodos generados en informacion enemigo
             }
         }
-        public void CrearPersonajeUsuario()//Genera un personaje propio para le usuario
+        public void CrearPersonajeUsuario()
         {
+            // Presenta el menú de selección de raza al usuario
             string[] graficoAscii = ascii.asciiHacha;
-            string[] razas = Enum.GetNames(typeof(RazasPersonaje)); // Convertir enum a arreglo de strings
+            string[] razas = Enum.GetNames(typeof(RazasPersonaje)); // Convierte enum a arreglo de strings
             string titulo = "Elige una raza";
             MenuGrafico menuPersonajes = new MenuGrafico(graficoAscii, titulo, razas);
             int opcion = menuPersonajes.Run();
 
-            RazasPersonaje razaUsuario;//Invoco al enum con las razas de los personajes
-
-            razaUsuario = (RazasPersonaje)(opcion);
-
+            // Selección de raza basada en la opción elegida
+            RazasPersonaje razaUsuario = (RazasPersonaje)opcion;
             ascii.EscribirCentrado($"Raza seleccionada: {razaUsuario}");
-            string linea, apodo, nombre;
+            Console.Clear();
+            ascii.CambiarColorTexto("Naranja");
+
+            // Bucle para ingresar nombre válido
+            string nombre;
+            do
+            {
+                ascii.EscribirCentradoReadLine("Nombre (solo letras, mínimo 5 caracteres): ");
+                nombre = Console.ReadLine();
+
+                // Verificar que el nombre contenga solo letras y tenga al menos 5 caracteres
+                if (!Regex.IsMatch(nombre, @"^[a-zA-Z]{5,}$"))
+                {
+                    ascii.EscribirCentrado("Nombre no válido. Por favor, introduce un nombre válido.");
+                    continue;
+                }
+                break; // Salir del bucle si el nombre es válido
+            } while (true);
+
+            // Bucle para ingresar apodo válido
+            string apodo;
+            do
+            {
+                ascii.EscribirCentradoReadLine("Apodo (solo letras, mínimo 5 caracteres): ");
+                apodo = Console.ReadLine();
+
+                // Verificar que el apodo contenga solo letras y tenga al menos 5 caracteres
+                if (!Regex.IsMatch(apodo, @"^[a-zA-Z]{5,}$"))
+                {
+                    ascii.EscribirCentrado("Apodo no válido. Por favor, introduce un apodo válido.");
+                    continue;
+                }
+                break; // Salir del bucle si el apodo es válido
+            } while (true);
+
+            // Bucle para ingresar edad válida
             int edad;
             do
             {
-                Console.Clear();
-                ascii.CambiarColorTexto("Naranja");
-                ascii.EscribirCentrado("Raza seleccionada: " + razaUsuario);
-                ascii.EscribirCentradoReadLine("Nombre: ");
-                nombre = Console.ReadLine();
-                ascii.EscribirCentradoReadLine("Apodo: ");
-                apodo = Console.ReadLine();
                 ascii.EscribirCentradoReadLine("Edad: ");
-                linea = Console.ReadLine();
+                string linea = Console.ReadLine();
 
                 // Intenta convertir la entrada en un número entero
                 if (!int.TryParse(linea, out edad))
                 {
                     ascii.EscribirCentrado("Edad no válida. Por favor, introduce una edad válida.");
-                    continue; // Vuelve al inicio del bucle
+                    continue; // Vuelve a preguntar la edad
                 }
 
                 // Verifica si la edad está dentro del rango permitido
                 if (edad <= 18 || edad > Constantes.MaxEdad)
                 {
                     ascii.EscribirCentrado("Edad fuera de rango. Por favor, introduce una edad válida.");
-                    continue; // Vuelve al inicio del bucle
+                    continue; // Vuelve a preguntar la edad
                 }
-                Console.ResetColor();
-                break;
-            } while (true); // Bucle infinito, se sale con "break"
+                break; // Salir del bucle si la edad es válida
+            } while (true);
 
+            Console.ResetColor();
+
+            // Calcula la fecha de nacimiento basada en la edad ingresada
             DateTime fechaNac = DateTime.Today.AddYears(-edad);
+
+            // Creación de los datos del personaje y asignación de características
             Datos datosUsuario = new Datos(razaUsuario, nombre, apodo, fechaNac, edad);
             Caracteristicas caracteristicasUsuario = AsignarCaracteristicas(razaUsuario);
             Personaje personajeUsuario = new Personaje(datosUsuario, caracteristicasUsuario);
             pj = personajeUsuario;
         }
+
 
         private void CrearPersonajeAleatorio(string nombrePj, string apodoPj)
         {
