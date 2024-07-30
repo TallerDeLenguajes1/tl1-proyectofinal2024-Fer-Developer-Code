@@ -66,10 +66,12 @@ namespace EspacioJuego
                 {
                     // El jugador desea seguir con su personaje actual
                     ascii.EscribirCentrado("¡Excelente! Continuemos con tu personaje actual.");
+                    Thread.Sleep(2000);
                 }
                 else
                 {
                     ascii.EscribirCentrado("¡Entendido! Vamos a crear un nuevo personaje.");
+                    Thread.Sleep(2000);
                     try
                     {
                         File.Delete(rutaJugador);
@@ -84,6 +86,7 @@ namespace EspacioJuego
                         ascii.EscribirCentrado($"Error al borrar el archivo: {ex.Message}");
                     }
                 }
+                MostrarTodosOponentes(listaPersonajesGuardados);
                 ascii.PresentacionTorneo();
                 torneo.ComenzarTorneo(listaPersonajesGuardados, jugador);
             }
@@ -94,8 +97,21 @@ namespace EspacioJuego
                 archivos.GuardarPersonajeJugador(fabrica.Pj, rutaJugador);
                 await fabrica.CrearPersonajes(); //Logro funcionar, supongo que es porque despues de todo este tiempo habia que tener cuidado con el await
                 archivos.GuardarPersonajes(fabrica.ListaPersonajes, rutaListaPjs);
+                MostrarTodosOponentes(fabrica.ListaPersonajes);
                 ascii.PresentacionTorneo();
                 torneo.ComenzarTorneo(fabrica.ListaPersonajes, fabrica.Pj);
+            }
+        }
+
+        private void MostrarTodosOponentes(List<Personaje> listaPersonajesGuardados)
+        {
+            int i = 1;
+            foreach (var oponente in listaPersonajesGuardados)
+            {
+                ascii.CambiarColorTexto("Rojo");
+                mostrar.MostrarCaracteristicas(oponente, "Oponente {i}");
+                Console.ResetColor();
+                i++;
             }
         }
     }
