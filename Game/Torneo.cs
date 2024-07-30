@@ -115,14 +115,14 @@ namespace EspacioTorneo
 
                     if (luchador2.Caracteristicas.Salud <= 0)
                     {
+                        personajes.Remove(luchador2);
                         string[] asciiVictoria = ascii.AsciiVictoria;
                         ascii.CambiarColorTexto("Amarillo");
                         ascii.CentrarAscii(asciiVictoria);
                         MostrarMensaje($"{luchador1.Datos.Nombre} ha ganado el combate.", "Amarillo");
-                        luchador1.Caracteristicas.MejorarAtributos();
-                        personajes.Remove(luchador2);
                         MostrarMensaje("Presiona cualquier tecla para continuar...");
                         Console.ReadKey();
+                        luchador1.Caracteristicas.MejorarAtributos();
                         Console.Clear();
                         break;
                     }
