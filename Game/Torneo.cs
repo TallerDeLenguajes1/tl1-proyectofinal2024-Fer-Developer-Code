@@ -63,7 +63,7 @@ namespace EspacioTorneo
                 Console.ResetColor();
             }
 
-            while (personajes.Count > 1 && !jugadorDerrotado)
+            while (personajes.Count >= 1 && !jugadorDerrotado)//Añadido el igual para que me tome el ultimo enemigo de la lista
             {
                 Personaje luchador1 = jugador;
                 int posicionEnemigo = RandomGenerator.Next(personajes.Count);
@@ -89,8 +89,8 @@ namespace EspacioTorneo
                     {
                         case 0:
                             Console.Clear();
-                            ascii.CambiarColorTexto("Verde");
                             luchador1.Atacar(luchador2);
+                            ascii.CambiarColorTexto("Verde");
                             ascii.CentrarAscii(ascii.AsciiAtaque);
                             MostrarMensaje($"El jugador ha atacado a {luchador2.Datos.Nombre}", "Naranja");
                             MostrarMensaje($"Vida de {luchador2.Datos.Nombre}: {luchador2.Caracteristicas.Salud}", "Rojo");
@@ -127,8 +127,8 @@ namespace EspacioTorneo
                     }
 
                     Console.Clear();
-                    ascii.CambiarColorTexto("Rojo");
                     luchador2.Atacar(luchador1);
+                    ascii.CambiarColorTexto("Rojo");
                     ascii.CentrarAscii(ascii.AsciiAtaque);
                     MostrarMensaje($"El oponente ha atacado a {luchador1.Datos.Nombre}", "Rojo");
                     MostrarMensaje($"Vida de {luchador1.Datos.Nombre}: {luchador1.Caracteristicas.Salud}", "Rojo");

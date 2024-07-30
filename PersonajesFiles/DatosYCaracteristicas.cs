@@ -66,8 +66,15 @@ namespace DatosYCaracteristicas.PersonajesFiles
         public void MejorarAtributos()
         {
             Console.Clear();
-            this.nivel = Math.Min(this.nivel + 1, 10);//Sube un nivel por default y 35 puntos de salud para batallas mas acomodadas
-            this.salud += 15;
+            this.nivel = Math.Min(this.nivel + 1, 10);//Sube un nivel por default y 15 puntos de salud para batallas mas acomodadas
+            if (this.salud <= 200)
+            {
+                this.salud += 15;
+            }
+            if (this.salud > 200)//Tope para salud
+            {
+                this.salud = 200;
+            }
 
             var ascii = new ArteAscii();
             string[] GraficoAscii = new string[] { };
@@ -95,9 +102,14 @@ namespace DatosYCaracteristicas.PersonajesFiles
 
             if (todosMaximizados)
             {
-                ascii.EscribirCentrado("¡Todos los atributos ya están mejorados al máximo! Añadiendo salud por default");
-                this.salud += 25;
-                Thread.Sleep(5000);
+                if (this.salud < 200)
+                {
+                    ascii.EscribirCentrado("¡Todos los atributos ya están mejorados al máximo! Añadiendo salud por default");
+                    this.salud += 25;
+                }
+                else{
+                    ascii.EscribirCentrado("¡Todos los atributos ya están mejorados al máximo!");
+                }
                 return; // Salir de la función si no hay nada más que mejorar
             }
 
@@ -166,7 +178,6 @@ namespace DatosYCaracteristicas.PersonajesFiles
                         }
                         break;
                     case "Salud +25"://Acomodar nombre para que se ajuste con la opcion
-                        // Incrementar salud sin límite
                         this.salud += 25;
                         bandera = true;
                         break;

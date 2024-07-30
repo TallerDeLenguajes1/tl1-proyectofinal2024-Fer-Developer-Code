@@ -7,13 +7,13 @@
         "Edad": 57
     },
     "Caracteristicas": {
-        "Velocidad": 4,
-        "Agilidad": 2,
-        "Fuerza": 8,
-        "Nivel": 3,
-        "Defensa": 8,
+        "Velocidad": 11,
+        "Agilidad": 11,
+        "Fuerza": 11,
+        "Nivel": 11,
+        "Defensa": 11,
         "Salud": 100,
-        "Suerte": 5
+        "Suerte": 11
     },
     "Pociones": 3,
     "ContadorAtaques": 0
