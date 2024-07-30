@@ -111,7 +111,7 @@ namespace EspacioJuego
             foreach (var oponente in listaPersonajesGuardados)
             {
                 ascii.CambiarColorTexto("Rojo");
-                mostrar.MostrarCaracteristicas(oponente, "Oponente {i}");
+                mostrar.MostrarCaracteristicas(oponente, $"Oponente {i}");
                 Console.ResetColor();
                 i++;
             }
