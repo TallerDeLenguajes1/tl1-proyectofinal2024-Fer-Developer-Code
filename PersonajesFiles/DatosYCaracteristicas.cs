@@ -107,7 +107,7 @@ namespace DatosYCaracteristicas.PersonajesFiles
                     ascii.EscribirCentrado("¡Todos los atributos ya están mejorados al máximo! Añadiendo salud por default");
                     this.salud += 25;
                 }
-                if (this.salud > 200){
+                if (this.salud >= 200){
                     this.salud = 200;
                     ascii.EscribirCentrado("!No se puede mejorar mas el personaje!");
                 }
