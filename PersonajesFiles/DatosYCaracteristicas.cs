@@ -77,7 +77,7 @@ namespace DatosYCaracteristicas.PersonajesFiles
             }
 
             var ascii = new ArteAscii();
-            string[] GraficoAscii = new string[] { };
+            string[] GraficoAscii = new string[] { };//Añadir ascii level up
             string[] atributos = { "Velocidad", "Agilidad", "Fuerza", "Defensa", "Salud +25", "Suerte" };
             string titulo = "¿Qué atributo desea mejorar?";
 
@@ -107,7 +107,7 @@ namespace DatosYCaracteristicas.PersonajesFiles
                     ascii.EscribirCentrado("¡Todos los atributos ya están mejorados al máximo! Añadiendo salud por default");
                     this.salud += 25;
                 }
-                else if (this.salud > 200){
+                if (this.salud > 200){
                     this.salud = 200;
                     ascii.EscribirCentrado("!No se puede mejorar mas el personaje!");
                 }
