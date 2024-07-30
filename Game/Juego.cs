@@ -65,11 +65,13 @@ namespace EspacioJuego
                 if (respuesta == 0)
                 {
                     // El jugador desea seguir con su personaje actual
+                    Console.Clear();
                     ascii.EscribirCentrado("¡Excelente! Continuemos con tu personaje actual.");
                     Thread.Sleep(2000);
                 }
                 else
                 {
+                    Console.Clear();
                     ascii.EscribirCentrado("¡Entendido! Vamos a crear un nuevo personaje.");
                     Thread.Sleep(2000);
                     try
@@ -113,6 +115,8 @@ namespace EspacioJuego
                 Console.ResetColor();
                 i++;
             }
+            ascii.EscribirCentrado("Presione una tecla para continuar...");
+            Console.ReadKey();
         }
     }
 }
