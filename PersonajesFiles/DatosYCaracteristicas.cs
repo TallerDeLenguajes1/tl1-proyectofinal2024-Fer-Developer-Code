@@ -77,7 +77,7 @@ namespace DatosYCaracteristicas.PersonajesFiles
             }
 
             var ascii = new ArteAscii();
-            string[] GraficoAscii = new string[] { };//Añadir ascii level up
+            string[] asciiLvl = ascii.AsciiLvlUp;//Añadir ascii level up
             string[] atributos = { "Velocidad", "Agilidad", "Fuerza", "Defensa", "Salud +25", "Suerte" };
             string titulo = "¿Qué atributo desea mejorar?";
 
@@ -86,7 +86,7 @@ namespace DatosYCaracteristicas.PersonajesFiles
             bool bandera;
             int opcion;
 
-            MenuGrafico menuAtributos = new MenuGrafico(GraficoAscii, titulo, atributos);
+            MenuGrafico menuAtributos = new MenuGrafico(asciiLvl, titulo, atributos);
 
             for (int i = 0; i < atributos.Length; i++)
             {
