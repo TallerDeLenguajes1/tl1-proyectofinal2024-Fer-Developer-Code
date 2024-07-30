@@ -115,8 +115,9 @@ namespace EspacioTorneo
 
                     if (luchador2.Caracteristicas.Salud <= 0)
                     {
+                        string[] asciiVictoria = ascii.AsciiVictoria;
                         ascii.CambiarColorTexto("Amarillo");
-                        ascii.CentrarAscii(ascii.AsciiVictoria);
+                        ascii.CentrarAscii(asciiVictoria);
                         MostrarMensaje($"{luchador1.Datos.Nombre} ha ganado el combate.", "Amarillo");
                         luchador1.Caracteristicas.MejorarAtributos();
                         personajes.Remove(luchador2);
@@ -137,9 +138,10 @@ namespace EspacioTorneo
 
                     if (luchador1.Caracteristicas.Salud <= 0)
                     {
+                        string[] asciiDerrota = ascii.AsciiDerrota;
                         Console.Clear();
                         ascii.CambiarColorTexto("Rojo");
-                        ascii.CentrarAscii(ascii.AsciiDerrota);
+                        ascii.CentrarAscii(asciiDerrota);
                         MostrarMensaje($"{luchador2.Datos.Nombre} ha ganado el combate.", "Amarillo");
                         ascii.EscribirCentrado($"{jugador.Datos.Nombre} ha sido derrotado y eliminado del torneo.");
                         ascii.EscribirCentrado("Presiona cualquier tecla para continuar...");
