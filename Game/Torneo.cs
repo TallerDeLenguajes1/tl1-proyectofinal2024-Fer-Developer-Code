@@ -122,8 +122,10 @@ namespace EspacioTorneo
                         MostrarMensaje($"{luchador1.Datos.Nombre} ha ganado el combate.", "Amarillo");
                         MostrarMensaje("Presiona cualquier tecla para continuar...");
                         Console.ReadKey();
-                        luchador1.Caracteristicas.MejorarAtributos();
                         Console.Clear();
+                        luchador1.Caracteristicas.MejorarAtributos();
+                        MostrarMensaje("Presiona cualquier tecla para continuar...");
+                        Console.ReadKey();
                         break;
                     }
 
