@@ -107,6 +107,7 @@ namespace EspacioJuego
 
         private void MostrarTodosOponentes(List<Personaje> listaPersonajesGuardados)
         {
+            Console.Clear();
             int i = 1;
             foreach (var oponente in listaPersonajesGuardados)
             {
