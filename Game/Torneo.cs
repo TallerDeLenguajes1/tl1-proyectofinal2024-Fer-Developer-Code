@@ -78,12 +78,13 @@ namespace EspacioTorneo
                 {
                     string entrada = "Elige tu acción:";
                     string[] opciones = { "Atacar", "Tomar pociones" };
-                    string[] asciiTrofeo = ascii.AsciiTrofeo;
-                    MenuGrafico menuAcciones = new MenuGrafico(asciiTrofeo, entrada, opciones);
+                    string[] asciiCombate = ascii.AsciiPelea;
+                    MenuGrafico menuAcciones = new MenuGrafico(asciiCombate, entrada, opciones);
+
 
                     // Mostrar opciones en una sección específica
                     Console.SetCursorPosition(0, Console.WindowHeight - opciones.Length - 5); // Ajustar la posición según sea necesario
-                    int accionJugador = menuAcciones.Run();
+                    int accionJugador = menuAcciones.RunCombate(luchador1, luchador2);
 
                     switch (accionJugador)
                     {
@@ -129,14 +130,7 @@ namespace EspacioTorneo
                         break;
                     }
 
-                    Console.Clear();
-                    luchador2.Atacar(luchador1);
-                    ascii.CambiarColorTexto("Rojo");
-                    ascii.CentrarAscii(ascii.AsciiAtaque);
-                    MostrarMensaje($"El oponente ha atacado a {luchador1.Datos.Nombre}", "Rojo");
-                    MostrarMensaje($"Vida de {luchador1.Datos.Nombre}: {luchador1.Caracteristicas.Salud}", "Rojo");
-                    MostrarMensaje("Presiona cualquier tecla para continuar...");
-                    Console.ReadKey();
+                    TurnoOponente(luchador1, luchador2);
 
                     if (luchador1.Caracteristicas.Salud <= 0)
                     {
@@ -161,6 +155,34 @@ namespace EspacioTorneo
                 numBatalla++;
             }
             return jugadorDerrotado;
+
+            void TurnoOponente(Personaje luchador1, Personaje luchador2)
+            {
+                switch (luchador2.Caracteristicas.Salud)
+                {
+                    case < 35 when luchador2.Pociones > 0:
+                        Console.Clear();
+                        luchador2.TomarPocion();
+                        ascii.CambiarColorTexto("Verde");
+                        ascii.CentrarAscii(ascii.AsciiPocion);
+                        MostrarMensaje($"El oponente ha tomado una poción", "Verde");
+                        MostrarMensaje($"Salud restante:{luchador2.Caracteristicas.Salud}, Pociones restantes:{luchador2.Pociones}", "verde");
+                        MostrarMensaje("Presiona cualquier tecla para continuar...");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    default:
+                        Console.Clear();
+                        luchador2.Atacar(luchador1);
+                        ascii.CambiarColorTexto("Rojo");
+                        ascii.CentrarAscii(ascii.AsciiAtaque);
+                        MostrarMensaje($"El oponente ha atacado a {luchador1.Datos.Nombre}", "Rojo");
+                        MostrarMensaje($"Vida de {luchador1.Datos.Nombre}: {luchador1.Caracteristicas.Salud}", "Rojo");
+                        MostrarMensaje("Presiona cualquier tecla para continuar...");
+                        Console.ReadKey();
+                        break;
+                }
+            }
         }
     }
 }

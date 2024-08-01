@@ -8,6 +8,79 @@ namespace EspacioMostrarDatos.Helpers
     {
         HistorialGanadoresJson archivosPjsGanadores = new HistorialGanadoresJson();
         ArteAscii ascii = new ArteAscii();
+        public void MostrarCaracteristicasLadoALado(Personaje jugador, Personaje oponente, string tituloJugador, string tituloOponente)
+        {
+            int mitadAncho = Console.WindowWidth / 2;
+
+            // Crear el borde superior
+            ascii.CambiarColorTexto("Cyan");
+            Console.WriteLine(new string('-', Console.WindowWidth));
+
+            // Dibujar la línea vertical
+            for (int i = 1; i < CalcularAlturaMaxima(jugador, oponente) + 2; i++)
+            {
+                Console.SetCursorPosition(mitadAncho, i);
+                Console.Write("|");
+            }
+
+            // Mostrar características del jugador
+            ascii.CambiarColorTexto("Amarillo");
+            MostrarCaracteristicasJugador(jugador, tituloJugador, 0, mitadAncho);
+
+            // Mostrar características del oponente
+            ascii.CambiarColorTexto("Amarillo");
+            MostrarCaracteristicasJugador(oponente, tituloOponente, mitadAncho + 1, mitadAncho);
+
+            // Dibujar la línea horizontal para el menú de combate
+            int lineaHorizontalY = CalcularAlturaMaxima(jugador, oponente) + 2;
+            Console.SetCursorPosition(0, lineaHorizontalY);
+            ascii.CambiarColorTexto("Cyan");
+            Console.WriteLine(new string('-', Console.WindowWidth));
+
+            Console.ResetColor();
+        }
+
+        private int CalcularAlturaMaxima(Personaje jugador, Personaje oponente)
+        {
+            int alturaJugador = CalcularAltura(jugador);
+            int alturaOponente = CalcularAltura(oponente);
+            return Math.Max(alturaJugador, alturaOponente);
+        }
+
+        private int CalcularAltura(Personaje personaje)
+        {
+            // Contar el número de líneas necesarias para mostrar todas las características del personaje
+            int lineas = 0;
+            lineas++; // Título
+            lineas++; // Nombre y Apodo
+            lineas++; // Raza y Edad
+            lineas++; // Velocidad y Agilidad
+            lineas++; // Fuerza y Nivel
+            lineas++; // Defensa, Salud y Suerte
+            return lineas;
+        }
+
+        private void MostrarCaracteristicasJugador(Personaje personaje, string titulo, int inicioX, int anchoMaximo)
+        {
+            int y = 1;
+            ascii.CambiarColorTexto("Amarillo");
+            EscribirTextoCentradoEnCuadro(inicioX, y++, titulo, anchoMaximo);
+            EscribirTextoCentradoEnCuadro(inicioX, y++, $"Nombre: {personaje.Datos.Nombre}", anchoMaximo);
+            EscribirTextoCentradoEnCuadro(inicioX, y++, $"Apodo: {personaje.Datos.Apodo}", anchoMaximo);
+            EscribirTextoCentradoEnCuadro(inicioX, y++, $"Raza: {personaje.Datos.Raza}, Edad: {personaje.Datos.Edad}", anchoMaximo);
+            ascii.CambiarColorTexto("Verde");
+            EscribirTextoCentradoEnCuadro(inicioX, y++, $"Velocidad: {personaje.Caracteristicas.Velocidad}, Agilidad: {personaje.Caracteristicas.Agilidad}", anchoMaximo);
+            EscribirTextoCentradoEnCuadro(inicioX, y++, $"Fuerza: {personaje.Caracteristicas.Fuerza}, Nivel: {personaje.Caracteristicas.Nivel}", anchoMaximo);
+            EscribirTextoCentradoEnCuadro(inicioX, y++, $"Defensa: {personaje.Caracteristicas.Defensa}, Salud: {personaje.Caracteristicas.Salud}, Suerte: {personaje.Caracteristicas.Suerte}", anchoMaximo);
+        }
+
+        private void EscribirTextoCentradoEnCuadro(int inicioX, int y, string texto, int anchoMaximo)
+        {
+            int posicionX = inicioX + (anchoMaximo - texto.Length) / 2;
+            Console.SetCursorPosition(posicionX, y);
+            Console.WriteLine(texto);
+        }
+
         public void MostrarCaracteristicas(Personaje personaje, string titulo)
         {
             // Crear un borde decorativo

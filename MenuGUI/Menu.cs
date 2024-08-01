@@ -1,4 +1,6 @@
 using EspacioArteAscii.GUI;
+using EspacioMostrarDatos.Helpers;
+using EspacioPersonajes.PersonajesFiles;
 namespace EspacioMenu
 {
     public class MenuGrafico
@@ -46,6 +48,43 @@ namespace EspacioMenu
             {
                 Console.Clear();
                 ascii.CambiarColorTexto("naranja");
+                ascii.CentrarAscii(graficoAscii);
+                ascii.EscribirCentrado(textoEntrada);
+                ascii.CambiarColorTexto("Blanco");
+                MostrarOpciones();
+
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                keyPressed = keyInfo.Key;
+
+                //Actualizar index basado en flechas
+                if (keyPressed == ConsoleKey.UpArrow)
+                {
+                    indexSelec--;
+                    if (indexSelec < 0)
+                    {
+                        indexSelec = opciones.Length - 1;//Te devuelve al ultimo item del menu
+                    }
+                }
+                else if (keyPressed == ConsoleKey.DownArrow)
+                {
+                    indexSelec++;
+                    if (indexSelec >= opciones.Length)
+                    {
+                        indexSelec = 0; //Te devuelve al primer item del menu
+                    }
+                }
+            } while (keyPressed != ConsoleKey.Enter);
+            return indexSelec;
+        }
+        public int RunCombate(Personaje luchador1, Personaje luchador2)
+        {
+            MostrarDatos showStats = new MostrarDatos();
+            ConsoleKey keyPressed;
+            do
+            {
+                Console.Clear();
+                showStats.MostrarCaracteristicasLadoALado(luchador1, luchador2, "Jugador", "Oponente");
+                ascii.CambiarColorTexto("Rojo");
                 ascii.CentrarAscii(graficoAscii);
                 ascii.EscribirCentrado(textoEntrada);
                 ascii.CambiarColorTexto("Blanco");
