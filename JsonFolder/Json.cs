@@ -76,9 +76,8 @@ namespace EspacioJsonCreacion//Averiguar porque git no me deja subir la carpeta 
                 string jsonString = File.ReadAllText(nombreArchivo);
                 return JsonSerializer.Deserialize<List<HistorialPartida>>(jsonString);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine($"Error al deserializar el archivo JSON: {ex.Message}");
                 return new List<HistorialPartida>(); // Retornar lista vacía en caso de excepción
             }
         }
