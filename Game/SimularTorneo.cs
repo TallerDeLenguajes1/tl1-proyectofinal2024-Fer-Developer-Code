@@ -57,7 +57,7 @@ namespace EspacioSimularTorneo
                     ascii.EscribirCentrado($"Vida de luchador 2 {luchador2.Datos.Nombre}: {luchador2.Caracteristicas.Salud}");
                     Console.ResetColor();
 
-                    //Thread.Sleep(2000); // Pausa de 2 segundos
+                    Thread.Sleep(500); // Pausa de 2 segundos
 
                     if (luchador2.Caracteristicas.Salud <= 0)
                     {
@@ -71,7 +71,7 @@ namespace EspacioSimularTorneo
                     ascii.EscribirCentrado($"Vida de luchador 1 {luchador1.Datos.Nombre}: {luchador1.Caracteristicas.Salud}");
                     Console.ResetColor();
 
-                    //Thread.Sleep(2000); // Pausa de 2 segundos
+                    Thread.Sleep(500); // Pausa de 2 segundos
 
                     if (luchador1.Caracteristicas.Salud <= 0)
                     {
