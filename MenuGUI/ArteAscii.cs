@@ -21,7 +21,7 @@ namespace EspacioArteAscii.GUI
       Console.SetCursorPosition(posicionX, Console.CursorTop);
       Console.Write(texto);
     }
-    public void limpiar()
+    public void Limpiar()
     {
       Console.Clear();
     }
