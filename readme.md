@@ -1,5 +1,7 @@
 # Bienvenidos al Proyecto de Juego de Rol en Consola
 
+##Es fundamental para el funcionamiento y ejecución de la aplicación tener instalado una versión de .NET, ya sea 8.0 o superior
+
 ## Introducción
 
 En este proyecto, utilizamos la API [NameFake](https://api.namefake.com/) del sitio [NameFake](https://namefake.com/) para generar datos ficticios de personas. A continuación, se describen los detalles sobre la API y cómo la utilizamos para crear personajes.
