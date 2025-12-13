@@ -32,4 +32,4 @@ La razón detrás de esta elección es que, aunque existen muchas APIs que gener
 [Tutorial del juego](https://github.com/TallerDeLenguajes1/tl1-proyectofinal2024-Fer-Developer-Code/blob/main/Tutorial.md)
 
 ## DATOS DEL ALUMNO
-### NOMBRE:Victor Ruben Fernando
+### NOMBRE: Victor Ruben Fernando Ibañez
